@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Crypto Pulse — Binance / OKX 实时行情 · 顺大逆小 · 情绪</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { bg:'#0B0E11', panel:'#1E2329', panel2:'#121212', muted:'#848E9C', border:'#2B3139', accent:'#F0B90B' },
+  fontFamily: { mono: ['JetBrains Mono','SF Mono','Menlo','monospace'] } } } };
+</script>
+<style>
+html,body,#root{height:100%;margin:0;background:#0B0E11;color:#EAECEF;font-family:Inter,'PingFang SC','Microsoft YaHei',system-ui,sans-serif}
+::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-thumb{background:#2B3139;border-radius:3px}
+.drawer-enter{animation:slideIn .2s ease-out}@keyframes slideIn{from{transform:translateX(100%)}to{transform:none}}
+.pulse-dot{animation:pulse 1.5s ease-in-out infinite}@keyframes pulse{50%{opacity:.35}}
+.flash-new{animation:flash 1.2s ease-in-out 6}@keyframes flash{50%{background:rgba(240,185,11,.18)}}
+.tip{position:relative}.tip:hover .tipbox{display:block}
+.tipbox{display:none;position:absolute;z-index:60;bottom:115%;left:50%;transform:translateX(-50%);width:260px;background:#0B0E11;border:1px solid #2B3139;border-radius:8px;padding:8px;font-size:11px;color:#EAECEF;white-space:normal;line-height:1.5;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.tabular{font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+<div id="root"><div style="padding:40px;color:#848E9C">加载中… 若长时间空白，请用 <code>python3 -m http.server</code> 打开并确认可访问 CDN。</div></div>
+<script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.2/babel.min.js"></script>
+<script src="./signals.js"></script>
+<script src="./snapshot.js"></script>
+<script type="text/babel" data-presets="react">
+const { useState, useEffect, useMemo, useRef, useCallback } = React;
+const S = window.Signals;
+const SNAP = window.SNAPSHOT || { sentiment:{}, news:{items:[]}, snapshotTime:'—' };
+// 每 5 分钟带时间戳重新拉取 snapshot.js，原地更新 SNAP（页面每秒重渲染，无需刷新）
+setInterval(() => {
+  const el = document.createElement('script');
+  el.src = './snapshot.js?t=' + Date.now();
+  el.onload = () => { if (window.SNAPSHOT) { for (const k of Object.keys(SNAP)) delete SNAP[k]; Object.assign(SNAP, window.SNAPSHOT); } el.remove(); };
+  el.onerror = () => el.remove();
+  document.body.appendChild(el);
+}, 5 * 60 * 1000);
+
+/* ============================================================
+ * 宏观数据（人工核实快照，见 README）。无法核实的值为 '—'
+ * ============================================================ */
+const MACRO_AS_OF = '2026-11-05 (KST)';
+const MACRO = [
+  { key:'CPI', name:'CPI 同比', period:'2026年9月', released:'10/14', prev:'3.4%', forecast:'3.6%', actual:'3.7%', type:'inflation',
+    next:{ date:'11/10 22:30 KST', period:'10月', forecast:'3.7%' },
+    src:[['CNBC','https://www.cnbc.com/2026/10/14/cpi-inflation-report-september-2026.html'],['BLS 日程','https://www.bls.gov/schedule/2026/11_sched.htm']] },
+  { key:'PCE', name:'核心 PCE 同比', period:'2026年9月', released:'10/29', prev:'3.0%', forecast:'3.1%', actual:'3.1%', type:'inflation',
+    next:{ date:'11/25 22:30 KST', period:'10月', forecast:'—' },
+    src:[['Nowflation 日历','https://nowflation.com/calendar'],['FedRateCalc','https://fedratecalc.com/us-economic-calendar/november-2026/']] },
+  { key:'PPI', name:'PPI 环比 (最终需求)', period:'2026年9月', released:'10/15', prev:'0.5%', forecast:'0.6%', actual:'1.3%', type:'inflation',
+    note:'同比 6.3%，2022年12月以来最大', next:{ date:'11/13 22:30 KST', period:'10月', forecast:'—' },
+    src:[['BLS 新闻稿','https://www.bls.gov/news.release/archives/ppi_10152026.htm'],['CNBC 预期','https://www.cnbc.com/2026/10/13/september-consumer-price-index-inflation.html']] },
+  { key:'FED', name:'FOMC 利率决议', period:'10/28 会议', released:'10/29 03:00 KST', prev:'3.75–4.00% (9月加息25bp)', forecast:'维持', actual:'维持 3.75–4.00%', type:'fed', fedAction:'hold', fedExpected:'hold',
+    note:'10–2 投票，2 票主张加息 25bp（偏鹰）', next:{ date:'—', period:'12月会议', forecast:'—' },
+    src:[['美联储声明','https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm'],['CNBC','https://www.cnbc.com/2026/10/28/fed-interest-rate-decision-october-2026.html']] },
+  { key:'DXY', name:'美元指数 DXY', period:'11/04 收盘', released:'日频', prev:'101.87', forecast:'—', actual:'101.43', type:'dxy',
+    note:'近 1 周约 −0.66%', next:{ date:'实时', period:'', forecast:'—' },
+    src:[['Investing.com','https://www.investing.com/indices/usdollar-historical-data'],['WSJ','https://www.wsj.com/market-data/quotes/index/DXY/historical-prices']] },
+  { key:'NFP', name:'非农就业 NFP', period:'2026年9月', released:'10/02', prev:'133K (8月修正)', forecast:'84K', actual:'29K', type:'nfp',
+    note:'失业率 4.2%', next:{ date:'11/06 22:30 KST', period:'10月', forecast:'65K' },
+    src:[['CNBC','https://www.cnbc.com/2026/10/02/jobs-report-september-2026.html'],['BLS 日程','https://www.bls.gov/schedule/2026/11_sched.htm']] },
+];
+const num = s => { const m = String(s).replace(/,/g,'').match(/-?\d+(\.\d+)?/); return m ? +m[0] : null; };
+function macroImpact(m) {
+  const a = num(m.actual), f = num(m.forecast), p = num(m.prev);
+  if (m.type === 'inflation') {
+    if (a == null || f == null) return { tag:'中性', why:'数据未公布或缺少预期值' };
+    if (a < f) return { tag:'利多', why:`公布 ${m.actual} < 预期 ${m.forecast}：通胀低于预期 → 降息预期升温 → 利多加密` };
+    if (a > f) return { tag:'利空', why:`公布 ${m.actual} > 预期 ${m.forecast}：通胀高于预期 → 偏鹰 → 利空加密` };
+    return { tag:'中性', why:`公布 ${m.actual} = 预期 ${m.forecast}：符合预期` };
+  }
+  if (m.type === 'nfp') {
+    if (a == null || f == null) return { tag:'中性', why:'数据未公布' };
+    if (a > f) return { tag:'利空', why:`就业 ${m.actual} 强于预期 ${m.forecast} → 经济偏热、偏鹰 → 利空` };
+    if (a < f) return { tag:'利多', why:`就业 ${m.actual} 弱于预期 ${m.forecast} → 降息/少加息预期 → 利多` };
+    return { tag:'中性', why:'符合预期' };
+  }
+  if (m.type === 'fed') {
+    const act = m.fedAction, exp = m.fedExpected;
+    if (act === 'cut') return { tag:'利多', why:'降息 → 流动性宽松 → 利多' };
+    if (act === 'hike') return { tag:'利空', why:'加息 → 流动性收紧 → 利空' };
+    return { tag:'中性', why:`维持利率${exp === 'hold' ? '，符合市场预期' : ''} → 中性（注意：${m.note || ''}）` };
+  }
+  if (m.type === 'dxy') {
+    if (a == null || p == null) return { tag:'中性', why:'缺少数据' };
+    if (a < p) return { tag:'利多', why:`DXY ${m.actual} 低于前值 ${m.prev}（美元走弱）→ 利多加密` };
+    if (a > p) return { tag:'利空', why:`DXY ${m.actual} 高于前值 ${m.prev}（美元走强）→ 利空加密` };
+    return { tag:'中性', why:'持平' };
+  }
+  return { tag:'中性', why:'' };
+}
+const RULES_TEXT = '规则：CPI/PCE/PPI 公布<预期→利多，>预期→利空；NFP 强于预期→利空（偏鹰），弱于预期→利多；美联储降息→利多，加息→利空，维持→中性；DXY 上行→利空，下行→利多。';
+
+/* ============================================================
+ * 交易所适配器（公开、无需 Key 的端点）
+ * ============================================================ */
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+async function getJSON(url) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`HTTP ${r.status} ${url}`);
+  return r.json();
+}
+// 简单限速队列
+function makeQueue(concurrency, gapMs) {
+  let active = 0; const q = [];
+  const pump = () => {
+    while (active < concurrency && q.length) {
+      const { fn, res, rej } = q.shift(); active++;
+      fn().then(res, rej).finally(async () => { await sleep(gapMs); active--; pump(); });
+    }
+  };
+  return fn => new Promise((res, rej) => { q.push({ fn, res, rej }); pump(); });
+}
+const CACHE = new Map(); const TTL = 60000;
+async function cached(key, fn, ttl = TTL) {
+  const c = CACHE.get(key); if (c && Date.now() - c.t < ttl) return c.v;
+  const v = await fn(); CACHE.set(key, { t: Date.now(), v }); return v;
+}
+
+const BINANCE = {
+  id:'binance', label:'Binance',
+  queue: makeQueue(4, 40),
+  disp: s => s, base: s => s.replace(/USDT$/, ''),
+  async tickers() {
+    const d = await getJSON('https://fapi.binance.com/fapi/v1/ticker/24hr');
+    const now = Date.now();
+    return d.filter(x => x.symbol.endsWith('USDT') && now - x.closeTime < 10 * 60e3)
+      .map(x => ({ id:x.symbol, last:+x.lastPrice, chg:+x.priceChangePercent, qv:+x.quoteVolume }));
+  },
+  async spot() {
+    const d = await getJSON('https://api.binance.com/api/v3/ticker/24hr?symbols=%5B%22BTCUSDT%22,%22ETHUSDT%22%5D');
+    const o = {}; d.forEach(x => o[x.symbol.replace('USDT','')] = { last:+x.lastPrice, chg:+x.priceChangePercent }); return o;
+  },
+  async marks() {
+    const d = await getJSON('https://fapi.binance.com/fapi/v1/premiumIndex');
+    const o = {}; d.forEach(x => o[x.symbol] = { mark:+x.markPrice, index:+x.indexPrice, funding:+x.lastFundingRate, nextFundingTime:+x.nextFundingTime }); return o;
+  },
+  majorId: b => b + 'USDT',
+  klines(id, tf, limit = 60) {
+    return cached(`bn|${id}|${tf}|${limit}`, () => this.queue(async () =>
+      S.normBinance(await getJSON(`https://fapi.binance.com/fapi/v1/klines?symbol=${id}&interval=${tf}&limit=${limit}`))));
+  },
+  async funding(id) {
+    const [p, h] = await Promise.all([
+      getJSON(`https://fapi.binance.com/fapi/v1/premiumIndex?symbol=${id}`),
+      getJSON(`https://fapi.binance.com/fapi/v1/fundingRate?symbol=${id}&limit=1`)]);
+    return { predicted:+p.lastFundingRate, nextTime:+p.nextFundingTime, settled: h[0] ? +h[0].fundingRate : null, settledTime: h[0] ? +h[0].fundingTime : null };
+  },
+  async oi(id) {
+    const d = await getJSON(`https://fapi.binance.com/futures/data/openInterestHist?symbol=${id}&period=1h&limit=25`);
+    if (d.length < 2) return null;
+    const a = +d[0].sumOpenInterestValue, b = +d[d.length - 1].sumOpenInterestValue;
+    return { now:b, chg:(b / a - 1) * 100 };
+  },
+  recentLiq: null,
+};
+
+let OKX_CTVAL = null;
+const OKX = {
+  id:'okx', label:'OKX',
+  queue: makeQueue(2, 120), // OKX candles: 40 req / 2s
+  disp: s => s.replace('-USDT-SWAP', 'USDT'), base: s => s.split('-')[0],
+  async tickers() {
+    const d = (await getJSON('https://www.okx.com/api/v5/market/tickers?instType=SWAP')).data;
+    return d.filter(x => x.instId.endsWith('-USDT-SWAP')).map(x => ({
+      id:x.instId, last:+x.last, chg:(+x.last / +x.open24h - 1) * 100, qv:+x.volCcy24h * +x.last }));
+  },
+  async spot() {
+    const o = {};
+    await Promise.all(['BTC','ETH'].map(async b => {
+      const x = (await getJSON(`https://www.okx.com/api/v5/market/ticker?instId=${b}-USDT`)).data[0];
+      o[b] = { last:+x.last, chg:(+x.last / +x.open24h - 1) * 100 };
+    }));
+    return o;
+  },
+  async marks() {
+    const [m, idx] = await Promise.all([
+      getJSON('https://www.okx.com/api/v5/public/mark-price?instType=SWAP'),
+      getJSON('https://www.okx.com/api/v5/market/index-tickers?quoteCcy=USDT')]);
+    const ix = {}; idx.data.forEach(x => ix[x.instId] = +x.idxPx);
+    const o = {}; m.data.forEach(x => { if (x.instId.endsWith('-USDT-SWAP')) o[x.instId] = { mark:+x.markPx, index: ix[x.instId.replace('-SWAP','')] ?? null }; });
+    // BTC/ETH funding for banner
+    await Promise.all(['BTC','ETH'].map(async b => { try { const f = await OKX.funding(`${b}-USDT-SWAP`); Object.assign(o[`${b}-USDT-SWAP`] || {}, { funding:f.predicted, nextFundingTime:f.nextTime }); } catch {} }));
+    return o;
+  },
+  majorId: b => `${b}-USDT-SWAP`,
+  klines(id, tf, limit = 60) {
+    const bar = { '15m':'15m', '1h':'1H', '4h':'4H', '1d':'1Dutc' }[tf];
+    return cached(`okx|${id}|${tf}|${limit}`, () => this.queue(async () =>
+      S.normOkx((await getJSON(`https://www.okx.com/api/v5/market/candles?instId=${id}&bar=${bar}&limit=${limit}`)).data)));
+  },
+  async funding(id) {
+    const [p, h] = await Promise.all([
+      getJSON(`https://www.okx.com/api/v5/public/funding-rate?instId=${id}`),
+      getJSON(`https://www.okx.com/api/v5/public/funding-rate-history?instId=${id}&limit=1`)]);
+    const x = p.data[0], y = h.data[0];
+    return { predicted:+x.fundingRate, nextTime:+x.fundingTime, settled: y ? +y.realizedRate : null, settledTime: y ? +y.fundingTime : null };
+  },
+  async oi(id) {
+    const d = (await getJSON(`https://www.okx.com/api/v5/rubik/stat/contracts/open-interest-history?instId=${id}&period=1H&limit=25`)).data;
+    if (!d || d.length < 2) return null;
+    const now = +d[0][3], then = +d[d.length - 1][3]; // newest first, oiUsd
+    return { now, chg:(now / then - 1) * 100 };
+  },
+  async ctVal() {
+    if (OKX_CTVAL) return OKX_CTVAL;
+    const d = (await getJSON('https://www.okx.com/api/v5/public/instruments?instType=SWAP')).data;
+    OKX_CTVAL = {}; d.forEach(x => OKX_CTVAL[x.instId] = +x.ctVal); return OKX_CTVAL;
+  },
+  // 最近强平（OKX REST，最多约 100 笔）
+  async recentLiq(id) {
+    const cv = (await OKX.ctVal())[id] || 1;
+    const d = (await getJSON(`https://www.okx.com/api/v5/public/liquidation-orders?instType=SWAP&uly=${id.replace('-SWAP','')}&state=filled`)).data;
+    let long = 0, short = 0, n = 0, since = Date.now();
+    (d[0]?.details || []).forEach(x => { const usd = +x.sz * cv * +x.bkPx; n++; since = Math.min(since, +x.ts); x.posSide === 'long' ? long += usd : short += usd; });
+    return { long, short, n, since };
+  },
+};
+const PLATFORMS = { binance: BINANCE, okx: OKX };
+
+/* ============================================================
+ * WebSocket 管理：自动重连（指数退避）
+ * ============================================================ */
+class WSConn {
+  constructor(name, url, { onOpen, onMessage, onStatus, pingMs }) {
+    Object.assign(this, { name, url, onOpen, onMessage, onStatus, pingMs, retry:0, closed:false });
+    this.connect();
+  }
+  connect() {
+    if (this.closed) return;
+    this.onStatus(this.name, 'connecting');
+    let ws; try { ws = new WebSocket(this.url); } catch (e) { return this.schedule(); }
+    this.ws = ws;
+    ws.onopen = () => { this.retry = 0; this.onStatus(this.name, 'open'); this.onOpen && this.onOpen(ws);
+      if (this.pingMs) this.pinger = setInterval(() => ws.readyState === 1 && ws.send('ping'), this.pingMs); };
+    ws.onmessage = e => { if (e.data === 'pong') return; try { this.onMessage(JSON.parse(e.data)); } catch {} };
+    ws.onclose = () => { clearInterval(this.pinger); if (!this.closed) { this.onStatus(this.name, 'reconnecting'); this.schedule(); } };
+    ws.onerror = () => { try { ws.close(); } catch {} };
+  }
+  schedule() { const d = Math.min(30000, 1000 * 2 ** this.retry++); this.nextRetry = Date.now() + d; this.timer = setTimeout(() => this.connect(), d); }
+  close() { this.closed = true; clearTimeout(this.timer); clearInterval(this.pinger); try { this.ws && this.ws.close(); } catch {} }
+}
+
+/* ============================================================
+ * 格式化
+ * ============================================================ */
+function fmtPrice(n) {
+  if (n == null || !isFinite(n)) return '—';
+  if (n >= 1000) return n.toLocaleString('en-US', { minimumFractionDigits:2, maximumFractionDigits:2 });
+  if (n >= 1) return n.toLocaleString('en-US', { maximumFractionDigits:4 });
+  if (n >= 0.001) return n.toFixed(6);
+  return n.toPrecision(4);
+}
+const fmtVol = v => v == null ? '—' : v >= 1e9 ? (v/1e9).toFixed(2)+'B' : v >= 1e6 ? (v/1e6).toFixed(2)+'M' : v >= 1e3 ? (v/1e3).toFixed(1)+'K' : v.toFixed(0);
+const fmtPct = (p, d = 2) => p == null || !isFinite(p) ? '—' : (p > 0 ? '+' : '') + p.toFixed(d) + '%';
+const fmtFund = f => f == null || !isFinite(f) ? '—' : (f * 100).toFixed(4) + '%';
+const KST = t => new Date(t).toLocaleString('zh-CN', { timeZone:'Asia/Seoul', hour12:false, month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit' });
+const KSTt = t => new Date(t).toLocaleTimeString('zh-CN', { timeZone:'Asia/Seoul', hour12:false });
+
+/* ============================================================
+ * 小组件
+ * ============================================================ */
+const Badge = ({ children, tone = 'muted', title }) => {
+  const c = { muted:'border-border text-muted', demo:'border-accent/50 text-accent bg-accent/10', live:'border-emerald-500/40 text-emerald-400 bg-emerald-500/10', snap:'border-sky-500/40 text-sky-300 bg-sky-500/10' }[tone];
+  return <span title={title} className={`inline-block text-[9px] leading-4 px-1.5 rounded border ${c}`}>{children}</span>;
+};
+const Demo = () => <Badge tone="demo" title="示例数据，非真实">示例</Badge>;
+const Live = ({ t }) => <Badge tone="live" title="交易所公开接口实时数据">{t || '实时'}</Badge>;
+const Snap = ({ t }) => <Badge tone="snap" title="定时快照，非实时">快照 {t}</Badge>;
+
+function Pct({ v, up, down, className = '' }) {
+  if (v == null || !isFinite(v)) return <span className="text-muted">—</span>;
+  return <span className={`font-mono tabular ${className}`} style={{ color: v >= 0 ? up : down }}>{fmtPct(v)}</span>;
+}
+function Sparkline({ data, up, down, w = 84, h = 26 }) {
+  if (!data || data.length < 2) return <span className="text-[10px] text-muted">…</span>;
+  const mn = Math.min(...data), mx = Math.max(...data), r = mx - mn || 1;
+  const pts = data.map((v, i) => `${(i / (data.length - 1)) * w},${h - ((v - mn) / r) * (h - 2) - 1}`).join(' ');
+  return <svg width={w} height={h}><polyline fill="none" stroke={data.at(-1) >= data[0] ? up : down} strokeWidth="1.4" points={pts} /></svg>;
+}
+function Section({ title, right, children }) {
+  return <div className="mb-4"><div className="flex items-center justify-between mb-2"><h3 className="text-xs font-semibold text-white/90">{title}</h3><div className="flex gap-1">{right}</div></div>{children}</div>;
+}
+function beep() {
+  try { const a = new (window.AudioContext || window.webkitAudioContext)(); [0, .18].forEach(d => { const o = a.createOscillator(), g = a.createGain(); o.frequency.value = 880; o.connect(g); g.connect(a.destination); g.gain.setValueAtTime(.15, a.currentTime + d); g.gain.exponentialRampToValueAtTime(.001, a.currentTime + d + .15); o.start(a.currentTime + d); o.stop(a.currentTime + d + .16); }); } catch {}
+}
+
+/* ============================================================
+ * Header
+ * ============================================================ */
+function Header({ platform, setPlatform, ws, lastUpdate, onRefresh, search, setSearch, colorMode, setColorMode, err }) {
+  const states = Object.values(ws);
+  const allOpen = states.length && states.every(s => s === 'open');
+  const anyOpen = states.some(s => s === 'open');
+  const label = allOpen ? '已连接' : anyOpen ? '部分连接' : states.some(s => s === 'connecting') ? '连接中' : '重连中';
+  const tone = allOpen ? 'text-emerald-400 border-emerald-500/40 bg-emerald-500/10' : 'text-accent border-accent/40 bg-accent/10';
+  return (
+    <header className="sticky top-0 z-30 border-b border-border bg-bg/95 backdrop-blur px-4 py-2.5">
+      <div className="max-w-[1600px] mx-auto flex flex-wrap items-center gap-3 justify-between">
+        <div className="flex items-center gap-3">
+          <div className="w-7 h-7 rounded-md bg-accent/20 border border-accent/40 flex items-center justify-center text-accent font-bold text-sm">₿</div>
+          <div><div className="text-sm font-semibold">Crypto Pulse</div><div className="text-[10px] text-muted leading-none">实时行情 · 顺大逆小 · 情绪</div></div>
+          <div className="flex rounded-lg border border-border overflow-hidden text-xs font-medium ml-2">
+            {['binance','okx'].map(p => <button key={p} onClick={() => setPlatform(p)} className={`px-3 py-1.5 ${platform === p ? 'bg-accent text-bg' : 'bg-panel text-muted hover:text-white'}`}>{PLATFORMS[p].label}</button>)}
+          </div>
+        </div>
+        <div className="flex items-center gap-2 flex-1 justify-end flex-wrap">
+          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="搜索交易对…" className="w-44 bg-panel border border-border rounded-lg px-3 py-1.5 text-xs placeholder:text-muted focus:outline-none focus:border-accent/60" />
+          <button onClick={() => setColorMode(colorMode === 'gr' ? 'rg' : 'gr')} className="text-[10px] px-2 py-1 rounded border border-border text-muted hover:text-white">{colorMode === 'gr' ? '绿涨红跌' : '红涨绿跌'}</button>
+          <span className="tip">
+            <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-xs ${tone}`}>
+              <span className={`w-1.5 h-1.5 rounded-full ${allOpen ? 'bg-emerald-400' : 'bg-accent pulse-dot'}`} />WS {label}
+            </span>
+            <span className="tipbox">{Object.entries(ws).map(([k, v]) => <div key={k}>{k}: {v}</div>)}<div className="text-muted mt-1">WS 断开时自动退避重连（1s→30s），并以 REST 每 5s 轮询兜底。</div></span>
+          </span>
+          <span className="text-[11px] text-muted font-mono">更新 {lastUpdate ? KSTt(lastUpdate) : '—'} KST</span>
+          <button onClick={onRefresh} className="text-xs px-3 py-1.5 rounded-lg bg-panel border border-border hover:border-accent/50">刷新</button>
+        </div>
+      </div>
+      {err && <div className="max-w-[1600px] mx-auto text-[11px] text-amber-400 mt-1">⚠ {err}</div>}
+    </header>
+  );
+}
+
+/* ============================================================
+ * BTC / ETH 卡片
+ * ============================================================ */
+function MajorCard({ base, spot, fut, mark, up, down }) {
+  const basis = spot && mark?.mark ? (mark.mark - spot.last) / spot.last * 100 : null;
+  return (
+    <div className="bg-panel border border-border rounded-xl p-4 flex-1 min-w-[300px]">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2"><span className="font-semibold">{base}</span><span className="text-[10px] text-muted">USDT</span><Live /></div>
+        <span className="text-[10px] text-muted">资金费率 <span className="font-mono" style={{ color: (mark?.funding ?? 0) >= 0 ? up : down }}>{fmtFund(mark?.funding)}</span></span>
+      </div>
+      <div className="grid grid-cols-3 gap-3">
+        <div><div className="text-[10px] text-muted mb-1">现货 Spot</div><div className="font-mono text-sm font-semibold tabular">{fmtPrice(spot?.last)}</div><Pct v={spot?.chg} up={up} down={down} className="text-xs" /></div>
+        <div><div className="text-[10px] text-muted mb-1">永续 Mark</div><div className="font-mono text-sm font-semibold tabular">{fmtPrice(mark?.mark)}</div><Pct v={fut?.chg} up={up} down={down} className="text-xs" /><div className="text-[10px] text-muted">Index {fmtPrice(mark?.index)}</div></div>
+        <div><div className="text-[10px] text-muted mb-1">基差 Basis</div><div className="font-mono text-sm font-semibold tabular" style={{ color: (basis ?? 0) >= 0 ? up : down }}>{fmtPct(basis, 4)}</div><div className="text-[10px] text-muted">{basis == null ? '' : basis >= 0 ? '正溢价' : '负溢价'} (Mark−现货)/现货</div></div>
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+ * Top20 涨幅榜
+ * ============================================================ */
+function GainersTable({ rows, P, sel, onSelect, up, down, sortKey, setSortKey }) {
+  const th = (k, label, cls = 'text-right') => <th onClick={() => k && setSortKey(sortKey === k ? '-' + k : k)} className={`${cls} font-medium px-3 py-2 ${k ? 'cursor-pointer hover:text-white' : ''}`}>{label}{sortKey.replace('-', '') === k ? (sortKey.startsWith('-') ? ' ↑' : ' ↓') : ''}</th>;
+  return (
+    <div className="bg-panel border border-border rounded-xl overflow-hidden">
+      <div className="px-4 py-3 border-b border-border flex items-center justify-between">
+        <div><h2 className="text-sm font-semibold">USDT 永续涨幅榜 Top 20 <Live /></h2><p className="text-[10px] text-muted mt-0.5">按 24h 涨幅取前 20（已过滤已下架合约）· 走势 = 近 24 根 1h 收盘（真实 K 线）· 点击查看详情</p></div>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full text-xs">
+          <thead><tr className="text-muted border-b border-border bg-bg/40">
+            {th(null,'#','text-left w-8')}{th(null,'交易对','text-left')}{th('last','最新价')}{th('chg','24h %')}{th('qv','24h 成交额')}{th('h1','1h %')}{th(null,'24h 走势','text-center')}{th(null,'操作')}
+          </tr></thead>
+          <tbody>
+            {rows.map((r, i) => (
+              <tr key={r.id} onClick={() => onSelect(r.id)} className={`border-b border-border/60 cursor-pointer ${sel === r.id ? 'bg-accent/10' : 'hover:bg-white/[0.03]'}`}>
+                <td className="px-3 py-2 text-muted font-mono">{r.rank}</td>
+                <td className="px-3 py-2 font-medium">{P.disp(r.id)} {SNAP.sentiment[P.base(r.id)] && <span title="有 X 情绪快照">𝕏</span>}</td>
+                <td className="px-3 py-2 text-right font-mono tabular">{fmtPrice(r.last)}</td>
+                <td className="px-3 py-2 text-right"><Pct v={r.chg} up={up} down={down} /></td>
+                <td className="px-3 py-2 text-right font-mono text-muted">{fmtVol(r.qv)}</td>
+                <td className="px-3 py-2 text-right"><Pct v={r.h1} up={up} down={down} /></td>
+                <td className="px-3 py-1"><div className="flex justify-center"><Sparkline data={r.spark} up={up} down={down} /></div></td>
+                <td className="px-3 py-2 text-right"><button className="text-accent hover:underline">详情</button></td>
+              </tr>))}
+            {!rows.length && <tr><td colSpan={8} className="py-8 text-center text-muted">加载中或无匹配…</td></tr>}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+ * 顺大逆小 推荐榜
+ * ============================================================ */
+function SignalBoard({ P, scan, opts, setOpts, onSelect, up, down, newSet, notifyOn, enableNotify, runNow }) {
+  const rows = scan.results.filter(r => opts.short || r.side === 'long');
+  return (
+    <div className="bg-panel border border-border rounded-xl overflow-hidden">
+      <div className="px-4 py-3 border-b border-border flex flex-wrap gap-3 items-center justify-between">
+        <div>
+          <h2 className="text-sm font-semibold">顺大逆小 · 做多推荐榜 <Live t="实时 K 线" /></h2>
+          <p className="text-[10px] text-muted mt-0.5">条件：1h / 4h / 1d 最近 {opts.N} 根已收盘 K 线全部收阳且区间涨幅 &gt; 0，同时最近 {opts.K} 根已收盘 15m K 线全部收阴。扫描 24h 成交额前 {opts.universe} 的 USDT 永续，每 {opts.every} 分钟刷新。</p>
+        </div>
+        <div className="flex flex-wrap items-center gap-2 text-[11px]">
+          <label className="text-muted">大周期 N <select value={opts.N} onChange={e => setOpts({ ...opts, N:+e.target.value })} className="bg-bg border border-border rounded px-1">{[1,2,3,4].map(n => <option key={n}>{n}</option>)}</select></label>
+          <label className="text-muted">15m 连阴 K <select value={opts.K} onChange={e => setOpts({ ...opts, K:+e.target.value })} className="bg-bg border border-border rounded px-1">{[2,3,4,5].map(n => <option key={n}>{n}</option>)}</select></label>
+          <label className="text-muted">范围 <select value={opts.universe} onChange={e => setOpts({ ...opts, universe:+e.target.value })} className="bg-bg border border-border rounded px-1">{[40,80,120].map(n => <option key={n}>{n}</option>)}</select></label>
+          <label className="text-muted flex items-center gap-1"><input type="checkbox" checked={opts.short} onChange={e => setOpts({ ...opts, short:e.target.checked })} />含做空信号（大跌小涨）</label>
+          <button onClick={enableNotify} className={`px-2 py-1 rounded border ${notifyOn ? 'border-emerald-500/50 text-emerald-400' : 'border-border text-muted hover:text-white'}`}>{notifyOn ? '🔔 提醒已开启' : '🔕 开启提醒'}</button>
+          <button onClick={runNow} disabled={scan.running} className="px-2 py-1 rounded border border-border text-muted hover:text-white disabled:opacity-50">{scan.running ? `扫描中 ${scan.done}/${scan.total}` : '立即扫描'}</button>
+        </div>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full text-xs">
+          <thead><tr className="text-muted border-b border-border bg-bg/40">
+            {['方向','交易对','最新价','1d','4h','1h','15m 连阴/回调','RSI15m','资金费率','评分','X 情绪','提醒'].map((h, i) => <th key={h} className={`${i < 2 ? 'text-left' : 'text-right'} font-medium px-3 py-2`}>{h}</th>)}
+          </tr></thead>
+          <tbody>
+            {rows.map(r => { const s = SNAP.sentiment[P.base(r.id)]; const isNew = newSet.has(r.side + r.id);
+              return (
+              <tr key={r.side + r.id} onClick={() => onSelect(r.id)} className={`border-b border-border/60 cursor-pointer hover:bg-white/[0.03] ${isNew ? 'flash-new' : ''}`}>
+                <td className="px-3 py-2"><span className="px-1.5 rounded text-[10px] font-semibold" style={{ color: r.side === 'long' ? up : down, border:`1px solid ${r.side === 'long' ? up : down}55` }}>{r.side === 'long' ? '多' : '空'}</span></td>
+                <td className="px-3 py-2 font-medium">{P.disp(r.id)}</td>
+                <td className="px-3 py-2 text-right font-mono">{fmtPrice(r.price)}</td>
+                <td className="px-3 py-2 text-right"><Pct v={r.d1} up={up} down={down} /></td>
+                <td className="px-3 py-2 text-right"><Pct v={r.h4} up={up} down={down} /></td>
+                <td className="px-3 py-2 text-right"><Pct v={r.h1} up={up} down={down} /></td>
+                <td className="px-3 py-2 text-right font-mono">{r.streak} 根 / <Pct v={r.pull} up={up} down={down} /></td>
+                <td className="px-3 py-2 text-right font-mono" style={{ color: r.rsi15 <= 30 ? up : r.rsi15 >= 70 ? down : undefined }}>{r.rsi15?.toFixed(1) ?? '—'}</td>
+                <td className="px-3 py-2 text-right font-mono">{fmtFund(r.funding)}</td>
+                <td className="px-3 py-2 text-right font-mono text-accent">{r.score}</td>
+                <td className="px-3 py-2 text-right">{s ? <span className="tip text-[10px]"><span style={{ color: s.score >= 0 ? up : down }}>{s.score >= 0 ? '偏多' : '偏空'} {Math.round(s.bull * 100)}%</span><span className="tipbox">{s.headline}<br /><span className="text-muted">快照 {SNAP.snapshotTime}</span></span></span> : <span className="text-muted text-[10px]">无快照</span>}</td>
+                <td className="px-3 py-2 text-right">{isNew ? <span className="px-1.5 rounded bg-accent text-bg text-[10px] font-semibold">新进入</span> : <span className="px-1.5 rounded border border-accent/40 text-accent text-[10px]">提醒</span>}</td>
+              </tr>); })}
+            {!rows.length && <tr><td colSpan={12} className="py-6 text-center text-muted">{scan.running ? `扫描中… ${scan.done}/${scan.total}` : scan.last ? '当前无符合条件的币种（条件较严格，属正常）' : '等待首次扫描…'}</td></tr>}
+          </tbody>
+        </table>
+      </div>
+      <div className="px-4 py-2 text-[10px] text-muted border-t border-border flex flex-wrap justify-between gap-2">
+        <span>评分 = 大周期区间涨幅之和 + 1.5×15m 回调深度(≤5%) + RSI15m 超卖加分 + min(1h 量能倍数,3)。上次扫描 {scan.last ? KST(scan.last) : '—'} KST {scan.errors ? `· ${scan.errors} 个请求失败` : ''}</span>
+        <span className="text-amber-400/90 font-medium">⚠ 仅供参考，不构成投资建议</span>
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+ * 详情抽屉
+ * ============================================================ */
+function Drawer({ id, P, tick, liqAgg, onClose, up, down }) {
+  const [d, setD] = useState(null); const [err, setErr] = useState(null);
+  const base = P.base(id);
+  useEffect(() => {
+    let alive = true; setD(null); setErr(null);
+    const load = async () => {
+      try {
+        const [m15, h1, h4, d1] = await Promise.all(['15m','1h','4h','1d'].map(tf => P.klines(id, tf, tf === '1h' ? 60 : 60)));
+        const [fund, oi, rl] = await Promise.all([P.funding(id).catch(() => null), P.oi(id).catch(() => null), P.recentLiq ? P.recentLiq(id).catch(() => null) : null]);
+        if (!alive) return;
+        const k = { m15, h1, h4, d1 };
+        setD({ k, met:S.metrics(k), fund, oi, rl, t:Date.now() });
+      } catch (e) { alive && setErr(e.message); }
+    };
+    load(); const iv = setInterval(load, 60000);
+    return () => { alive = false; clearInterval(iv); };
+  }, [id, P]);
+  const s = SNAP.sentiment[base];
+  const news = (SNAP.news.items || []).filter(n => n.coins.includes(base));
+  const m = d?.met; const liq = liqAgg[id];
+  const rsiTag = v => v == null ? '' : v >= 70 ? '超买' : v <= 30 ? '超卖' : '中性';
+  const rsiCol = v => v >= 70 ? down : v <= 30 ? up : '#EAECEF';
+  return (<>
+    <div className="fixed inset-0 bg-black/50 z-40" onClick={onClose} />
+    <aside className="fixed right-0 top-0 bottom-0 w-full max-w-md bg-panel2 border-l border-border z-50 overflow-y-auto drawer-enter flex flex-col">
+      <div className="sticky top-0 bg-panel2/95 backdrop-blur border-b border-border px-4 py-3 flex justify-between z-10">
+        <div><div className="text-sm font-semibold">{P.disp(id)} <span className="text-[10px] text-muted">{P.label}</span></div>
+          <div className="text-[11px] text-muted flex gap-2 mt-0.5"><span className="font-mono text-white">{fmtPrice(tick?.last)}</span><Pct v={tick?.chg} up={up} down={down} /><span>24h {fmtVol(tick?.qv)}</span></div></div>
+        <button onClick={onClose} className="w-8 h-8 rounded-lg border border-border text-muted hover:text-white">✕</button>
+      </div>
+      <div className="p-4 flex-1">
+        {err && <div className="text-xs text-amber-400 mb-3">加载失败：{err}</div>}
+        <Section title="多周期涨跌幅（当前 K 线相对开盘）" right={<Live />}>
+          <div className="grid grid-cols-4 gap-2">{[['15m','m15'],['1h','h1'],['4h','h4'],['1d(UTC)','d1']].map(([l, k]) =>
+            <div key={k} className="bg-panel border border-border rounded-lg p-2 text-center"><div className="text-[10px] text-muted mb-1">{l}</div><Pct v={m?.ret[k]} up={up} down={down} className="text-sm font-semibold" /></div>)}</div>
+        </Section>
+        <Section title="动量与连续性" right={<Live />}>
+          <div className="bg-panel border border-border rounded-lg p-3 space-y-2 text-xs">
+            <div className="flex justify-between"><span className="text-muted">15m 连续已收盘 K 线</span>{m ? <span style={{ color: m.streak15.dir > 0 ? up : down }}>连续 {m.streak15.n} 根{m.streak15.dir > 0 ? '收阳' : '收阴'}</span> : '…'}</div>
+            <div className="grid grid-cols-2 gap-2">{[['RSI(14) 15m', m?.rsi15], ['RSI(14) 1h', m?.rsi1h]].map(([l, v]) =>
+              <div key={l} className="bg-bg border border-border rounded p-2"><div className="text-[10px] text-muted">{l}</div><div className="font-mono font-semibold" style={{ color: rsiCol(v) }}>{v?.toFixed(1) ?? '…'} {rsiTag(v)}</div></div>)}</div>
+            <div className="flex justify-between"><span className="text-muted">最近 1h 成交额 / 前 24h 均值</span><span className="font-mono" style={{ color: (m?.volMult ?? 0) >= 1.5 ? up : undefined }}>{m?.volMult?.toFixed(2) ?? '…'}x</span></div>
+          </div>
+        </Section>
+        <Section title="合约衍生数据" right={<Live />}>
+          <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="bg-panel border border-border rounded-lg p-2.5"><div className="text-[10px] text-muted">上期已结算费率</div><div className="font-mono mt-1" style={{ color: (d?.fund?.settled ?? 0) >= 0 ? up : down }}>{fmtFund(d?.fund?.settled)}</div></div>
+            <div className="bg-panel border border-border rounded-lg p-2.5"><div className="text-[10px] text-muted">本期预测费率 · 结算 {d?.fund?.nextTime ? KSTt(d.fund.nextTime) : '—'}</div><div className="font-mono mt-1" style={{ color: (d?.fund?.predicted ?? 0) >= 0 ? up : down }}>{fmtFund(d?.fund?.predicted)}</div></div>
+            <div className="bg-panel border border-border rounded-lg p-2.5 col-span-2">
+              <div className="text-[10px] text-muted mb-1">强平（WS 自页面打开起累计{liq ? `，${liq.n} 笔` : ''}）</div>
+              <div className="flex justify-between font-mono"><span>多头爆仓 <span style={{ color: down }}>${fmtVol(liq?.long || 0)}</span></span><span>空头爆仓 <span style={{ color: up }}>${fmtVol(liq?.short || 0)}</span></span></div>
+              {d?.rl && <div className="text-[10px] text-muted mt-1">OKX REST 最近 {d.rl.n} 笔（自 {KSTt(d.rl.since)}）：多 ${fmtVol(d.rl.long)} / 空 ${fmtVol(d.rl.short)}</div>}
+              {P.id === 'binance' && <div className="text-[10px] text-muted mt-1">注：Binance 强平流每秒每币仅推送最新 1 笔，为下限估计。</div>}
+            </div>
+            <div className="bg-panel border border-border rounded-lg p-2.5 col-span-2 flex justify-between"><span className="text-[10px] text-muted">持仓量 OI {d?.oi ? `$${fmtVol(d.oi.now)}` : ''} · 24h 变化</span><Pct v={d?.oi?.chg} up={up} down={down} className="font-semibold" /></div>
+          </div>
+        </Section>
+        <Section title="𝕏 舆情分析" right={s ? <Snap t={SNAP.snapshotTime} /> : <Demo />}>
+          {s ? <div className="bg-panel border border-border rounded-lg p-3 space-y-2 text-xs">
+            <div className="font-medium">{s.headline}</div>
+            <div className="flex justify-between text-[11px]"><span className="text-muted">样本 {s.sample} 条（近 ~36h，相关度排序）</span><span><span style={{ color: up }}>多 {Math.round(s.bull * 100)}%</span> / <span className="text-muted">中 {Math.round(s.neutral * 100)}%</span> / <span style={{ color: down }}>空 {Math.round(s.bear * 100)}%</span></span></div>
+            <div className="h-1.5 rounded-full bg-bg overflow-hidden flex"><div style={{ width:`${s.bull * 100}%`, background:up }} /><div style={{ width:`${s.neutral * 100}%`, background:'#474D57' }} /><div style={{ width:`${s.bear * 100}%`, background:down }} /></div>
+            <div className="text-[11px] text-muted">情绪指数 (−1~+1)：<span className="font-mono" style={{ color: s.score >= 0 ? up : down }}>{s.score > 0 ? '+' : ''}{s.score}</span></div>
+            <p className="text-white/85 leading-relaxed">{s.summary}</p>
+            <div className="flex flex-wrap gap-1">{s.themes.map(t => <span key={t} className="px-2 py-0.5 rounded bg-bg border border-border text-[10px] text-muted">{t}</span>)}</div>
+            <div className="space-y-1.5 pt-1">{s.posts.map(p => <a key={p.url} href={p.url} target="_blank" rel="noreferrer" className="block bg-bg border border-border rounded p-2 hover:border-accent/50"><div className="text-[10px] text-accent mb-0.5">{p.note} · ♥ {p.likes}</div><div className="text-[11px] text-white/75 line-clamp-3">{p.text}</div></a>)}</div>
+          </div> : <div className="bg-panel border border-border rounded-lg p-3 text-xs text-muted">该币种暂无 X 情绪快照（快照覆盖 BTC、ETH 及当时涨幅/推荐榜头部币种）。运行 update_sentiment.md 中的流程可补充。</div>}
+        </Section>
+        <Section title="快讯" right={<Snap t={SNAP.news.snapshotTime} />}>
+          <div className="space-y-2">{(news.length ? news : SNAP.news.items.slice(0, 3)).slice(0, 3).map(n =>
+            <a key={n.url} href={n.url} target="_blank" rel="noreferrer" className="block bg-panel border border-border rounded-lg p-2.5 hover:border-accent/50">
+              <div className="text-[10px] text-sky-300 mb-1">X News {news.length ? '' : '· 大盘'} · {n.updated ? KST(n.updated) : ''}</div>
+              <div className="text-xs text-white/90">{n.title}</div><div className="text-[11px] text-muted mt-0.5">{n.summary}</div></a>)}
+            <div className="text-[10px] text-muted">Foresight News / BlockBeats 无可从本机访问的免 Key 接口，暂以 X News 快照替代。</div>
+          </div>
+        </Section>
+        <Section title="链上异动" right={s?.whale ? <Snap t={SNAP.snapshotTime} /> : <Demo />}>
+          <div className="bg-panel border border-border rounded-lg p-3 text-xs text-white/85">{s?.whale || '示例：暂无免 Key 的链上巨鲸数据源接入（可接 Whale Alert / Arkham API）。'}</div>
+        </Section>
+      </div>
+      <MacroStrip compact up={up} down={down} />
+    </aside>
+  </>);
+}
+
+/* ============================================================
+ * 宏观面板
+ * ============================================================ */
+function MacroStrip({ compact, up, down }) {
+  const items = MACRO.map(m => ({ ...m, imp: macroImpact(m) }));
+  const cnt = t => items.filter(i => i.imp.tag === t).length;
+  const bull = cnt('利多'), bear = cnt('利空');
+  const bias = bull > bear ? '偏利多' : bear > bull ? '偏利空' : '中性';
+  const col = t => t === '利多' ? up : t === '利空' ? down : '#848E9C';
+  return (
+    <div className={`${compact ? 'sticky bottom-0' : 'mt-4'} border-t border-border bg-panel/95 backdrop-blur`}>
+      <div className={compact ? 'px-3 py-2' : 'max-w-[1600px] mx-auto px-4 py-3'}>
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+          <span className="text-[11px] font-semibold text-white/90">宏观日历 · 对加密影响 <span className="tip text-muted cursor-help">ⓘ<span className="tipbox">{RULES_TEXT}</span></span></span>
+          <span className="text-[11px]">综合：<span style={{ color: col(bias.includes('多') ? '利多' : bias.includes('空') ? '利空' : '') }} className="font-semibold">{bias}</span> <span className="text-muted">（利多 {bull} · 利空 {bear} · 中性 {cnt('中性')}）</span> <span className="text-muted">数据截至 {MACRO_AS_OF}</span></span>
+        </div>
+        <div className={`grid gap-2 ${compact ? 'grid-cols-2' : 'grid-cols-2 md:grid-cols-3 xl:grid-cols-6'}`}>
+          {items.map(m => (
+            <div key={m.key} className="bg-bg border border-border rounded-lg px-2.5 py-2 text-[10px]">
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-xs font-semibold">{m.key}</span>
+                <span className="tip"><span className="px-1.5 rounded font-semibold cursor-help" style={{ color: col(m.imp.tag), border:`1px solid ${col(m.imp.tag)}66` }}>{m.imp.tag}{m.imp.tag === '利多' ? '(偏涨)' : m.imp.tag === '利空' ? '(偏跌)' : ''}</span><span className="tipbox">{m.imp.why}<br /><span className="text-muted">{RULES_TEXT}</span></span></span>
+              </div>
+              <div className="text-muted truncate" title={m.name}>{m.name} · {m.period}</div>
+              <div className="grid grid-cols-3 gap-1 font-mono mt-1">
+                <div><div className="text-muted">前值</div><div className="truncate" title={m.prev}>{m.prev}</div></div>
+                <div><div className="text-muted">预期</div><div>{m.forecast}</div></div>
+                <div><div className="text-muted">公布</div><div className="text-white font-semibold truncate" title={m.actual}>{m.actual}</div></div>
+              </div>
+              {!compact && m.note && <div className="text-muted mt-1 truncate" title={m.note}>{m.note}</div>}
+              <div className="mt-1 text-muted">下次：<span className="text-white/80">{m.next.date}</span>{m.next.forecast !== '—' && <> · 预期 {m.next.forecast}</>}</div>
+              {!compact && <div className="mt-1 flex gap-2">{m.src.map(([n, u]) => <a key={u} href={u} target="_blank" rel="noreferrer" className="text-sky-400 hover:underline">{n}</a>)}</div>}
+            </div>))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+ * App
+ * ============================================================ */
+function App() {
+  const [platform, setPlatform] = useState(() => localStorage.getItem('cp_plat') || 'binance');
+  const P = PLATFORMS[platform];
+  const [colorMode, setColorMode] = useState(() => localStorage.getItem('cp_color') || 'gr');
+  const up = colorMode === 'gr' ? '#0ECB81' : '#F6465D', down = colorMode === 'gr' ? '#F6465D' : '#0ECB81';
+  const [search, setSearch] = useState('');
+  const [sel, setSel] = useState(null);
+  const [sortKey, setSortKey] = useState('chg');
+  const [ws, setWs] = useState({});
+  const [lastUpdate, setLastUpdate] = useState(null);
+  const [err, setErr] = useState(null);
+  const [ver, setVer] = useState(0);
+  const [epoch, setEpoch] = useState(0); // 刷新计数
+  const store = useRef({ tickers:new Map(), spot:{}, marks:{}, liq:{}, spark:{} });
+  const [opts, setOpts] = useState({ N:2, K:3, universe:80, every:3, short:false });
+  const [scan, setScan] = useState({ results:[], running:false, done:0, total:0, last:null, errors:0 });
+  const [newSet, setNewSet] = useState(new Set());
+  const [notifyOn, setNotifyOn] = useState(() => 'Notification' in window && Notification.permission === 'granted');
+  const prevSigs = useRef(null);
+
+  useEffect(() => localStorage.setItem('cp_plat', platform), [platform]);
+  useEffect(() => localStorage.setItem('cp_color', colorMode), [colorMode]);
+  const touch = () => setLastUpdate(Date.now());
+
+  // ---------- 行情：REST 初始化 + 轮询兜底 + WS ----------
+  useEffect(() => {
+    const st = store.current = { tickers:new Map(), spot:{}, marks:{}, liq:{}, spark:{} };
+    setWs({}); setErr(null); setScan(s => ({ ...s, results:[], last:null })); prevSigs.current = null;
+    let alive = true; const conns = [];
+    const status = (n, v) => alive && setWs(w => ({ ...w, [n]: v }));
+    const restAll = async (full) => {
+      try {
+        const [t, sp, mk] = await Promise.all([P.tickers(), P.spot(), full ? P.marks() : Promise.resolve(null)]);
+        if (!alive) return;
+        t.forEach(x => st.tickers.set(x.id, { ...st.tickers.get(x.id), ...x }));
+        st.spot = { ...st.spot, ...sp }; if (mk) st.marks = { ...st.marks, ...mk };
+        setErr(null); touch(); setVer(v => v + 1);
+      } catch (e) { alive && setErr(`REST 请求失败：${e.message}（若用 file:// 打开，请改用 python3 -m http.server）`); }
+    };
+    restAll(true);
+    const anyWsDown = () => conns.some(c => !c.ws || c.ws.readyState !== 1);
+    const poll = setInterval(() => { if (anyWsDown()) restAll(false); }, 5000);
+    const pollFull = setInterval(() => restAll(true), 30000);
+
+    const addLiq = (id, side, usd) => { const l = st.liq[id] || (st.liq[id] = { long:0, short:0, n:0 }); l[side] += usd; l.n++; };
+    if (platform === 'binance') {
+      conns.push(new WSConn('Binance 合约', 'wss://fstream.binance.com/stream?streams=!ticker@arr/!markPrice@arr@1s/!forceOrder@arr', { onStatus:status,
+        onMessage: ({ stream, data }) => {
+          if (stream === '!ticker@arr') data.forEach(x => { if (!x.s.endsWith('USDT')) return; const o = st.tickers.get(x.s) || { id:x.s }; o.last = +x.c; o.chg = +x.P; o.qv = +x.q; st.tickers.set(x.s, o); });
+          else if (stream === '!markPrice@arr@1s') data.forEach(x => { st.marks[x.s] = { mark:+x.p, index:+x.i, funding:+x.r, nextFundingTime:+x.T }; });
+          else if (stream === '!forceOrder@arr') { const o = data.o; addLiq(o.s, o.S === 'SELL' ? 'long' : 'short', +o.q * +o.ap); }
+          touch();
+        } }));
+      conns.push(new WSConn('Binance 现货', 'wss://stream.binance.com:9443/stream?streams=btcusdt@ticker/ethusdt@ticker', { onStatus:status,
+        onMessage: ({ data }) => { st.spot[data.s.replace('USDT','')] = { last:+data.c, chg:+data.P }; touch(); } }));
+    } else {
+      OKX.ctVal().catch(() => {});
+      conns.push(new WSConn('OKX 公共', 'wss://ws.okx.com:8443/ws/v5/public', { onStatus:status, pingMs:25000,
+        onOpen: w => {
+          const top = [...st.tickers.values()].sort((a, b) => b.chg - a.chg).slice(0, 40).map(x => ({ channel:'tickers', instId:x.id }));
+          w.send(JSON.stringify({ op:'subscribe', args:[
+            { channel:'tickers', instId:'BTC-USDT' }, { channel:'tickers', instId:'ETH-USDT' },
+            { channel:'tickers', instId:'BTC-USDT-SWAP' }, { channel:'tickers', instId:'ETH-USDT-SWAP' },
+            { channel:'mark-price', instId:'BTC-USDT-SWAP' }, { channel:'mark-price', instId:'ETH-USDT-SWAP' },
+            { channel:'liquidation-orders', instType:'SWAP' }, ...top ] }));
+        },
+        onMessage: msg => {
+          if (!msg.arg || !msg.data) return;
+          const ch = msg.arg.channel;
+          if (ch === 'tickers') msg.data.forEach(x => {
+            const chg = (+x.last / +x.open24h - 1) * 100;
+            if (x.instId.endsWith('-SWAP')) { const o = st.tickers.get(x.instId) || { id:x.instId }; o.last = +x.last; o.chg = chg; o.qv = +x.volCcy24h * +x.last; st.tickers.set(x.instId, o); }
+            else st.spot[x.instId.split('-')[0]] = { last:+x.last, chg };
+          });
+          else if (ch === 'mark-price') msg.data.forEach(x => { st.marks[x.instId] = { ...st.marks[x.instId], mark:+x.markPx }; });
+          else if (ch === 'liquidation-orders') msg.data.forEach(x => { const cv = (OKX_CTVAL || {})[x.instId] || 0; (x.details || []).forEach(dd => cv && addLiq(x.instId, dd.posSide === 'long' ? 'long' : 'short', +dd.sz * cv * +dd.bkPx)); });
+          touch();
+        } }));
+    }
+    const rr = setInterval(() => setVer(v => v + 1), 1000); // 1s 节流渲染
+    return () => { alive = false; conns.forEach(c => c.close()); clearInterval(poll); clearInterval(pollFull); clearInterval(rr); };
+  }, [platform, epoch]);
+
+  const st = store.current;
+  const top20 = useMemo(() => [...st.tickers.values()].filter(x => x.qv > 0).sort((a, b) => b.chg - a.chg).slice(0, 20).map((x, i) => ({ ...x, rank:i + 1 })), [ver]);
+  const top20Key = top20.map(x => x.id).join(',');
+
+  // ---------- Top20 1h K 线（走势 + 1h%）----------
+  useEffect(() => {
+    let alive = true;
+    const load = () => top20.forEach(async x => {
+      try { const k = await P.klines(x.id, '1h', 49); if (!alive) return;
+        st.spark[x.id] = { spark: k.filter(c => c.closed).slice(-24).map(c => c.c), h1: S.liveReturn(k) }; setVer(v => v + 1); } catch {}
+    });
+    load(); const iv = setInterval(load, 60000);
+    return () => { alive = false; clearInterval(iv); };
+  }, [top20Key, platform]);
+
+  const rows = useMemo(() => {
+    const q = search.trim().toUpperCase();
+    let r = top20.map(x => ({ ...x, ...st.spark[x.id] }));
+    if (q) r = r.filter(x => P.disp(x.id).includes(q));
+    const k = sortKey.replace('-', ''), asc = sortKey.startsWith('-');
+    return r.sort((a, b) => { const x = a[k] ?? -1e9, y = b[k] ?? -1e9; return asc ? x - y : y - x; });
+  }, [ver, search, sortKey]);
+
+  // ---------- 顺大逆小 扫描 ----------
+  const runScan = useCallback(async () => {
+    const st = store.current;
+    const uni = [...st.tickers.values()].sort((a, b) => b.qv - a.qv).slice(0, opts.universe);
+    if (!uni.length) return;
+    setScan(s => ({ ...s, running:true, done:0, total:uni.length, errors:0 }));
+    const out = []; let done = 0, errors = 0;
+    await Promise.all(uni.map(async x => {
+      try {
+        const [m15, h1, h4, d1] = await Promise.all(['15m','1h','4h','1d'].map(tf => P.klines(x.id, tf, 60)));
+        const k = { m15, h1, h4, d1 };
+        for (const side of opts.short ? ['long','short'] : ['long']) {
+          const e = S.evaluate(k, { N:opts.N, K:opts.K, side });
+          if (e.match) out.push({ id:x.id, side, price:st.tickers.get(x.id)?.last ?? e.price, d1:e.d1.ret, h4:e.h4.ret, h1:e.h1.ret, streak:e.streak15.n, pull:e.pullback, rsi15:e.rsi15, score:e.score, funding:st.marks[x.id]?.funding });
+        }
+      } catch { errors++; }
+      done++; if (done % 5 === 0) setScan(s => ({ ...s, done }));
+    }));
+    // OKX 无批量资金费率：仅对命中币种补拉
+    if (P.id === 'okx') await Promise.all(out.map(async r => { try { r.funding = (await P.funding(r.id)).predicted; } catch {} }));
+    out.sort((a, b) => b.score - a.score);
+    const keys = new Set(out.map(r => r.side + r.id));
+    if (prevSigs.current) {
+      const fresh = [...keys].filter(k => !prevSigs.current.has(k));
+      if (fresh.length) {
+        setNewSet(new Set(fresh)); setTimeout(() => setNewSet(new Set()), 60000);
+        beep();
+        if ('Notification' in window && Notification.permission === 'granted')
+          new Notification('顺大逆小 新信号', { body: fresh.map(k => (k.startsWith('long') ? '多 ' : '空 ') + P.disp(k.replace(/^(long|short)/, ''))).join('、') + '（仅供参考）' });
+      }
+    }
+    prevSigs.current = keys;
+    setScan({ results:out, running:false, done, total:uni.length, last:Date.now(), errors });
+  }, [P, opts]);
+  const scanRef = useRef(runScan); scanRef.current = runScan;
+  const ready = st.tickers.size > 0;
+  useEffect(() => {
+    if (!ready) return;
+    scanRef.current();
+    const iv = setInterval(() => scanRef.current(), opts.every * 60000);
+    return () => clearInterval(iv);
+  }, [ready, platform, epoch, opts.N, opts.K, opts.universe, opts.short]);
+
+  const enableNotify = async () => {
+    beep();
+    if (!('Notification' in window)) return alert('此浏览器不支持系统通知，将仅使用声音 + 高亮提醒');
+    const p = await Notification.requestPermission(); setNotifyOn(p === 'granted');
+  };
+  const onRefresh = () => { CACHE.clear(); setEpoch(e => e + 1); };
+
+  const mk = b => st.marks[P.majorId(b)];
+  return (
+    <div className="min-h-full flex flex-col">
+      <Header {...{ platform, setPlatform, ws, lastUpdate, onRefresh, search, setSearch, colorMode, setColorMode, err }} />
+      <main className="flex-1 max-w-[1600px] w-full mx-auto px-4 py-4 space-y-4">
+        <div className="flex flex-col lg:flex-row gap-3">
+          {['BTC','ETH'].map(b => <MajorCard key={b} base={b} spot={st.spot[b]} fut={st.tickers.get(P.majorId(b))} mark={mk(b)} up={up} down={down} />)}
+          <div className="bg-panel border border-border rounded-xl p-4 lg:w-[340px] text-xs">
+            <div className="flex justify-between mb-2"><span className="font-semibold">𝕏 情绪 · BTC / ETH</span><Snap t={SNAP.snapshotTime} /></div>
+            {['BTC','ETH'].map(b => { const s = SNAP.sentiment[b]; return s && <div key={b} className="mb-2 cursor-pointer" onClick={() => setSel(P.majorId(b))}>
+              <div><span className="font-semibold">{b}</span> <span style={{ color: s.score >= 0 ? up : down }}>{s.score > 0 ? '+' : ''}{s.score}</span> <span className="text-muted">多{Math.round(s.bull * 100)}% / 空{Math.round(s.bear * 100)}%</span></div>
+              <div className="text-white/75 text-[11px] leading-snug">{s.headline}</div></div>; })}
+          </div>
+        </div>
+        <SignalBoard {...{ P, scan, opts, setOpts, onSelect:setSel, up, down, newSet, notifyOn, enableNotify, runNow:() => runScan() }} />
+        <GainersTable rows={rows} P={P} sel={sel} onSelect={setSel} up={up} down={down} sortKey={sortKey} setSortKey={setSortKey} />
+        <div className="text-[10px] text-muted">数据源：<Live /> {P.label} 公开 REST / WebSocket（无需 Key）· <Snap t="" /> X 情绪/快讯 {SNAP.snapshotTime} · 宏观数据人工核实截至 {MACRO_AS_OF} · <Demo /> 未接入的数据。仅供参考，不构成投资建议。</div>
+      </main>
+      {!sel && <MacroStrip up={up} down={down} />}
+      {sel && <Drawer id={sel} P={P} tick={st.tickers.get(sel)} liqAgg={st.liq} onClose={() => setSel(null)} up={up} down={down} />}
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
