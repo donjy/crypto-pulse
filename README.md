@@ -2,6 +2,8 @@
 
 纯前端单文件页面（React 18 + Tailwind CDN），暗色风格。支持 Binance / OKX 切换，也可以切换「绿涨红跌 / 红涨绿跌」。
 
+线上页面：https://donjy.github.io/crypto-pulse/
+
 ## 运行
 ```bash
 cd crypto-dashboard
