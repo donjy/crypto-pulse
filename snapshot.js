@@ -1,29 +1,29 @@
 /* Auto-generated snapshot — see update_sentiment.md */
 window.SNAPSHOT = {
- "snapshotTime": "2026-11-05 10:40 KST",
+ "snapshotTime": "2026-11-05 11:21 KST",
  "sentiment": {
   "BTC": {
-   "sample": 25,
-   "bull": 0.4,
-   "bear": 0.24,
-   "neutral": 0.36,
-   "score": 0.16,
-   "headline": "守住约 8 万，选举反弹后多空拉锯",
-   "summary": "BTC 现价约 $80.5K，24h 约 +4.7%。偏多仍围绕中期选举后空头爆仓、交易所净流出与鲸鱼地址新高；偏空指向矿企 Riot Q3 大额抛售、部分帖仍谈更深回调，以及「近期筹码仍有六成套牢」。整体从恐慌区回到中性偏多，但新叙事不多。",
+   "sample": 22,
+   "bull": 0.45,
+   "bear": 0.23,
+   "neutral": 0.32,
+   "score": 0.22,
+   "headline": "守住约 8.06 万，选举反弹后多空拉锯",
+   "summary": "BTC 现价约 $80.7K，24h 约 +5%。偏多仍围绕中期选举后空头爆仓、交易所净流出与鲸鱼地址新高，以及 Block 持续囤币；偏空指向 Riot Q3 抛售、部分帖仍谈更深回调与「跌破 77K」担忧。整体中性偏多，新叙事有限。",
    "themes": [
     "守住 8 万",
     "选举余波",
     "巨鲸增持",
     "矿企抛售",
-    "空头爆仓"
+    "交易所流出"
    ],
    "posts": [
     {
-     "url": "https://x.com/Mayhem247Ai/status/2118148922681991318",
-     "text": "BITCOIN BACK ABOVE $80K! BTC rebounds as Wall Street rallies following the US midterms.",
-     "likes": 0,
-     "note": "重回 8 万",
-     "time": "2026-11-05T01:10:31.000Z"
+     "url": "https://x.com/CoinEdition/status/2117925443357851747",
+     "text": "BITCOIN BOUNCES BACK AFTER US MIDTERM RESULTS. $BTC rebounds from $76,200 to reclaim $78,400…",
+     "likes": 4,
+     "note": "选举后反弹",
+     "time": "2026-11-04T10:22:29.000Z"
     },
     {
      "url": "https://x.com/greedyhunter1/status/2118134536383205562",
@@ -40,16 +40,16 @@ window.SNAPSHOT = {
      "time": "2026-11-04T13:30:40.000Z"
     }
    ],
-   "whale": "X 帖子称：鲸鱼地址(>100 BTC)创新高；OKX 转出约 3,107 BTC；Riot Platforms Q3 出售 10,599 BTC。来源为 X，未经链上核实。"
+   "whale": "X 帖子称：鲸鱼地址(>100 BTC)创新高；OKX 转出约 3,107 BTC；Block Q3 增持 120 BTC 至 9,237；Riot Q3 出售 10,599 BTC。来源为 X，未经链上核实。"
   },
   "ETH": {
-   "sample": 25,
-   "bull": 0.48,
-   "bear": 0.2,
+   "sample": 22,
+   "bull": 0.5,
+   "bear": 0.18,
    "neutral": 0.32,
-   "score": 0.28,
-   "headline": "跑赢 BTC 至约 2420，ETH/BTC 叙事再起",
-   "summary": "ETH 24h 约 +7% 至 $2,420 一带，讨论聚焦选举后风险偏好、ETH/BTC 突破下降趋势线，以及约 109 万 ETH 排队质押。空方仍强调现货 ETF 连续流出与此前跌破 200 日均线风险。整体偏多，但基本面增量有限。",
+   "score": 0.32,
+   "headline": "跑赢 BTC 至约 2430，ETH/BTC 叙事再起",
+   "summary": "ETH 24h 约 +7.5% 至 $2,430 一带，讨论聚焦选举后风险偏好、ETH/BTC 突破下降趋势线，以及约 109 万 ETH 排队质押。空方仍强调现货 ETF 流出与此前跌破 200 日均线风险。整体偏多。",
    "themes": [
     "选举反弹",
     "ETH/BTC",
@@ -68,7 +68,7 @@ window.SNAPSHOT = {
     {
      "url": "https://x.com/Bill_liBTC/status/2118147661325029641",
      "text": "BTC ~$80.5K (+4%) | ETH ~$2,420 (+6%) … Post-midterm dip got bought and shorts got squeezed. ETH outpacing BTC today…",
-     "likes": 1,
+     "likes": 2,
      "note": "ETH 跑赢",
      "time": "2026-11-05T01:05:30.000Z"
     },
@@ -82,14 +82,53 @@ window.SNAPSHOT = {
    ],
    "whale": "X 帖子称：约 109 万 ETH 排队质押、退出仅约 4,352 ETH。"
   },
+  "SOL": {
+   "sample": 20,
+   "bull": 0.4,
+   "bear": 0.2,
+   "neutral": 0.4,
+   "score": 0.2,
+   "headline": "RWA 破 50 亿与巨鲸抛压并存，价格约 96 美元",
+   "summary": "偏多叙事仍是 Solana RWA（约 $5.12B）与应用月收入升至约 $1.36 亿；偏空包括巨鲸 10 日向交易所转入约 149 万 SOL、现货 ETF 多日净流出，以及财库公司 SkyAI 清仓 SOL。价格约 $96，24h +5%。",
+   "themes": [
+    "RWA 扩张",
+    "应用收入",
+    "巨鲸转交易所",
+    "ETF 流出"
+   ],
+   "posts": [
+    {
+     "url": "https://x.com/SolCommunityy/status/2117824418286391621",
+     "text": "SOLANA RWA IS EXPLODING! Distributed Asset Value: $5.12B (+17.65%) … RWA Holders: 862,792…",
+     "likes": 37,
+     "note": "RWA 数据",
+     "time": "2026-11-04T03:41:03.000Z"
+    },
+    {
+     "url": "https://x.com/BlockInsider_/status/2118024187847770243",
+     "text": "One whale sent 1.49M SOL ($148.77M) to exchanges in 10 days. @solana slipped to $94…",
+     "likes": 0,
+     "note": "巨鲸抛压",
+     "time": "2026-11-04T16:54:52.000Z"
+    },
+    {
+     "url": "https://x.com/BitcoinStrat/status/2118097093676130727",
+     "text": "Solana monthly app revenue: $17M in early 2024, $136M today. SOL price: $97 then, $94 now.",
+     "likes": 1,
+     "note": "收入 vs 价格",
+     "time": "2026-11-04T21:44:34.000Z"
+    }
+   ],
+   "whale": "X 帖子称：单地址 10 日向交易所转入约 1.49M SOL（~$149M）；SkyAI 清仓 SOL。"
+  },
   "ELSA": {
-   "sample": 22,
-   "bull": 0.6,
-   "bear": 0.04,
-   "neutral": 0.36,
-   "score": 0.56,
-   "headline": "永续涨超 50%，AI Agent 喊单主导讨论",
-   "summary": "ELSA（HeyElsa）位居 Binance 永续涨幅前列（约 +58%），样本几乎全是涨幅榜、目标达成与喊单帖；实质基本面讨论稀缺，还夹杂大量无关的迪士尼 Elsa 噪音。情绪极度偏多，但营销与信号机器人占比高，可信度应大幅打折。",
+   "sample": 20,
+   "bull": 0.65,
+   "bear": 0.05,
+   "neutral": 0.3,
+   "score": 0.6,
+   "headline": "永续涨约 48%，AI Agent 喊单主导讨论",
+   "summary": "ELSA（HeyElsa）仍居 Binance 永续涨幅前列（约 +48%），样本几乎全是涨幅榜、目标达成与喊单帖；实质基本面讨论稀缺，还夹杂大量无关的迪士尼 Elsa 噪音。情绪极度偏多，但营销与信号机器人占比高，可信度应大幅打折。",
    "themes": [
     "涨幅榜首",
     "AI Agent",
@@ -122,13 +161,13 @@ window.SNAPSHOT = {
    "whale": null
   },
   "LSK": {
-   "sample": 24,
-   "bull": 0.28,
-   "bear": 0.32,
-   "neutral": 0.4,
-   "score": -0.04,
+   "sample": 22,
+   "bull": 0.32,
+   "bear": 0.3,
+   "neutral": 0.38,
+   "score": 0.02,
    "headline": "链已关停仍短线大涨，叙事冲突加剧",
-   "summary": "基本面仍是 11/2 关停 Lisk L2、约 520 万未领取 LSK 将销毁、项目转向企业金融；多数分析帖偏空。但现货/永续 24h 涨约 20%，喊单与「目标 $1.5」帖增多。情绪面叙事偏空、价格面偏热。",
+   "summary": "基本面仍是 11/2 关停 Lisk L2、约 520 万未领取 LSK 将销毁、项目转向企业金融；多数分析帖偏空。但现货/永续 24h 涨约 18%，喊单与「目标 $1.5」帖增多。情绪面叙事偏空、价格面偏热。",
    "themes": [
     "链关停",
     "代币销毁",
@@ -153,21 +192,137 @@ window.SNAPSHOT = {
     {
      "url": "https://x.com/Blockchainmq1/status/2117864362912239852",
      "text": "$LSK Big Profit Chance Target Is $1.5? … up 15% today and up 173% in 90 days.",
-     "likes": 29,
+     "likes": 30,
      "note": "喊单目标",
      "time": "2026-11-04T06:19:46.000Z"
     }
    ],
    "whale": null
   },
+  "JCT": {
+   "sample": 14,
+   "bull": 0.35,
+   "bear": 0.45,
+   "neutral": 0.2,
+   "score": -0.1,
+   "headline": "涨幅榜前列但空单喊单增多，短线博弈激烈",
+   "summary": "JCT 24h 约 +32%，成交活跃；讨论以信号群多空喊单为主，空方指向「急涨后动能衰竭」并给出短线空单结构，多方多为跟涨榜帖。实质基本面讨论稀缺，情绪偏空但价格仍强。",
+   "themes": [
+    "涨幅榜",
+    "空单喊单",
+    "高波动",
+    "信号噪音"
+   ],
+   "posts": [
+    {
+     "url": "https://x.com/MasteringCrypt/status/2117985984596070741",
+     "text": "$JCT is now again Showing Signs of Exhaustion Short $JCT (DCA Entries)…",
+     "likes": 4,
+     "note": "空单衰竭",
+     "time": "2026-11-04T14:23:03.000Z"
+    },
+    {
+     "url": "https://x.com/BinancefuturesG/status/2117914072742027629",
+     "text": "$JCT/USDT Short Leverage: Cross 20× …",
+     "likes": 4,
+     "note": "空单信号",
+     "time": "2026-11-04T09:37:18.000Z"
+    },
+    {
+     "url": "https://x.com/CryptoJackXBT/status/2118087585360978040",
+     "text": "$CLANKER almost 90%+ up — Ruling on #Binance Top Gainers … $elsa $cap $jct $fluid",
+     "likes": 0,
+     "note": "涨幅榜提及",
+     "time": "2026-11-04T21:06:47.000Z"
+    }
+   ],
+   "whale": null
+  },
+  "CAP": {
+   "sample": 12,
+   "bull": 0.55,
+   "bear": 0.1,
+   "neutral": 0.35,
+   "score": 0.45,
+   "headline": "榜单涨约 33%，讨论以涨幅榜噪音为主",
+   "summary": "CAP 24h 约 +33%，CryptoSlate 等将其列入当日最大涨幅；X 上多为涨幅榜汇总与营销跟帖，缺少可持续的基本面叙事。情绪偏多但样本浅、信号机器人占比高。",
+   "themes": [
+    "涨幅榜",
+    "短线热度",
+    "叙事稀缺"
+   ],
+   "posts": [
+    {
+     "url": "https://x.com/CryptoSlate/status/2118003017442271704",
+     "text": "Top #Crypto Gainers & Losers… Cap $CAP +28.63% … Fluid $FLUID +16.53%",
+     "likes": 0,
+     "note": "涨幅榜",
+     "time": "2026-11-04T15:30:44.000Z"
+    },
+    {
+     "url": "https://x.com/oct_trades/status/2118014833971102199",
+     "text": "Top Gainers 📈 $CAP +24% $BTW +12% $BEAM…",
+     "likes": 4,
+     "note": "热门涨幅",
+     "time": "2026-11-04T16:17:41.000Z"
+    },
+    {
+     "url": "https://x.com/BonusBoardApp/status/2117997037195334022",
+     "text": "This morning's top low-cap gainer: CAP +24.98% (24h).",
+     "likes": 0,
+     "note": "低市值领涨",
+     "time": "2026-11-04T15:06:58.000Z"
+    }
+   ],
+   "whale": null
+  },
+  "FLUID": {
+   "sample": 18,
+   "bull": 0.7,
+   "bear": 0.05,
+   "neutral": 0.25,
+   "score": 0.65,
+   "headline": "DeFi 借贷叙事叠加涨幅榜，喊单目标密集",
+   "summary": "FLUID（原 Instadapp）24h 约 +25%，CryptoSlate 列入大涨榜；讨论一边倒指向成交放量、目标价与「真实收入」的 DeFi 叙事，也夹杂大量复制粘贴信号帖。情绪极度偏多，需警惕营销噪音。",
+   "themes": [
+    "涨幅榜",
+    "DeFi 收入",
+    "喊单目标",
+    "成交放量"
+   ],
+   "posts": [
+    {
+     "url": "https://x.com/CryptoSlate/status/2118003017442271704",
+     "text": "Biggest Gainers… Fluid $FLUID +16.53%",
+     "likes": 0,
+     "note": "涨幅榜",
+     "time": "2026-11-04T15:30:44.000Z"
+    },
+    {
+     "url": "https://x.com/RyanAtOpen/status/2117873566641496189",
+     "text": "FLUID / FORMERLY INSTADAPP … established lending protocol already generating real revenue… Fluid currently has approximately $810…",
+     "likes": 0,
+     "note": "协议叙事",
+     "time": "2026-11-04T06:56:21.000Z"
+    },
+    {
+     "url": "https://x.com/SiCryptoX0/status/2117851742906011943",
+     "text": "$FLUID 4TH TARGET HIT! … 51% PROFIT with 10X LEVERAGE",
+     "likes": 1,
+     "note": "目标达成",
+     "time": "2026-11-04T05:29:37.000Z"
+    }
+   ],
+   "whale": null
+  },
   "INJ": {
-   "sample": 25,
+   "sample": 24,
    "bull": 0.72,
-   "bear": 0.04,
-   "neutral": 0.24,
-   "score": 0.68,
+   "bear": 0.08,
+   "neutral": 0.2,
+   "score": 0.64,
    "headline": "Nasdaq 批准质押版 INJ ETF 叙事持续发酵",
-   "summary": "样本几乎一边倒：Nasdaq 批准 Canary Capital 质押版 INJ ETF（INJC）、基金拟质押至少 90% 持仓，叠加周年活动与机构叙事。价格约 $8，24h 约 +12%。需留意「批准上市」与「实际开售」可能被混淆。",
+   "summary": "样本几乎一边倒：Nasdaq 批准 Canary Capital 质押版 INJ ETF（INJC）、基金拟质押至少 90% 持仓，叠加周年活动与机构叙事。价格约 $8，24h 约 +13%。需留意「批准上市」与「实际开售」可能被混淆。",
    "themes": [
     "INJ ETF",
     "质押收益",
@@ -176,142 +331,63 @@ window.SNAPSHOT = {
    ],
    "posts": [
     {
-     "url": "https://x.com/leeky_k_crypt/status/2118033032351224234",
-     "text": "JUST IN: NASDAQ APPROVES CANARY'S INJECTIVE ETF … ticker INJC. The fund expects to stake at least 90% of its $INJ…",
-     "likes": 117,
+     "url": "https://x.com/PiEDawg_/status/2118080875480986094",
+     "text": "Nasdaq has approved listing of Canary's staked Injective ETF (INJC), which will stake at least 90% of its INJ holdings…",
+     "likes": 2,
      "note": "ETF 批准",
-     "time": "2026-11-04T17:30:00.000Z"
-    },
-    {
-     "url": "https://x.com/JapaneseCrypto/status/2118155347953418454",
-     "text": "Nasdaq has approved the listing of Canary Capital’s staked Injective ETF under the ticker $INJC…",
-     "likes": 0,
-     "note": "日语媒体跟进",
-     "time": "2026-11-05T01:36:03.000Z"
+     "time": "2026-11-04T20:40:07.000Z"
     },
     {
      "url": "https://x.com/Whisper__7/status/2117964842258833415",
      "text": "Institutional access to staked $INJ is a big win … Canary Funds has filed an amended S-1…",
-     "likes": 53,
+     "likes": 55,
      "note": "S-1 细节",
      "time": "2026-11-04T12:59:02.000Z"
+    },
+    {
+     "url": "https://x.com/Crypto_Tanx/status/2118107447294632446",
+     "text": "$INJ +18.0% Profit Swept the $6.80 liquidity before moving higher… Next target → $11.0+",
+     "likes": 3,
+     "note": "技术突破",
+     "time": "2026-11-04T22:25:42.000Z"
     }
    ],
    "whale": null
   },
-  "CLANKER": {
-   "sample": 25,
-   "bull": 0.72,
-   "bear": 0.04,
-   "neutral": 0.24,
-   "score": 0.68,
-   "headline": "新 CEO 上任后「Revival」叙事升温，成交活跃",
-   "summary": "讨论几乎一边倒：Toady Hawk 就任后 Clanker/Base 生态代币活跃、「revival」与 reboot 叙事；有帖称市值回升、短线仍剧烈波动（曾现 1h 大回撤）。跟风 meme 噪声高，但核心讨论偏多。",
+  "APP": {
+   "sample": 8,
+   "bull": 0.6,
+   "bear": 0.05,
+   "neutral": 0.35,
+   "score": 0.55,
+   "headline": "永续急涨约 35%，公开讨论极少",
+   "summary": "APP 位居 Binance 永续涨幅前列（约 +35%），但 X 上针对性讨论极少，几乎只有涨幅榜扫描提及；大量「app」噪音干扰检索。情绪看似偏多，实际样本过浅，可信度低。",
    "themes": [
-    "新 CEO",
-    "Revival",
-    "Base 生态",
-    "高波动"
+    "涨幅榜",
+    "讨论稀缺",
+    "高噪音"
    ],
    "posts": [
     {
-     "url": "https://x.com/Only1Gkash/status/2117920198787236237",
-     "text": "This is the Clanker revival. @toady_hawk just took over @clanker_world and in less than 24 hours Clanker tokens are revived.",
-     "likes": 25,
-     "note": "Revival",
-     "time": "2026-11-04T10:01:39.000Z"
-    },
-    {
-     "url": "https://x.com/deeptracexyz/status/2118055008352571634",
-     "text": "Clanker is up 22MC after the new CEO @toady_hawk made his entrance to reboot the ecosystem.",
-     "likes": 11,
-     "note": "市值回升",
-     "time": "2026-11-04T18:57:20.000Z"
-    },
-    {
-     "url": "https://x.com/0xDoran_NFT/status/2118152495382094179",
-     "text": "The increase of $CLANKER is really crazy. Doubled in a short time",
+     "url": "https://x.com/cexscan/status/2118089810724163789",
+     "text": "Last 15m - Binance Futures … Top 3 Gainers: $APP : ↑16.19% …",
      "likes": 0,
-     "note": "短线翻倍",
-     "time": "2026-11-05T01:24:42.000Z"
-    }
-   ],
-   "whale": null
-  },
-  "SOL": {
-   "sample": 25,
-   "bull": 0.36,
-   "bear": 0.2,
-   "neutral": 0.44,
-   "score": 0.16,
-   "headline": "RWA 破 50 亿与巨鲸抛压并存，价格约 96 美元",
-   "summary": "偏多叙事仍是 Solana RWA（约 $5.12B）与应用月收入升至约 $1.36 亿；偏空包括巨鲸 10 日向交易所转入约 149 万 SOL、现货 ETF 多日净流出，以及财库公司 SkyAI 清仓 SOL。价格约 $96，24h +4%。",
-   "themes": [
-    "RWA 扩张",
-    "应用收入",
-    "巨鲸转交易所",
-    "ETF 流出"
-   ],
-   "posts": [
-    {
-     "url": "https://x.com/SolCommunityy/status/2117824418286391621",
-     "text": "SOLANA RWA IS EXPLODING! Distributed Asset Value: $5.12B (+17.65%) … RWA Holders: 862,792…",
-     "likes": 33,
-     "note": "RWA 数据",
-     "time": "2026-11-04T03:41:03.000Z"
+     "note": "永续急涨",
+     "time": "2026-11-04T21:15:37.000Z"
     },
     {
-     "url": "https://x.com/BlockInsider_/status/2118024187847770243",
-     "text": "One whale sent 1.49M SOL ($148.77M) to exchanges in 10 days. @solana slipped to $94…",
+     "url": "https://x.com/CryptoJackXBT/status/2118087585360978040",
+     "text": "Ruling on #Binance Top Gainers … $elsa $cap $jct $fluid",
      "likes": 0,
-     "note": "巨鲸抛压",
-     "time": "2026-11-04T16:54:52.000Z"
+     "note": "同批涨幅币",
+     "time": "2026-11-04T21:06:47.000Z"
     },
     {
-     "url": "https://x.com/BitcoinStrat/status/2118097093676130727",
-     "text": "Solana monthly app revenue: $17M in early 2024, $136M today. SOL price: $97 then, $94 now.",
-     "likes": 1,
-     "note": "收入 vs 价格",
-     "time": "2026-11-04T21:44:34.000Z"
-    }
-   ],
-   "whale": "X 帖子称：单地址 10 日向交易所转入约 1.49M SOL（~$149M）；SkyAI 清仓 SOL。"
-  },
-  "ZEC": {
-   "sample": 25,
-   "bull": 0.52,
-   "bear": 0.16,
-   "neutral": 0.32,
-   "score": 0.36,
-   "headline": "NU7 加速出块将至，隐私币相对强势",
-   "summary": "ZEC 约 $1,300 附近、24h 约 +8–9%，讨论聚焦 NU7（出块 75s→25s）、隐私叙事相对抗跌，以及屏蔽池转入。偏空包括 Grayscale ZEC ETF 持仓抛压与部分空单计划。情绪整体偏多。",
-   "themes": [
-    "NU7 升级",
-    "隐私叙事",
-    "相对强势",
-    "ETF 流出"
-   ],
-   "posts": [
-    {
-     "url": "https://x.com/GhostSwap_io/status/2117980687324020849",
-     "text": "Zcash NU7 activates at block 3,543,405, around 5 Nov. After that, a block every 25 seconds instead of 75.",
-     "likes": 21,
-     "note": "NU7",
-     "time": "2026-11-04T14:02:00.000Z"
-    },
-    {
-     "url": "https://x.com/Nodora_/status/2117904207235998077",
-     "text": "Zcash $ZEC jumps 14% to ~$1,290 ahead of its NU7 upgrade … Blocks go from 75s to 25s…",
-     "likes": 0,
-     "note": "升级前上涨",
-     "time": "2026-11-04T08:58:06.000Z"
-    },
-    {
-     "url": "https://x.com/trader1sz/status/2117834812597662044",
-     "text": "grayscale zcash ETF holders starting to dump again… $ZEC #ZCASH",
-     "likes": 20,
-     "note": "ETF 抛压",
-     "time": "2026-11-04T04:22:21.000Z"
+     "url": "https://x.com/oct_trades/status/2118014833971102199",
+     "text": "Bitcoin just reclaimed $81,000 … Top Gainers 📈 $CAP +24%…",
+     "likes": 4,
+     "note": "大盘+涨幅币",
+     "time": "2026-11-04T16:17:41.000Z"
     }
    ],
    "whale": null
@@ -319,16 +395,16 @@ window.SNAPSHOT = {
  },
  "news": {
   "source": "X News (search_news, 近 24h)",
-  "snapshotTime": "2026-11-05 10:40 KST",
+  "snapshotTime": "2026-11-05 11:21 KST",
   "items": [
    {
-    "title": "Bitcoin Surges Past $80,000 After Democratic Midterm Sweep",
+    "title": "Bitcoin Hits $81,000 After Democrats Take House and Senate",
     "summary": "触及约 81K，空头爆仓约 $320M；美股同步大涨，分析指不确定性下降与空头回补。",
     "coins": [
      "BTC"
     ],
     "url": "https://x.com/i/trending/2117976148323762207",
-    "updated": "2026-11-05T01:37:08.000Z"
+    "updated": "2026-11-05T02:09:34.000Z"
    },
    {
     "title": "Moscow Exchange to Launch Bitcoin Trading December 1",
@@ -400,9 +476,9 @@ window.SNAPSHOT = {
   ]
  },
  "recommendationAtSnapshot": {
-  "time": "2026-11-05 10:40 KST",
+  "time": "2026-11-05 11:21 KST",
   "binance": [],
   "okx": [],
-  "note": "本轮扫描 Binance 永续 Top 成交额约 50 个标的，顺大逆小多单条件无命中；涨幅榜纳入 ELSA/LSK/INJ/CLANKER/ZEC。"
+  "note": "本轮扫描未命中顺大逆小多单条件；涨幅榜纳入 ELSA/APP/CAP/JCT/FLUID/LSK/INJ（叠加 BTC/ETH/SOL）。"
  }
 };
