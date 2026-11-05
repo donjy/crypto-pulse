@@ -1,15 +1,15 @@
 /* Auto-generated snapshot — see update_sentiment.md */
 window.SNAPSHOT = {
-  "snapshotTime": "2026-11-05 16:38 KST",
+  "snapshotTime": "2026-11-05 17:03 KST",
   "sentiment": {
     "BTC": {
-      "sample": 24,
-      "bull": 0.42,
-      "bear": 0.25,
-      "neutral": 0.33,
-      "score": 0.17,
-      "headline": "约 8.04 万站稳，ETF 回流与 Trump Media 转出对冲",
-      "summary": "BTC 约 $80,423，24h 约 +2.9%。偏多：选举抛压后收回 8 万、11/4 美现货 BTC ETF 净流入约 $7460 万、交易所净流出与卖方衰竭叙事。偏空：Trump Media 相关钱包向 Crypto.com 转入约 4,259 BTC（帖称或为可转债抵押相关）、矿工/大户出货讨论仍在。情绪中性略偏多。",
+      "sample": 22,
+      "bull": 0.41,
+      "bear": 0.27,
+      "neutral": 0.32,
+      "score": 0.14,
+      "headline": "约 8.04 万站稳，ETF 回流对冲大额转出",
+      "summary": "BTC 约 $80,385，24h 约 +2.8%。偏多：选举抛压后收回 8 万、美现货 BTC ETF 净流入约 $7460 万（Fidelity FBTC 领买）、交易所净流出与卖方衰竭叙事、Eric Trump 旗下 American Bitcoin 储备增至 8,427 BTC。偏空：Trump Media 相关钱包向 Crypto.com 转入约 4,259 BTC、MARA 等矿工出货讨论仍在。情绪中性略偏多。",
       "themes": [
         "收回 8 万",
         "ETF 回流",
@@ -26,11 +26,11 @@ window.SNAPSHOT = {
           "time": "2026-11-05T06:25:34.000Z"
         },
         {
-          "url": "https://x.com/BitElite17/status/2118199709990797433",
-          "text": "Trump Media maybe DUMPING Bitcoin? Wallet linked to Trump Media transferred 4,259 BTC (~$343.67M) to Crypto.com after three months of dormancy.",
-          "likes": 49,
+          "url": "https://x.com/BitcoinWorldN/status/2118182399138009372",
+          "text": "JUST IN: Trump Media has reportedly transferred 4,259 $BTC, worth approximately $343.7 million, to Crypto.com.",
+          "likes": 0,
           "note": "大额转出警示",
-          "time": "2026-11-05T04:32:19.000Z"
+          "time": "2026-11-05T03:23:32.000Z"
         },
         {
           "url": "https://x.com/songpu717/status/2118237832896794985",
@@ -40,28 +40,28 @@ window.SNAPSHOT = {
           "time": "2026-11-05T07:03:48.000Z"
         }
       ],
-      "whale": "公开讨论：Trump Media ~4,259 BTC 转入 Crypto.com（新闻称约合 30% 披露持仓、或与可转债抵押相关）。均未经本快照链上复核。"
+      "whale": "公开讨论：Trump Media ~4,259 BTC 转入 Crypto.com；另有帖称 MARA 约 1,650 BTC 转至 Galaxy/Copper 等。均未经本快照链上复核。"
     },
     "ETH": {
-      "sample": 25,
-      "bull": 0.56,
-      "bear": 0.16,
-      "neutral": 0.28,
-      "score": 0.4,
-      "headline": "约 2417 继续跑赢，ETF 转正与空头挤压",
-      "summary": "ETH 约 $2,417，24h 约 +5.0%，继续跑赢 BTC。偏多：站稳 $2,400、短线空头清算帖（约 $2.1 亿空单）、11/4 现货 ETH ETF 净流入约 $5300 万、DEX 周成交放量。偏空：此前多日/多周 ETF 流出与机构观望叙事仍在。整体中性偏多。",
+      "sample": 23,
+      "bull": 0.57,
+      "bear": 0.17,
+      "neutral": 0.26,
+      "score": 0.39,
+      "headline": "约 2418 继续跑赢，ETF 转正与空头挤压",
+      "summary": "ETH 约 $2,418，24h 约 +4.9%，继续跑赢 BTC。偏多：站稳 $2,400、短线空头清算帖（约 $2.1 亿空单）、11/4 现货 ETH ETF 净流入约 $5300 万（BlackRock ETHA 领买）、ETH/BTC 突破下行趋势线讨论。偏空：此前多日/多周 ETF 流出与机构观望叙事仍在。整体中性偏多。",
       "themes": [
         "反弹 $2400",
         "跑赢 BTC",
         "空头挤压",
         "ETF 转正",
-        "DEX 放量"
+        "ETH/BTC 突破"
       ],
       "posts": [
         {
           "url": "https://x.com/TodayCryptoRj/status/2118238645782290699",
           "text": "JUST IN: US Spot Ethereum ETFs record $53.02 MILLION in net inflows. BlackRock’s ETHA led with $32.75 million.",
-          "likes": 4,
+          "likes": 5,
           "note": "ETF 净流入",
           "time": "2026-11-05T07:07:02.000Z"
         },
@@ -83,28 +83,21 @@ window.SNAPSHOT = {
       "whale": "公开帖：价格反弹与 ETF 资金流由负转正并存。未做链上交叉验证。"
     },
     "SOL": {
-      "sample": 25,
-      "bull": 0.52,
-      "bear": 0.12,
-      "neutral": 0.36,
-      "score": 0.4,
-      "headline": "约 96 美元偏稳，Schroders/RWA 与代币化美股续热",
-      "summary": "SOL 约 $96.0，24h 约 +3.0%。偏多：Schroders（约 $1.1T AUM）经 Centrifuge 上线新兴市场债券代币化、代币化股权流通与单日成交高峰、Kamino 支撑代币化股票 DeFi TVL、Breakpoint London 临近。偏空：价格仍低于 $100 心理位、meme 噪音偏高。情绪中性偏多。",
+      "sample": 18,
+      "bull": 0.5,
+      "bear": 0.17,
+      "neutral": 0.33,
+      "score": 0.33,
+      "headline": "约 95.9 美元偏稳，代币化美股与 RWA 续热",
+      "summary": "SOL 约 $95.9，24h 约 +3.0%。偏多：代币化股权流通约 $6.32 亿、RWA 规模上行讨论、生态日更与 Breakpoint 临近。偏空：有帖称大户 10 日向交易所转入约 149 万 SOL、现货 SOL ETF 多日净流出、价格仍低于 $100 心理位；meme 噪音偏高。情绪中性偏多。",
       "themes": [
-        "Schroders RWA",
         "代币化美股",
-        "Breakpoint",
+        "RWA 扩张",
         "$100 心理位",
+        "大户转入",
         "生态日更"
       ],
       "posts": [
-        {
-          "url": "https://x.com/OldmanScalping/status/2118032396348178492",
-          "text": "$1.1T Asset Manager Goes Onchain: Schroders Brings Emerging-Market Bonds to $SOL via Centrifuge.",
-          "likes": 18,
-          "note": "机构债基上链",
-          "time": "2026-11-04T17:27:29.000Z"
-        },
         {
           "url": "https://x.com/SolCommunityy/status/2118221778648506698",
           "text": "SOLANA TOKENIZED EQUITIES ARE BOOMING! $632M circulating supply, 2,094 unique products, 1.77M+ holders.",
@@ -113,29 +106,36 @@ window.SNAPSHOT = {
           "time": "2026-11-05T06:00:01.000Z"
         },
         {
-          "url": "https://x.com/JWanderKing/status/2117922702786957551",
-          "text": "$657M in tokenized stocks traded on Solana on Monday — more than double any other day since September.",
-          "likes": 5,
-          "note": "单日成交高峰",
-          "time": "2026-11-04T10:11:36.000Z"
+          "url": "https://x.com/BlockInsider_/status/2118024187847770243",
+          "text": "One whale sent 1.49M SOL ($148.77M) to exchanges in 10 days. @solana slipped to $94. Polymarket still gives SOL a 70% shot at $100 this month.",
+          "likes": 0,
+          "note": "大户转入警示",
+          "time": "2026-11-04T16:54:52.000Z"
+        },
+        {
+          "url": "https://x.com/TrippleAmember/status/2118116837028233216",
+          "text": "SOL is around $95.2 (+2.0% 24h). Tokenized RWAs on Solana reached $5.12B on Nov 2, up 17.6% in 30 days, even as spot SOL ETFs saw $63.4M net outflows over 5 sessions.",
+          "likes": 2,
+          "note": "RWA 升 vs ETF 流出",
+          "time": "2026-11-04T23:03:01.000Z"
         }
       ],
-      "whale": null
+      "whale": "公开帖：约 149 万 SOL 十日转入交易所（未经本快照链上复核）。"
     },
     "BEAMX": {
-      "sample": 22,
-      "bull": 0.58,
-      "bear": 0.12,
+      "sample": 20,
+      "bull": 0.55,
+      "bear": 0.15,
       "neutral": 0.3,
-      "score": 0.46,
-      "headline": "现货约 +22.5% 领涨，游戏链动量与信号帖混杂",
-      "summary": "BEAMX（原 Merit Circle / Beam）Binance 现货约 +22.5%，报价约 $0.00474。讨论集中于涨幅榜、游戏链叙事、OI 抬升与短线多空信号；营销/跟单帖占比偏高，基本面增量有限。情绪偏多但噪声大。",
+      "score": 0.4,
+      "headline": "现货约 +18.2% 领涨，游戏链动量与信号帖混杂",
+      "summary": "BEAMX（原 Merit Circle / Beam）Binance 现货约 +18.2%，报价约 $0.00459。讨论集中于涨幅榜、游戏链叙事、短线多空信号与 +25% 交易帖；营销/跟单帖占比偏高，基本面增量有限。情绪偏多但噪声大。",
       "themes": [
         "涨幅榜前列",
         "游戏链",
         "短线动量",
-        "OI 抬升",
-        "信号帖"
+        "信号帖",
+        "OI/杠杆"
       ],
       "posts": [
         {
@@ -146,18 +146,58 @@ window.SNAPSHOT = {
           "time": "2026-11-05T02:21:48.000Z"
         },
         {
-          "url": "https://x.com/OfficialChainFX/status/2118192630081450135",
-          "text": "Look at $BEAMX Open Interest. It’s up 20.32% in the last 24 hours, with Binance holding around $19.5M.",
-          "likes": 0,
-          "note": "OI 抬升",
-          "time": "2026-11-05T04:04:11.000Z"
-        },
-        {
           "url": "https://x.com/cexscan/status/2118040957375688989",
           "text": "Binance Spot – Last Hour: top gainer $BEAMX, top loser $TRUMP.",
           "likes": 0,
           "note": "小时榜领涨",
           "time": "2026-11-04T18:01:30.000Z"
+        },
+        {
+          "url": "https://x.com/cryptoanalyst81/status/2118245598956769362",
+          "text": "Yesterday Trade $BEAMX Gave Quick +25% Profit",
+          "likes": 0,
+          "note": "短线获利帖",
+          "time": "2026-11-05T07:34:40.000Z"
+        }
+      ],
+      "whale": null
+    },
+    "1000CAT": {
+      "sample": 12,
+      "bull": 0.58,
+      "bear": 0.17,
+      "neutral": 0.25,
+      "score": 0.42,
+      "headline": "现货约 +16%，meme 榜与放量突破帖升温",
+      "summary": "1000CAT（1000*Simons Cat）约 $0.00181，24h 约 +16.0%。讨论聚焦 Binance 现货小时/分类涨幅榜、15 分钟放量突破与交易信号；另有资金费率极端与短暂回撤帖。情绪偏多、噪声偏高。",
+      "themes": [
+        "涨幅榜",
+        "meme 动量",
+        "放量突破",
+        "资金费率",
+        "信号帖"
+      ],
+      "posts": [
+        {
+          "url": "https://x.com/cryptoanalyst81/status/2118249801238376944",
+          "text": "#1000CAT Breakout!!",
+          "likes": 1,
+          "note": "突破喊单",
+          "time": "2026-11-05T07:51:22.000Z"
+        },
+        {
+          "url": "https://x.com/Finora_EN/status/2118231660495815047",
+          "text": "1000CAT volume spikes 10.4x with 5.6% in 15m—can bulls break resistance or is this hype?",
+          "likes": 0,
+          "note": "放量观察",
+          "time": "2026-11-05T06:39:17.000Z"
+        },
+        {
+          "url": "https://x.com/cexscan/status/2118236968274321657",
+          "text": "Last 60m Binance Spot Top Gainers include $1000CAT (1000*Simons Cat) ↑3.74%.",
+          "likes": 0,
+          "note": "小时榜曝光",
+          "time": "2026-11-05T07:00:22.000Z"
         }
       ],
       "whale": null
@@ -165,57 +205,57 @@ window.SNAPSHOT = {
     "FOGO": {
       "sample": 20,
       "bull": 0.6,
-      "bear": 0.08,
-      "neutral": 0.32,
-      "score": 0.52,
-      "headline": "约 +9.7%，Velixo 跨链 NFT 叙事仍热",
-      "summary": "FOGO 现货约 +9.7%，报价约 $0.00249。讨论继续聚焦 SVM 交易向 L1 与 Velixo NFT 市场（Fogo+Robinhood Chain）。社区互动高，营销帖占比仍不低。情绪偏多。",
+      "bear": 0.1,
+      "neutral": 0.3,
+      "score": 0.5,
+      "headline": "约 +12.4%，Velixo 跨链 NFT 与短线多单并行",
+      "summary": "FOGO 现货约 +12.4%，报价约 $0.00253。讨论继续聚焦 SVM 交易向 L1、Velixo NFT 市场（Fogo+Robinhood Chain）与创作者激励；短线多单/止盈帖增多，营销帖占比仍不低。情绪偏多。",
       "themes": [
         "涨幅榜",
         "Velixo",
         "跨链 NFT",
         "SVM 速度",
-        "创作者激励"
+        "短线动量"
       ],
       "posts": [
         {
-          "url": "https://x.com/MoxenEX/status/2118001498009575825",
-          "text": "Velixo started as the first native marketplace on Fogo (fastest SVM L1). Now the same app also supports Robinhood Chain (EVM).",
-          "likes": 94,
+          "url": "https://x.com/leo_thoomaz/status/2118212882081214906",
+          "text": "VelixoMarket: NFT marketplace and launchpad on Fogo, built for creators. Before Fogo had a scene, it had a marketplace.",
+          "likes": 18,
+          "note": "原生市场定位",
+          "time": "2026-11-05T05:24:40.000Z"
+        },
+        {
+          "url": "https://x.com/BabuAlx86/status/2118243564274807149",
+          "text": "VelixoMarket launched as the native NFT marketplace on Fogo and later expanded to Robinhood Chain without degrading the original experience.",
+          "likes": 4,
           "note": "跨链扩张",
-          "time": "2026-11-04T15:24:42.000Z"
+          "time": "2026-11-05T07:26:35.000Z"
         },
         {
-          "url": "https://x.com/JaviQminer/status/2118056826831028442",
-          "text": "Velixo is the native NFT marketplace on Fogo — fastest SVM chain, 1.3s finality, near zero fees; also live on Robinhood Chain.",
-          "likes": 42,
-          "note": "产品卖点摘要",
-          "time": "2026-11-04T19:04:33.000Z"
-        },
-        {
-          "url": "https://x.com/ayuussh240/status/2118145853785244024",
-          "text": "One marketplace. Two blockchain ecosystems. One NFT experience — Velixo on Fogo and Robinhood Chain.",
-          "likes": 84,
-          "note": "双链体验",
-          "time": "2026-11-05T00:58:19.000Z"
+          "url": "https://x.com/MasteringCrypt/status/2118224104046387602",
+          "text": "$FOGO is heating up. Long FOGO DCA entries around 0.00258–0.00245; strong bullish momentum on 15m above MA7.",
+          "likes": 0,
+          "note": "短线多单",
+          "time": "2026-11-05T06:09:15.000Z"
         }
       ],
       "whale": null
     },
     "KMNO": {
       "sample": 18,
-      "bull": 0.45,
+      "bull": 0.44,
       "bear": 0.28,
-      "neutral": 0.27,
+      "neutral": 0.28,
       "score": 0.17,
-      "headline": "约 +10.5%，效用叙事升温但澄清无收入索取权",
-      "summary": "KMNO（Kamino）约 +10.5%，报价约 $0.0369。偏多：社区讨论 token 效用/市值解锁里程碑、Solana 代币化股票 DeFi TVL 领先。偏空：CryptoSlate 等强调持币人无股权/无基金收入索取权。情绪中性略偏多。",
+      "headline": "约 +11.2%，效用叙事升温但澄清无收入索取权",
+      "summary": "KMNO（Kamino）约 +11.2%，报价约 $0.0371。偏多：社区讨论 token 效用/市值解锁里程碑、楔形突破与涨幅榜。偏空：CryptoSlate 等强调持币人无股权/无基金收入索取权，CEO 归属与估值挂钩。情绪中性略偏多。",
       "themes": [
         "涨幅榜",
         "代币效用",
         "市值解锁",
         "无股权澄清",
-        "代币化股票 DeFi"
+        "突破信号"
       ],
       "posts": [
         {
@@ -242,19 +282,59 @@ window.SNAPSHOT = {
       ],
       "whale": null
     },
+    "STG": {
+      "sample": 8,
+      "bull": 0.38,
+      "bear": 0.25,
+      "neutral": 0.37,
+      "score": 0.12,
+      "headline": "约 +11%，跨链桥用量与 STG→ZRO 迁移并存",
+      "summary": "STG（Stargate Finance）约 $0.184，24h 约 +11.0%。偏多：现货涨幅榜纳入、跨链桥路由被生态方引用（如 Lisk 经 Stargate 桥接）。偏空/中性：STG-to-ZRO 兑换截止讨论、桥接安全与迁移操作风险帖；搜索噪声（影视同名）偏大，有效样本偏少。情绪中性略偏多。",
+      "themes": [
+        "涨幅榜",
+        "跨链桥",
+        "STG→ZRO",
+        "迁移风险",
+        "搜索噪声"
+      ],
+      "posts": [
+        {
+          "url": "https://x.com/Lisk/status/2117962314557337791",
+          "text": "LSK/USDC is live on HyperliquidX. To sell LSK you already hold, bridge it from Ethereum via StargateFinance.",
+          "likes": 47,
+          "note": "官方桥接引用",
+          "time": "2026-11-04T12:49:00.000Z"
+        },
+        {
+          "url": "https://x.com/CrowdWhisperers/status/2117999610136306128",
+          "text": "Daily crypto update: BTC dips on midterms, rebounds; Binance hack began with fake interview; STG-to-ZRO swap ends 15 Dec.",
+          "likes": 0,
+          "note": "迁移截止提醒",
+          "time": "2026-11-04T15:17:12.000Z"
+        },
+        {
+          "url": "https://x.com/DylanAHart43/status/2118041868160151695",
+          "text": "A bridge announcement is not the same as secure liquidity. Inspect audit scope, withdrawal limits and exit options under stress. $STG",
+          "likes": 0,
+          "note": "桥接风险提示",
+          "time": "2026-11-04T18:05:07.000Z"
+        }
+      ],
+      "whale": null
+    },
     "RAY": {
-      "sample": 16,
-      "bull": 0.55,
-      "bear": 0.1,
-      "neutral": 0.35,
-      "score": 0.45,
-      "headline": "约 +8.6%，DEX 涨幅与真实收入叙事",
-      "summary": "RAY（Raydium）约 +8.6%，报价约 $1.76。讨论聚焦 Solana DEX 基建、真实收入与流动性供给，以及在 DEX 涨幅榜上的表现。情绪中性偏多。",
+      "sample": 18,
+      "bull": 0.56,
+      "bear": 0.11,
+      "neutral": 0.33,
+      "score": 0.44,
+      "headline": "约 +8.9%，DEX 涨幅与真实收入叙事",
+      "summary": "RAY（Raydium）约 +8.9%，报价约 $1.77。讨论聚焦 Solana DEX 基建、真实收入与流动性供给、代币化股权成交扩张，以及在 DEX 涨幅榜上的表现；另有 veRAY 治理与 meme 生态噪音。情绪中性偏多。",
       "themes": [
         "DEX 涨幅",
         "协议收入",
         "Solana 流动性",
-        "发射场景",
+        "代币化股权",
         "短线动量"
       ],
       "posts": [
@@ -273,23 +353,23 @@ window.SNAPSHOT = {
           "time": "2026-11-04T23:01:39.000Z"
         },
         {
-          "url": "https://x.com/upsolcoin/status/2117922378303017118",
-          "text": "Raydium continues to be one of the most important pieces of the Solana ecosystem — from token launches to liquidity.",
-          "likes": 3,
-          "note": "基建定位",
-          "time": "2026-11-04T10:10:18.000Z"
+          "url": "https://x.com/upsolcoin/status/2117924885355778055",
+          "text": "$RAY is expanding beyond memecoins, growing tokenized equity volume, and continuing to build one of the strongest trading ecosystems on Solana.",
+          "likes": 5,
+          "note": "生态扩张叙事",
+          "time": "2026-11-04T10:20:16.000Z"
         }
       ],
       "whale": null
     },
     "INJ": {
-      "sample": 25,
-      "bull": 0.72,
+      "sample": 24,
+      "bull": 0.75,
       "bear": 0.08,
-      "neutral": 0.2,
-      "score": 0.64,
-      "headline": "约 +7.5%，Canary 质押 INJ ETF 获 Nasdaq 上市批准",
-      "summary": "INJ 约 $8.17，24h 约 +7.5%。催化剂帖集中于 Canary Capital 质押 INJ ETF（INJC）获 Nasdaq 上市批准、计划质押至少 90% 持仓；仍有帖提醒需注册生效后方可交易。情绪偏多。",
+      "neutral": 0.17,
+      "score": 0.67,
+      "headline": "约 +8.0%，Canary 质押 INJ ETF 获 Nasdaq 上市批准",
+      "summary": "INJ 约 $8.19，24h 约 +8.0%。催化剂帖集中于 Canary Capital 质押 INJ ETF（INJC）获 Nasdaq 上市批准、计划质押至少 90% 持仓；社区解释仍待注册生效后方可交易。情绪偏多。",
       "themes": [
         "质押 ETF",
         "Nasdaq 批准",
@@ -299,65 +379,25 @@ window.SNAPSHOT = {
       ],
       "posts": [
         {
-          "url": "https://x.com/MSBIntel/status/2118010381238960475",
-          "text": "Nasdaq has approved the listing of Canary Capital's staked INJ ETF, ticker INJC. Fund expects to stake at least 90% of its INJ.",
-          "likes": 447,
-          "note": "SEC 文件摘要",
-          "time": "2026-11-04T16:00:00.000Z"
-        },
-        {
           "url": "https://x.com/leeky_k_crypt/status/2118033032351224234",
           "text": "JUST IN: NASDAQ APPROVES CANARY'S INJECTIVE ETF — ticker INJC, expects to stake at least 90% of its $INJ.",
-          "likes": 143,
+          "likes": 146,
           "note": "大号扩散",
           "time": "2026-11-04T17:30:00.000Z"
         },
         {
-          "url": "https://x.com/samoelyfe/status/2118109151364612534",
-          "text": "Nasdaq approved Canary's staked INJ ETF INJC. At least 90% gets staked. It can't trade until the SEC makes the S-1 effective.",
-          "likes": 0,
-          "note": "仍待生效提醒",
-          "time": "2026-11-04T22:32:28.000Z"
-        }
-      ],
-      "whale": null
-    },
-    "LSK": {
-      "sample": 18,
-      "bull": 0.48,
-      "bear": 0.22,
-      "neutral": 0.3,
-      "score": 0.26,
-      "headline": "约 +6.1%，L2 关停与 Hyperliquid 现货上线并存",
-      "summary": "LSK 约 $0.209，24h 约 +6.1%。偏多：官方宣布 LSK/USDC 上线 Hyperliquid 现货、短线涨幅榜与交易信号帖。偏空：Lisk Chain（以太坊 L2）关停、约 520 万未领取质押奖励将销毁、资产认领细节仍待公布。情绪中性偏多、叙事分裂。",
-      "themes": [
-        "涨幅榜",
-        "Hyperliquid 现货",
-        "L2 关停",
-        "质押销毁",
-        "短线信号"
-      ],
-      "posts": [
-        {
-          "url": "https://x.com/Lisk/status/2117962314557337791",
-          "text": "LSK/USDC is live on HyperliquidX. Deposit USDC to buy; bridge LSK from Ethereum via StargateFinance to sell.",
-          "likes": 46,
-          "note": "官方上线公告",
-          "time": "2026-11-04T12:49:00.000Z"
+          "url": "https://x.com/CryptoroznamaEn/status/2118215408700318184",
+          "text": "BREAKING: NASDAQ has officially approved the listing of the first-ever INJ Staked ETF. Ticker is INJC; targets staking 90% of holdings.",
+          "likes": 10,
+          "note": "质押 ETF 摘要",
+          "time": "2026-11-05T05:34:42.000Z"
         },
         {
-          "url": "https://x.com/afagadoeth/status/2118010391779487995",
-          "text": "Lisk Chain is shutting down. ~5.2M $LSK slated to be burned. A rare case of an Ethereum L2 closing its doors.",
-          "likes": 5,
-          "note": "L2 关停",
-          "time": "2026-11-04T16:00:02.000Z"
-        },
-        {
-          "url": "https://x.com/KuCoin_Web3/status/2118191598735622559",
-          "text": "Crypto Market Snapshot: BTC rebound; Top 5 Gainers include ELSA, JCT, EDGE, FLUID, LSK.",
-          "likes": 2,
-          "note": "涨幅榜曝光",
-          "time": "2026-11-05T04:00:05.000Z"
+          "url": "https://x.com/danielvaladin/status/2118123704664178863",
+          "text": "INJC is Canary Capital’s upcoming Staked $INJ ETF — what it means as Injective expands into traditional finance.",
+          "likes": 16,
+          "note": "机制解读",
+          "time": "2026-11-04T23:30:18.000Z"
         }
       ],
       "whale": null
@@ -365,8 +405,27 @@ window.SNAPSHOT = {
   },
   "news": {
     "source": "X News (search_news, 近 36h)",
-    "snapshotTime": "2026-11-05 16:38 KST",
+    "snapshotTime": "2026-11-05 17:03 KST",
     "items": [
+      {
+        "title": "Institutions Buy $128 Million in Bitcoin and Ethereum ETFs on November 4",
+        "summary": "11/4 美现货 BTC ETF 净流入约 $7460 万、ETH ETF 约 $5300 万；BlackRock ETHA 与 Fidelity FBTC 领买，机构回流信号升温。",
+        "coins": [
+          "BTC",
+          "ETH"
+        ],
+        "url": "https://x.com/i/trending/2118238999135277192",
+        "updated": "2026-11-05T07:13:41.000Z"
+      },
+      {
+        "title": "Fidelity Buys $237 Million in Bitcoin on ETF Inflows",
+        "summary": "Fidelity FBTC 单日净流入约 $2.37 亿领跑，整体 BTC ETF 仍录得约 $7460 万净流入；IBIT 等仍有分流。",
+        "coins": [
+          "BTC"
+        ],
+        "url": "https://x.com/i/trending/2118248431835906420",
+        "updated": "2026-11-05T07:52:45.000Z"
+      },
       {
         "title": "Trump Media Moves $344 Million in Bitcoin to Crypto.com",
         "summary": "帖称 Trump Media 相关地址向 Crypto.com 转入约 4,259 BTC；新闻指或与可转债抵押/还款窗口相关，未必等于即时抛售。",
@@ -388,24 +447,41 @@ window.SNAPSHOT = {
         "updated": "2026-11-04T23:55:25.000Z"
       },
       {
-        "title": "India Warns Banks and Crypto Platforms of AI-Powered CRAFTY FALCON Attacks",
-        "summary": "印度 CERT-In 警告针对交易所/支付平台的 AI 辅助攻击链，建议加强监控与自托管意识。",
+        "title": "Crypto Traders See No Sellers Left as Bitcoin Holds Near $80,000",
+        "summary": "Bitwise CIO 等称卖方衰竭；BTC 在通胀/交易所安全事件与选举扰动后仍守住约 8 万一带。",
         "coins": [
-          "BTC",
-          "ETH"
+          "BTC"
         ],
-        "url": "https://x.com/i/trending/2118204435696423169",
-        "updated": "2026-11-05T07:06:24.000Z"
+        "url": "https://x.com/i/trending/2118076585333170457",
+        "updated": "2026-11-04T20:32:00.000Z"
       },
       {
-        "title": "Hong Kong Approves Crypto Tax Reporting Rules",
-        "summary": "香港立法会通过加密资产税收报告修订，拟按 OECD CARF 自 2027 年起收集数据、2028 年交换。",
+        "title": "Moscow Exchange to Launch Bitcoin Trading December 1",
+        "summary": "莫斯科交易所拟 12/1 启动 BTC/ETH/USDT 现货试点；零售需测验且有额度上限。",
         "coins": [
           "BTC",
           "ETH"
         ],
-        "url": "https://x.com/i/trending/2117979573828903142",
-        "updated": "2026-11-04T14:05:31.000Z"
+        "url": "https://x.com/i/trending/2118110189291524534",
+        "updated": "2026-11-05T01:35:21.000Z"
+      },
+      {
+        "title": "Upbit Lists Collector Crypt's CARDS Token for KRW Trading Today",
+        "summary": "Upbit 今日上线 Solana 收藏卡代币化项目 CARDS 的 KRW/BTC/USDT 交易，短线大涨。",
+        "coins": [
+          "SOL"
+        ],
+        "url": "https://x.com/i/trending/2118246678981640229",
+        "updated": "2026-11-05T07:43:34.000Z"
+      },
+      {
+        "title": "Tom Lee Predicts Bitcoin Rally from Democrats' Crypto Shift",
+        "summary": "Fundstrat Tom Lee 称民主党掌控国会后或更开放加密立法，叠加风险资产环境或助推 BTC。",
+        "coins": [
+          "BTC"
+        ],
+        "url": "https://x.com/i/trending/2118193898468053362",
+        "updated": "2026-11-05T04:17:48.000Z"
       },
       {
         "title": "French Bank Loses Over $133 Million in Crypto Theft",
@@ -417,57 +493,21 @@ window.SNAPSHOT = {
         "updated": "2026-11-04T10:51:08.000Z"
       },
       {
-        "title": "SEC Updates Crypto FAQs and Clears Canton Coin as Commodity",
-        "summary": "SEC 更新加密 FAQ，并对 Canton Coin 出具员工不行动函，视其为数字商品。",
+        "title": "Ethereum Shows Bullish Signals Against Bitcoin in Early November 2026",
+        "summary": "ETH/BTC 突破多月下行趋势线讨论升温；分析师关注相对强度与山寨轮动信号。",
         "coins": [
-          "BTC",
-          "ETH"
-        ],
-        "url": "https://x.com/i/trending/2117354873947918563",
-        "updated": "2026-11-04T17:35:31.000Z"
-      },
-      {
-        "title": "Base Ecosystem Launches 25 Payment Innovations in October",
-        "summary": "Base 生态 10 月落地多项支付创新；Shopify/Coinbase 商户 USDC 结账等用例被重点讨论。",
-        "coins": [
-          "ETH"
-        ],
-        "url": "https://x.com/i/trending/2117761961026892004",
-        "updated": "2026-11-04T02:23:25.000Z"
-      },
-      {
-        "title": "Coinbase Adds Collector Crypt's $CARDS to Listing Roadmap",
-        "summary": "Coinbase 将 Solana 上收藏卡代币化项目 CARDS 列入上币路线图，代币短线大涨。",
-        "coins": [
-          "SOL"
-        ],
-        "url": "https://x.com/i/trending/2117826825204228495",
-        "updated": "2026-11-04T03:57:33.000Z"
-      },
-      {
-        "title": "Cross River Bank Tokenizes Loans on Arbitrum One at Hong Kong Fintech Week",
-        "summary": "Cross River 宣布在 Arbitrum 上将商业贷款原生代币化，目标把传统信贷接入链上。",
-        "coins": [
-          "ETH"
-        ],
-        "url": "https://x.com/i/trending/2117624043516108911",
-        "updated": "2026-11-03T17:13:50.000Z"
-      },
-      {
-        "title": "Monero and Zcash Gain as Privacy Coins Shine Amid Market Struggles",
-        "summary": "隐私币相对跑赢讨论升温；Zcash/Monero 被部分交易员视为对冲黑客与审查风险的配置。",
-        "coins": [
+          "ETH",
           "BTC"
         ],
-        "url": "https://x.com/i/trending/2117648662549426623",
-        "updated": "2026-11-04T10:21:58.000Z"
+        "url": "https://x.com/i/trending/2117674991420354917",
+        "updated": "2026-11-05T01:03:10.000Z"
       }
     ]
   },
   "recommendationAtSnapshot": {
-    "time": "2026-11-05 16:38 KST",
+    "time": "2026-11-05 17:03 KST",
     "binance": [],
     "okx": [],
-    "note": "本轮扫描未命中顺大逆小多单条件；Binance fapi 本机受限，用 Binance vision 现货涨幅榜。纳入 BEAMX(~+22.5%)、FOGO(~+9.7%)、KMNO(~+10.5%)、RAY(~+8.6%)、INJ(~+7.5%)、LSK(~+6.1%)，叠加 BTC/ETH/SOL。已跳过 *B 代币化美股及 SUPER（搜索噪声过大）。"
+    "note": "本轮扫描未命中顺大逆小多单条件；Binance fapi 本机受限，用 Binance vision 现货涨幅榜。纳入 BEAMX(~+18.2%)、1000CAT(~+16.0%)、FOGO(~+12.4%)、KMNO(~+11.2%)、STG(~+11.0%)、RAY(~+8.9%)、INJ(~+8.0%)，叠加 BTC/ETH/SOL。已跳过 *B 代币化美股及 SUPER。LSK 涨幅回落未纳入。"
   }
 };
