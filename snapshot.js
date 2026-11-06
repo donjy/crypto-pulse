@@ -1,6 +1,6 @@
 /* Auto-generated snapshot — see update_sentiment.md */
 window.SNAPSHOT = {
-  "snapshotTime": "2026-11-06 15:38 KST",
+  "snapshotTime": "2026-11-06 16:23 KST",
   "sentiment": {
     "BTC": {
       "sample": 28,
@@ -8,431 +8,440 @@ window.SNAPSHOT = {
       "bear": 0.57,
       "neutral": 0.22,
       "score": -0.36,
-      "headline": "约 75,615，科技抛压与 ETF 流出续压",
-      "summary": "BTC 约 $75,615，24h 约 -6.0%。偏空：纳指约 -5.5% 外溢、杠杆清算约十亿美元级、现货 ETF 净流出约 -$430M（11/05）。偏多：相对纳指仍显韧性、75–76K 区间防守讨论。短线情绪偏空。",
+      "headline": "约 75,436，连周下跌与清算恐惧仍主导",
+      "summary": "BTC 约 $75,436，24h 约 -6.5%。偏空：第五周连跌、纳指/日韩股外溢、75K 失守担忧与约十亿美元级清算叙事。偏多：Williams %R 超卖反弹讨论、恐慌中逢低买入与 Strategy 持续囤币。短线情绪偏空。",
       "themes": [
-        "75-76K防守",
-        "美股外溢",
-        "清算潮",
-        "ETF流出",
-        "相对韧性"
+        "75K防守",
+        "连周下跌",
+        "清算恐惧",
+        "超卖反弹",
+        "美股外溢"
       ],
       "posts": [
         {
-          "url": "https://x.com/Wiremarkets_/status/2118592780129681662",
-          "text": "BREAKING: Bitcoin tumbled more than 6% to around $75,700 as the tech sell-off spread to crypto, with Ether down more than 8% and over $1 billion in leveraged positions liquidated.",
-          "likes": 1,
-          "note": "急跌/杠杆清算",
-          "time": "2026-11-06T06:34:14.000Z"
+          "url": "https://x.com/CryptoXLounge/status/2118603795961713025",
+          "text": "BTC just printed its 5th straight weekly loss ($87K to ~$75.5K) and Nikkei/KOSPI closed -6%.",
+          "likes": 0,
+          "note": "AI抛压/清算",
+          "time": "2026-11-06T07:18:01.000Z"
         },
         {
-          "url": "https://x.com/CoinGeek2x/status/2118592927979147413",
-          "text": "$BTC ETF Flow (US$ million) – 2026-11-05 TOTAL NET FLOW: -430.2 IBIT: -105 FBTC: -199.9 ARKB: -18.9 EZBC: -32.9 HODL: -23.6 GBTC: -49.9",
+          "url": "https://x.com/LIMmY0P6peFbyoT/status/2118603817235452019",
+          "text": "Bitcoin crashes below $76,000 as AI bubble fears wipe $2.5 trillion from Wall Street... triggering $1 billion in liquidations",
           "likes": 0,
-          "note": "现货ETF净流出",
-          "time": "2026-11-06T06:34:50.000Z"
+          "note": "连周下跌",
+          "time": "2026-11-06T07:18:06.000Z"
         },
         {
-          "url": "https://x.com/0xZHIL/status/2118592790653505849",
-          "text": "Bitcoin is holding up better than the AI-driven equity selloff. Krugermacro calls this only the second time the Nasdaq fell over 5% while BTC fell less, after March 2020.",
+          "url": "https://x.com/magisk9x86/status/2118603892565143655",
+          "text": "BTC has just dipped to around $75,459, touching the $75,000–$76,000 support zone... Williams %R ≈ −96.2, oversold—potential precursor to a rebound.",
           "likes": 0,
-          "note": "相对纳指韧性",
-          "time": "2026-11-06T06:34:17.000Z"
+          "note": "超卖反弹",
+          "time": "2026-11-06T07:18:29.000Z"
         }
       ],
-      "whale": "公开讨论聚焦清算与 ETF 流出；未做链上复核。"
+      "whale": "公开讨论聚焦清算与 75K 防守；未见可靠链上鲸鱼热议。"
     },
     "ETH": {
-      "sample": 18,
-      "bull": 0.18,
-      "bear": 0.58,
-      "neutral": 0.24,
-      "score": -0.4,
-      "headline": "约 2,227，跌幅仍深于 BTC",
-      "summary": "ETH 约 $2,227，24h 约 -8.2%，跌幅仍大于 BTC。偏空：风险偏好回落、BlackRock ETF 抛售约 $75M ETH、科技股抛压外溢。偏多：生态/活动讨论仍在但与价格脱节。短线偏空。",
+      "sample": 19,
+      "bull": 0.21,
+      "bear": 0.47,
+      "neutral": 0.32,
+      "score": -0.26,
+      "headline": "约 2,223，跌幅仍深于 BTC",
+      "summary": "ETH 约 $2,223，24h 约 -8.5%，跌幅仍大于 BTC。偏空：多头清算血洗、风险偏好回落。偏多：ETH/BTC 比率翻转预期与链上经济叙事仍在，但与价格脱节。短线偏空。",
       "themes": [
         "跟跌BTC",
         "相对弱势",
-        "ETF抛售",
-        "杠杆清算",
-        "风险偏好回落"
+        "多头清算",
+        "ETH/BTC",
+        "链上叙事"
       ],
       "posts": [
         {
-          "url": "https://x.com/Wiremarkets_/status/2118592780129681662",
-          "text": "BREAKING: Bitcoin tumbled more than 6% to around $75,700 as the tech sell-off spread to crypto, with Ether down more than 8% and over $1 billion in leveraged positions liquidated.",
-          "likes": 1,
-          "note": "ETH跌幅更深",
-          "time": "2026-11-06T06:34:14.000Z"
+          "url": "https://x.com/Abedan_20/status/2118603737757270451",
+          "text": "$BTC 81k --> 76k $ETH 2450 --> 2270 Crazy blood bath start, longs Liquidated",
+          "likes": 0,
+          "note": "急跌清算",
+          "time": "2026-11-06T07:17:47.000Z"
         },
         {
-          "url": "https://x.com/conorfkenny/status/2118586034791288951",
-          "text": "JUST IN: BlackRock ETFs sold $104.97 million worth of $BTC and $75.20 million worth of $ETH.",
+          "url": "https://x.com/nextalphaa/status/2118603901008032189",
+          "text": "ETH is the asset for the global economy onchain",
           "likes": 0,
-          "note": "ETH ETF抛售",
-          "time": "2026-11-06T06:07:26.000Z"
+          "note": "ETH/BTC",
+          "time": "2026-11-06T07:18:26.000Z"
         },
         {
-          "url": "https://x.com/Crypto_Jargon/status/2118592957486166417",
-          "text": "Nasdaq dropped 5.5%, and $440B was vanished from Nvidia's market cap, while Bitcoin slipped from $80K to $76K. Is the AI bubble finally bursting? I break down the market and key BTC, ETH and SOL levels for the weekend",
+          "url": "https://x.com/Satoriii3d/status/2118603932444377149",
+          "text": "ETH/BTC ratio bound to flip eventually. Great write-up mate",
           "likes": 0,
-          "note": "周末关键位复盘",
-          "time": "2026-11-06T06:34:57.000Z"
+          "note": "链上资产叙事",
+          "time": "2026-11-06T07:18:33.000Z"
         }
       ],
-      "whale": "杠杆清算与 ETF 抛售并存，卖压占优。"
+      "whale": "清算与跟跌叙事占优；未见可靠鲸鱼链上热议。"
     },
     "SOL": {
-      "sample": 16,
-      "bull": 0.38,
-      "bear": 0.32,
-      "neutral": 0.3,
-      "score": 0.06,
-      "headline": "约 89.76 跟跌，生态/perp 讨论仍在",
-      "summary": "SOL 约 $89.76，24h 约 -6.4%。偏空：随大盘下行，短线 memecoin 噪音极重。偏多：perp DEX 费率/支付场景、Breakpoint 期待等建设讨论仍活跃。价格弱、基本面讨论偏中性略多。",
+      "sample": 21,
+      "bull": 0.43,
+      "bear": 0.33,
+      "neutral": 0.24,
+      "score": 0.1,
+      "headline": "约 89.55 跟跌，memecoin 噪音与生态并行",
+      "summary": "SOL 约 $89.55，24h 约 -6.9%。偏空：随大盘下行，Loopscale 漏洞讨论、代币化美股跟跌。偏多：Devnet/支付/机构采用讨论仍在，但短线 memecoin 噪音极重。价格弱、情绪中性略空。",
       "themes": [
         "跟跌大盘",
-        "perpDEX",
-        "生态建设",
         "memecoin噪音",
-        "Breakpoint"
+        "Loopscale",
+        "生态建设",
+        "机构采用"
       ],
       "posts": [
         {
-          "url": "https://x.com/Crypto_Jargon/status/2118592957486166417",
-          "text": "Nasdaq dropped 5.5%, and $440B was vanished from Nvidia's market cap, while Bitcoin slipped from $80K to $76K. ... key BTC, ETH and SOL levels for the weekend",
-          "likes": 0,
-          "note": "大盘/SOL关键位",
-          "time": "2026-11-06T06:34:57.000Z"
+          "url": "https://x.com/ForestDexorg/status/2118603886948704460",
+          "text": "Forest DEX refining wallet balances and simulated limit orders on Solana Devnet",
+          "likes": 1,
+          "note": "Loopscale漏洞",
+          "time": "2026-11-06T07:18:23.000Z"
         },
         {
-          "url": "https://x.com/muarmemuar/status/2118592942529024234",
-          "text": "What are the current round-trip fees (open + close) on tokenless perp DEXs on @solana? Imperial - 0.02% Bulk Trade - 0.07% Phoenix - 0.07% GMTrade - 0.08% Pacifica - 0.08% Fermi - 0.12%",
+          "url": "https://x.com/NguyentriDlk01/status/2118603809257922786",
+          "text": "interesting move for Solana, definitely a step forward for institutional adoption",
           "likes": 0,
-          "note": "perp DEX费率",
-          "time": "2026-11-06T06:34:53.000Z"
+          "note": "DEX建设",
+          "time": "2026-11-06T07:18:04.000Z"
         },
         {
-          "url": "https://x.com/Leap_tarsier_co/status/2118592833343148438",
-          "text": "@solana Fast, low cost, always on payments. Solana keeps proving its real world potential",
+          "url": "https://x.com/zuler/status/2118603965491257440",
+          "text": "Update on Loopscale exploit: the SOL vault thought the attacker's collateral was worth much more... borrow about $412K",
           "likes": 0,
-          "note": "支付叙事",
-          "time": "2026-11-06T06:34:27.000Z"
+          "note": "机构采用",
+          "time": "2026-11-06T07:18:41.000Z"
         }
       ],
-      "whale": "基本面叙事偏多，价格仍受风险偏好压制；未见可靠鲸鱼链上热议。"
+      "whale": "基本面讨论零星，价格受风险偏好压制；未见可靠鲸鱼热议。"
     },
     "CYBER": {
-      "sample": 12,
-      "bull": 0.72,
-      "bear": 0.12,
-      "neutral": 0.16,
-      "score": 0.6,
-      "headline": "涨约 +31.6%，MACD/止盈信号盘主导",
-      "summary": "CYBER 约 $0.3330，24h 约 +31.6%，现货量约 9.8M。偏多：日线 MACD 金叉、短线 TP 连破、涨幅榜领涨。风险：同名「cyber」噪音多、讨论偏信号盘，追高与短线空单并存。",
+      "sample": 16,
+      "bull": 0.69,
+      "bear": 0.19,
+      "neutral": 0.12,
+      "score": 0.5,
+      "headline": "涨约 +44.5%，MACD/止盈与短线空单并存",
+      "summary": "CYBER 约 $0.3670，24h 约 +44.5%，现货量约 10.7M。偏多：日线 MACD 金叉、涨幅榜领涨。风险：同名 cyber 噪音多、短线空单在高位布局、讨论偏信号盘。",
       "themes": [
         "涨幅榜",
         "MACD金叉",
         "短线动量",
-        "止盈连破",
+        "高位空单",
         "同名噪音"
       ],
       "posts": [
         {
-          "url": "https://x.com/TheGrootCrypto/status/2118581808220758338",
-          "text": "$CYBERUSDT +39% Pumped 0.229 → 0.376 High: 0.3763 Slight pullback now. Support 0.300–0.310 Resistance 0.380–0.400 Bias bullish as long as 0.",
-          "likes": 0,
-          "note": "涨约+39%复盘",
-          "time": "2026-11-06T06:08:00.000Z"
-        },
-        {
           "url": "https://x.com/TickersClubApp/status/2118494581322850620",
-          "text": "▲ $CYBER (CYBERUSDT) [2026-11-06] Bullish Daily MACD Cross 📊 Price: $0.3160 📈 24h Vol: $3.71M | RVOL: 4.23x 🎯 RSI: 55.8 | MCAP: $18.84M",
+          "text": "▲ $CYBER (CYBERUSDT) [2026-11-06] Bullish Daily MACD Cross Price: $0.3160 24h Vol: $3.71M | RVOL: 4.23x",
           "likes": 0,
           "note": "MACD金叉",
           "time": "2026-11-06T00:04:02.000Z"
         },
         {
-          "url": "https://x.com/luxquantalgo/status/2118447526294774045",
-          "text": "$CYBER reached TP4. The chart high reached +13.52% spot from entry. Entry signals and the full toolkit are in our bio. #CYBER #CYBERUSDT",
-          "likes": 2,
-          "note": "TP4达成",
-          "time": "2026-11-05T20:57:00.000Z"
-        }
-      ],
-      "whale": "动量/信号交易主导；未见可靠大户链上讨论。"
-    },
-    "ACT": {
-      "sample": 6,
-      "bull": 0.55,
-      "bear": 0.12,
-      "neutral": 0.33,
-      "score": 0.43,
-      "headline": "涨约 +9.7%，Memecoin 扫描出镜但同名噪音重",
-      "summary": "ACT 约 $0.00965，24h 约 +9.7%，现货量约 2.0M。偏多：涨幅榜将 Act I : The AI Prophecy 列入、短线信号帖。偏空：检索大量被「Act」普通词淹没。短线偏多但样本薄。",
-      "themes": [
-        "涨幅榜",
-        "交易扫描",
-        "同名噪音",
-        "短线动量"
-      ],
-      "posts": [
-        {
-          "url": "https://x.com/cexscan/status/2118577419854430544",
-          "text": "Last 60m - #Binance Spot (USDT Trades) - 📈 Top Gainers By Categories Memecoin: $ACT (Act I : The AI Prophecy) : ↑ 1.52%",
+          "url": "https://x.com/God_analysis/status/2118509428714377517",
+          "text": "$Cyber Buy now #CyberUSDT this coin could pump soon!",
           "likes": 0,
-          "note": "Memecoin涨幅",
-          "time": "2026-11-06T05:33:12.000Z"
+          "note": "高位空单",
+          "time": "2026-11-06T01:03:00.000Z"
         },
         {
-          "url": "https://x.com/CryptoBigStarSG/status/2118509765022363960",
-          "text": "#ACTUSDT ➡️ Entry: 0.00927 🎯 Target 1: 0.00944 ✅ 🎯 Target 2: 0.00961 ✅ 🎯 Target 3: 0.0101 🎯 Target 4: 0.0110",
+          "url": "https://x.com/HBgfffhj/status/2118587180771676466",
+          "text": "$CYBER SHORT SETUP Entry: 0.3647 ... CYBER ran out of buyers at the highs. A +64% daily pump",
           "likes": 0,
-          "note": "短线信号",
-          "time": "2026-11-06T01:04:00.000Z"
-        },
-        {
-          "url": "https://x.com/phoenix__crypto/status/2118575064987910491",
-          "text": "🚀 Top crypto gainers right now 👀 $CYBER +36.4% $ERA +13.3% particle-network:native +6.0% $ACT +5.7% Green across the board, and these are leading the market today.",
-          "likes": 0,
-          "note": "涨幅榜",
-          "time": "2026-11-06T05:23:51.000Z"
+          "note": "追涨信号",
+          "time": "2026-11-06T06:28:00.000Z"
         }
       ],
-      "whale": "信号/扫描驱动；未见可靠鲸鱼讨论。"
+      "whale": "信号盘主导，未见可靠鲸鱼链上讨论。"
     },
     "ERA": {
-      "sample": 5,
-      "bull": 0.48,
-      "bear": 0.2,
-      "neutral": 0.32,
-      "score": 0.28,
-      "headline": "涨约 +8.7%，量能尚可但讨论稀缺",
-      "summary": "ERA 约 $0.0722，24h 约 +8.7%，现货量约 5.3M。公开 X 讨论几乎全被「era」普通词淹没；涨幅榜偶现，另有短线空单信号帖。纳入理由为 Binance 现货涨幅与量能。",
+      "sample": 20,
+      "bull": 0.65,
+      "bear": 0.25,
+      "neutral": 0.1,
+      "score": 0.4,
+      "headline": "约 0.0731（+10.4%），信号盘多空拉扯",
+      "summary": "ERA 约 $0.0731，24h 约 +10.4%，现货量约 5.4M。偏多：涨幅榜、1h/4h 看多信号。偏空：日线仍有看空与短线做空信号。项目帖稀少，同名「era」噪音极大。",
       "themes": [
         "涨幅榜",
-        "量能",
-        "讨论稀缺",
+        "信号盘",
+        "短线多空",
         "同名噪音",
-        "短线信号"
+        "量能抬升"
       ],
       "posts": [
         {
-          "url": "https://x.com/phoenix__crypto/status/2118575064987910491",
-          "text": "🚀 Top crypto gainers right now 👀 $CYBER +36.4% $ERA +13.3% particle-network:native +6.0% $ACT +5.7% Green across the board, and these are leading the market today.",
+          "url": "https://x.com/MarcinChleu/status/2118413816929178077",
+          "text": "ERAUSDT buy and hold big Move soon",
+          "likes": 1,
+          "note": "止盈达成",
+          "time": "2026-11-05T18:42:00.000Z"
+        },
+        {
+          "url": "https://x.com/Letsmakeatradex/status/2118465609176355096",
+          "text": "$ERA/USDT is moving awesome Profit: +275.69% Targets achieved #ERAUSDT",
           "likes": 0,
-          "note": "涨幅榜",
-          "time": "2026-11-06T05:23:51.000Z"
+          "note": "买持有",
+          "time": "2026-11-05T22:08:55.000Z"
         },
         {
           "url": "https://x.com/Cryptorbix/status/2118499244415783337",
-          "text": "SHORT ERAUSDT @ $0.06670000 — signal generated Nov 05 2026. Momentum broke; volume lagging on rallies. Trade with tight stops and wait for confirmation.",
+          "text": "SHORT ERAUSDT @ $0.06670000 — Momentum broke; volume lagging on rallies.",
           "likes": 0,
-          "note": "短线空单信号",
+          "note": "短线空单",
           "time": "2026-11-06T00:22:00.000Z"
         }
       ],
-      "whale": "无可靠公开鲸鱼讨论。"
+      "whale": "讨论以信号机器人居多；未见可靠鲸鱼热议。"
+    },
+    "ACT": {
+      "sample": 13,
+      "bull": 0.77,
+      "bear": 0.08,
+      "neutral": 0.15,
+      "score": 0.69,
+      "headline": "约 0.00973（+10.7%），量能异常驱动短线多",
+      "summary": "ACT 约 $0.00973，24h 约 +10.7%，现货量约 2.1M。偏多：1h 量能约 4x、涨幅榜 memecoin 分类、止盈连破。风险：信号盘为主，基本面讨论稀薄。",
+      "themes": [
+        "涨幅榜",
+        "量能异常",
+        "短线动量",
+        "止盈连破",
+        "信号盘"
+      ],
+      "posts": [
+        {
+          "url": "https://x.com/CryptoBigStarSG/status/2118509765022363960",
+          "text": "#ACTUSDT Entry: 0.00927 Target 1/2 hit, Target 3: 0.0101 Target 4: 0.0110",
+          "likes": 0,
+          "note": "涨幅榜",
+          "time": "2026-11-06T01:04:22.000Z"
+        },
+        {
+          "url": "https://x.com/Finora_EN/status/2118590725822505002",
+          "text": "$ACT hits 4.1x volume with 9.9% gain—momentum’s real... bias is bullish here on ACT #ACTUSDT 1h",
+          "likes": 0,
+          "note": "量能4.1x",
+          "time": "2026-11-06T06:26:05.000Z"
+        },
+        {
+          "url": "https://x.com/DyorNetCrypto/status/2118600046568489040",
+          "text": "Top 5 Bullish Trends - USDT - 1h ... $ACT — Act I : The AI Prophecy",
+          "likes": 0,
+          "note": "止盈信号",
+          "time": "2026-11-06T07:03:07.000Z"
+        }
+      ],
+      "whale": "未见可靠鲸鱼讨论；情绪由扫描/信号账号驱动。"
+    },
+    "PARTI": {
+      "sample": 13,
+      "bull": 0.62,
+      "bear": 0.23,
+      "neutral": 0.15,
+      "score": 0.39,
+      "headline": "约 0.0479（+7.2%），Particle 短线信号偏多",
+      "summary": "PARTI 约 $0.0479，24h 约 +7.2%，现货量约 2.0M。偏多：1h 结构看多、Layer1 涨幅分类上榜。偏空：早盘曾有跌破支撑看空。项目深度讨论偏少。",
+      "themes": [
+        "涨幅榜",
+        "Particle",
+        "短线信号",
+        "Layer1",
+        "讨论偏稀"
+      ],
+      "posts": [
+        {
+          "url": "https://x.com/Finora_EN/status/2118408959132381469",
+          "text": "bias is bullish here on $PARTI #PARTIUSDT.P 1h, with structure aligned to the upside",
+          "likes": 0,
+          "note": "1h看多",
+          "time": "2026-11-05T18:22:00.000Z"
+        },
+        {
+          "url": "https://x.com/cexscan/status/2118396296008446190",
+          "text": "Layer1: particle-network:native (Particle Network) : ↑ 3.21%",
+          "likes": 0,
+          "note": "涨幅分类",
+          "time": "2026-11-05T17:33:29.000Z"
+        },
+        {
+          "url": "https://x.com/Finora_EN/status/2118312181552787708",
+          "text": "bias is bearish here while price stays under 0.04562 on PARTI",
+          "likes": 0,
+          "note": "支撑失守空",
+          "time": "2026-11-05T11:58:00.000Z"
+        }
+      ],
+      "whale": "公开帖稀少；未见可靠鲸鱼热议。"
     },
     "HFT": {
-      "sample": 3,
+      "sample": 8,
       "bull": 0.35,
-      "bear": 0.2,
-      "neutral": 0.45,
-      "score": 0.15,
-      "headline": "涨约 +6.3%，X 帖多为 Hashflow/高频噪音",
-      "summary": "HFT 约 $0.00711，24h 约 +6.3%，现货量约 2.3M。检索结果多为「HFT/高频」行业噪音或协议代币捕获讨论，可靠短线讨论不足，情绪占位。",
+      "bear": 0.15,
+      "neutral": 0.5,
+      "score": 0.2,
+      "headline": "约 0.00711（+6.3%），Hashflow 讨论极稀",
+      "summary": "HFT 约 $0.00711，24h 约 +6.3%，现货量约 2.3M。X 上 Hashflow/HFTUSDT 有效帖极少，涨幅更多反映现货量能而非舆论。情绪样本不足，偏中性略多。",
       "themes": [
         "涨幅榜",
         "同名噪音",
         "讨论稀缺",
-        "Hashflow"
+        "Hashflow",
+        "样本不足"
       ],
       "posts": [
         {
           "url": "https://x.com/Jimmyy_yyyy/status/2118294442767737275",
-          "text": "THE CRYPTO TOKENS THAT DON'T NEED TO EXIST? A protocol can generate millions in revenue while its token captures none of it. Here are the...",
+          "text": "THE CRYPTO TOKENS THAT DON'T NEED TO EXIST? A protocol can generate millions in revenue while its token captures none of it. Here are the tokens worth questioning.",
           "likes": 1,
           "note": "代币捕获讨论",
-          "time": "2026-11-05T10:48:00.000Z"
+          "time": "2026-11-05T10:48:45.000Z"
         },
         {
-          "url": "https://x.com/phoenix__crypto/status/2118575064987910491",
-          "text": "🚀 Top crypto gainers right now 👀 $CYBER +36.4% $ERA +13.3% particle-network:native +6.0% $ACT +5.7% Green across the board, and these are leading the market today.",
+          "url": "https://x.com/DyorNetCrypto/status/2118600046568489040",
+          "text": "🟢 Top 5 Bullish Trends - USDT - 1h\n\n1️⃣ $TA\n2️⃣ $BIRB — Moonbirds\n3️⃣ $CYBER — Cyber\n4️⃣ $ACT — Act I : The AI Prophecy\n5️⃣ $RWA — RWA Inc",
           "likes": 0,
           "note": "涨幅榜语境",
-          "time": "2026-11-06T05:23:51.000Z"
+          "time": "2026-11-06T07:03:07.000Z"
         }
       ],
-      "whale": "无可靠公开鲸鱼讨论。"
-    },
-    "PARTI": {
-      "sample": 8,
-      "bull": 0.55,
-      "bear": 0.1,
-      "neutral": 0.35,
-      "score": 0.45,
-      "headline": "涨约 +5.8%，Particle 技术形态与涨幅扫描出镜",
-      "summary": "PARTI 约 $0.0476，24h 约 +5.8%，现货量约 2.0M。偏多：鲸鱼观察帖称突破多月下行趋势、日线圆底形态讨论、涨幅榜将 Particle Network 列入。深度基本面讨论仍偏薄。",
-      "themes": [
-        "涨幅榜",
-        "Particle",
-        "趋势突破",
-        "圆底形态",
-        "讨论偏薄"
-      ],
-      "posts": [
-        {
-          "url": "https://x.com/WhaleFactor/status/2118555272318767284",
-          "text": "🐋 WHALE WATCH : $PARTI broke its multi month downtrend at $0.0470 shifting market structure. Three phases to track: => Manipulation zone $0.0470 $0.100/0.7",
-          "likes": 0,
-          "note": "趋势突破",
-          "time": "2026-11-06T04:05:00.000Z"
-        },
-        {
-          "url": "https://x.com/thekingdom/status/2118504409256837197",
-          "text": "Crypto's cleanest chart setups right now. #1: $PARTI, a 1D rounded bottom, still forming. Breakout above 0.06434. Which one are you watching?",
-          "likes": 0,
-          "note": "圆底形态",
-          "time": "2026-11-06T00:43:00.000Z"
-        },
-        {
-          "url": "https://x.com/phoenix__crypto/status/2118575064987910491",
-          "text": "🚀 Top crypto gainers right now 👀 $CYBER +36.4% $ERA +13.3% particle-network:native +6.0% $ACT +5.7% Green across the board, and these are leading the market today.",
-          "likes": 0,
-          "note": "涨幅榜",
-          "time": "2026-11-06T05:23:51.000Z"
-        }
-      ],
-      "whale": "扫描/形态驱动；未见可靠链上鲸鱼复核。"
+      "whale": "几乎无可靠 Hashflow 讨论；涨幅以价格数据为主。"
     },
     "INJ": {
       "sample": 22,
-      "bull": 0.78,
-      "bear": 0.06,
-      "neutral": 0.16,
-      "score": 0.72,
-      "headline": "约 8.19，Canary 质押 ETF 叙事续热",
-      "summary": "INJ 约 $8.19，24h 约 +1.7%，现货量约 24.2M。偏多：Canary Staked INJ ETF ($INJC) Nasdaq 上市讨论、质押托管与经纪账户可及性叙事仍强。风险：大盘风险偏好仍压制，INJC≠现货 INJ。",
+      "bull": 0.73,
+      "bear": 0.05,
+      "neutral": 0.22,
+      "score": 0.68,
+      "headline": "约 8.15，INJC ETF/Bloomberg 叙事续热",
+      "summary": "INJ 约 $8.15，24h 约 +0.0%，现货量约 24.2M。偏多：Canary Staked INJ ETF（INJC）Nasdaq 上市、Bloomberg Terminal 可见性、机构通道讨论。中性：费用侵蚀质押收益的质疑。情绪偏多。",
       "themes": [
-        "质押ETF",
+        "INJC ETF",
         "Nasdaq",
-        "机构可及",
-        "相对抗跌",
-        "INJC"
+        "Bloomberg",
+        "机构通道",
+        "质押收益"
       ],
       "posts": [
         {
-          "url": "https://x.com/0XFahadXy/status/2118593205449207928",
-          "text": "@kiraridust @injective Huge moment for injective seeing that ticker on the nasdaq board",
+          "url": "https://x.com/cryptoraytrader/status/2118602878021485011",
+          "text": "JUST IN: The first US-based Injective ETF has officially launched on Nasdaq, with Canary Capital introducing its $INJC fund... stake at least 90%",
           "likes": 1,
           "note": "Nasdaq上市",
-          "time": "2026-11-06T06:35:55.000Z"
+          "time": "2026-11-06T07:14:22.000Z"
         },
         {
-          "url": "https://x.com/Praneeth_37/status/2118592847851266211",
-          "text": "@ZaynaharX9639 Huge step bringing staked INJ exposure straight into traditional brokerage accounts",
-          "likes": 0,
-          "note": "经纪账户可及",
-          "time": "2026-11-06T06:34:30.000Z"
+          "url": "https://x.com/ccurrenciesnewz/status/2118603032384655475",
+          "text": "The Canary Staked INJ ETF trades on Nasdaq under the ticker INJC.",
+          "likes": 1,
+          "note": "Bloomberg可见",
+          "time": "2026-11-06T07:14:59.000Z"
         },
         {
-          "url": "https://x.com/CryptoPulseGLBL/status/2118525318541795747",
-          "text": "🔔#Today's Headlines 1. #BTC falls below $76,000 2. Canary Funds’ staking-enabled Injective ETF lists on Nasdaq 3. Bitcoin shows \"remarkable resilience,\" holding above its 50-week moving average",
-          "likes": 4,
-          "note": "ETF列入头条",
-          "time": "2026-11-06T02:06:10.000Z"
+          "url": "https://x.com/Kemat04/status/2118603863598998010",
+          "text": "Seeing $INJC appear on Bloomberg Terminals is a big deal for $INJ. Puts Injective in front of an audience that goes far beyond crypto",
+          "likes": 1,
+          "note": "INJC头条",
+          "time": "2026-11-06T07:18:17.000Z"
         }
       ],
-      "whale": "ETF 叙事主导情绪；未做链上复核。"
+      "whale": "机构/ETF 叙事主导；未见大户链上热议。"
     },
     "ARB": {
-      "sample": 14,
-      "bull": 0.32,
-      "bear": 0.28,
-      "neutral": 0.4,
-      "score": 0.04,
-      "headline": "约 0.1677 微涨，DAO 解锁请愿续热",
-      "summary": "ARB 约 $0.1677，24h 约 +2.4%，现货量约 19.2M。中性：Binance 请愿 DAO 解锁被冻结 ETH/ARB（约 $31M，约 8,426 ETH + 74.5M ARB）以补储备，投票或需约 7 周。偏多：相对抗跌。情绪偏中性。",
+      "sample": 19,
+      "bull": 0.26,
+      "bear": 0.32,
+      "neutral": 0.42,
+      "score": -0.06,
+      "headline": "约 0.1656（+1.3%），生态活跃但代币捕获受质疑",
+      "summary": "ARB 约 $0.1656，24h 约 +1.3%，现货量约 20.0M。中性：Robinhood Chain（Arbitrum 栈）贡献 OpenSea 费用、直充 L2 教程。偏空：安全委员会/私钥疑虑、ARB 作为治理代币捕获不足。情绪偏中性。",
       "themes": [
-        "DAO解锁",
-        "Binance请愿",
-        "相对抗跌",
-        "冻结资产",
-        "L2"
+        "RobinhoodChain",
+        "L2生态",
+        "代币捕获",
+        "治理质疑",
+        "相对抗跌"
       ],
       "posts": [
         {
-          "url": "https://x.com/PiEDawg_/status/2118454618870976866",
-          "text": "$ARB | Binance petitions ArbitrumDAO to unlock frozen ETH and ARB to restore reserves depleted by customer loss coverage, a governance vote expected within 7+ weeks. #Arbitrum #DAO #Crypto",
+          "url": "https://x.com/Descartes285/status/2118603750264680765",
+          "text": "if arbitrum was able to move funds from a wallet without the seedphrase/private key, then there's something they've not yet exposed",
+          "likes": 3,
+          "note": "安全疑虑",
+          "time": "2026-11-06T07:17:50.000Z"
+        },
+        {
+          "url": "https://x.com/Jimmyy_yyyy/status/2118294442767737275",
+          "text": "$ARB → Arbitrum transactions use ETH for gas. ARB is primarily a governance token.",
           "likes": 1,
-          "note": "DAO解锁请愿",
-          "time": "2026-11-05T21:25:14.000Z"
+          "note": "OpenSea费用",
+          "time": "2026-11-05T10:48:45.000Z"
         },
         {
-          "url": "https://x.com/NexusDecoded/status/2118365391214797236",
-          "text": "Binance has asked the Arbitrum DAO to release the 8,425.997 ETH and 74.56M ARB the Security Council froze on Oct 29. Roughly USD 31M at today's prices.",
-          "likes": 0,
-          "note": "冻结余额细节",
-          "time": "2026-11-05T15:30:00.000Z"
-        },
-        {
-          "url": "https://x.com/Airdr0p360/status/2118565842736783770",
-          "text": "Binance asked ArbitrumDAO to release the ~$31M frozen after its $6.3B hack — 8,426 ETH + 74.5M ARB — to a Binance recovery address to make users whole.",
-          "likes": 0,
-          "note": "黑客事件背景",
-          "time": "2026-11-06T04:47:00.000Z"
+          "url": "https://x.com/OnTheBitcoin/status/2118601670800310371",
+          "text": "Almost half of OpenSea’s fees now come from Robinhood Chain... built on the Arbitrum stack",
+          "likes": 1,
+          "note": "代币捕获",
+          "time": "2026-11-06T07:09:34.000Z"
         }
       ],
-      "whale": "治理讨论为主，未见大户链上热议。"
+      "whale": "生态与治理讨论为主，未见大户链上热议。"
     }
   },
   "news": {
-    "snapshotTime": "2026-11-06 15:38 KST",
+    "snapshotTime": "2026-11-06 16:23 KST",
     "items": [
       {
-        "title": "Bitcoin 回落至约 75,615，科技抛压外溢",
-        "summary": "BTC 约 $75,615（24h -6.0%）。X 新闻指向纳指急跌外溢、清算潮与 75–76K 防守；相对纳指仍显一定韧性。",
+        "title": "Bitcoin 回落至约 75,436，科技抛压与连周下跌续压",
+        "summary": "BTC 约 $75,436（24h -6.5%）。X 新闻指向纳指外溢、清算与 75K 防守；亦有超卖反弹与恐慌买入讨论。",
         "coins": [
           "BTC",
           "ETH",
           "SOL"
         ],
-        "url": "https://x.com/i/trending/2118366529175855363",
-        "updated": "2026-11-06 15:38 KST"
+        "url": "https://x.com/i/trending/2118437895396573364",
+        "updated": "2026-11-06 16:23 KST"
       },
       {
-        "title": "现货 BTC/ETH ETF 再现约 $530M 级流出叙事",
-        "summary": "X 新闻称 BlackRock 等发行方遭遇约数亿美元级赎回；帖文亦列 11/05 现货 BTC ETF 净流出约 -$430M，以及 BlackRock 抛售约 $105M BTC 与 $75M ETH。",
+        "title": "BlackRock 等现货 BTC ETF 再现约 $105M 级赎回叙事",
+        "summary": "X 新闻称 BlackRock 客户自 ETF 抽走近 $105M BTC，并引发主流加密基金赎回潮；Fidelity 等亦有流入/流出并存报道。",
         "coins": [
           "BTC",
           "ETH"
         ],
         "url": "https://x.com/i/trending/2118579923468136793",
-        "updated": "2026-11-06 15:38 KST"
+        "updated": "2026-11-06 16:23 KST"
       },
       {
-        "title": "清算潮：急跌伴随约数亿至十亿美元级多头强平",
-        "summary": "X 聚合讨论称 BTC/ETH 急跌伴随大量多头清算；情绪偏恐惧，周末关键位讨论集中在约 75.5–76K。",
+        "title": "清算潮：急跌伴随约十亿美元级多头强平叙事",
+        "summary": "X 聚合讨论称 BTC/ETH 急跌伴随大量多头清算；情绪偏恐惧，关键位集中在约 75–76K（现价约 75,436）。",
         "coins": [
           "BTC",
           "ETH"
         ],
-        "url": "https://x.com/Wiremarkets_/status/2118592780129681662",
-        "updated": "2026-11-06 15:38 KST"
+        "url": "https://x.com/i/trending/2118366529175855363",
+        "updated": "2026-11-06 16:23 KST"
       },
       {
-        "title": "Canary Staked INJ ETF ($INJC) Nasdaq 叙事续热",
-        "summary": "INJ 约 $8.19（+1.7%）。社区热议首只美股质押型 INJ ETF、经纪账户可及性与质押托管。",
+        "title": "Canary Staked INJ ETF ($INJC) Nasdaq/Bloomberg 叙事续热",
+        "summary": "INJ 约 $8.15（+0.0%）。社区热议首只美股质押型 INJ ETF、Bloomberg Terminal 可见性与机构通道。",
         "coins": [
           "INJ"
         ],
-        "url": "https://x.com/CryptoPulseGLBL/status/2118525318541795747",
-        "updated": "2026-11-06 15:38 KST"
+        "url": "https://x.com/cryptoraytrader/status/2118602878021485011",
+        "updated": "2026-11-06 16:23 KST"
       },
       {
-        "title": "现货涨幅榜：CYBER 领涨约 +31.6%，ERA/ACT/HFT/PARTI 跟涨",
-        "summary": "Binance 现货（data-api）CYBER 约 +31.6%（qv~9.8M）、ERA +8.7%、ACT +9.7%、HFT +6.3%、PARTI +5.8%；INJ/ARB 量能较大。",
+        "title": "现货涨幅榜：CYBER 领涨约 +44.5%，ERA/ACT/HFT/PARTI 跟涨",
+        "summary": "Binance 现货（data-api）CYBER 约 +44.5%（qv~10.7M）、ERA +10.4%、ACT +10.7%、HFT +6.3%、PARTI +7.2%；INJ/ARB 量能较大。",
         "coins": [
           "CYBER",
           "ERA",
@@ -443,43 +452,43 @@ window.SNAPSHOT = {
           "ARB"
         ],
         "url": "https://data-api.binance.vision/api/v3/ticker/24hr",
-        "updated": "2026-11-06 15:38 KST"
+        "updated": "2026-11-06 16:23 KST"
       },
       {
-        "title": "Binance 请愿 ArbitrumDAO 解锁约 $31M 冻结资产",
-        "summary": "约 8,426 ETH + 74.5M ARB 待 DAO 投票（或需约 7 周）以补客户损失储备。",
+        "title": "Arbitrum 生态：Robinhood Chain 贡献 OpenSea 费用，代币捕获仍受质疑",
+        "summary": "ARB 约 $0.1656（+1.3%）。讨论涵盖 Robinhood Chain 费用、直充 L2，以及 ARB 作为治理代币捕获不足。",
         "coins": [
           "ARB",
           "ETH"
         ],
-        "url": "https://x.com/PiEDawg_/status/2118454618870976866",
-        "updated": "2026-11-06 15:38 KST"
+        "url": "https://x.com/OnTheBitcoin/status/2118601670800310371",
+        "updated": "2026-11-06 16:23 KST"
       },
       {
-        "title": "Solana：perp DEX/支付叙事并行，价格仍跟跌",
-        "summary": "SOL 约 $89.76（-6.4%）跟跌，但 tokenless perp 费率与支付场景讨论仍活跃。",
+        "title": "Solana：跟跌中夹杂漏洞与生态建设讨论",
+        "summary": "SOL 约 $89.55（-6.9%）跟跌；Loopscale 漏洞与 memecoin 噪音并存，Devnet/机构采用讨论仍在。",
         "coins": [
           "SOL"
         ],
-        "url": "https://x.com/muarmemuar/status/2118592942529024234",
-        "updated": "2026-11-06 15:38 KST"
+        "url": "https://x.com/zuler/status/2118603965491257440",
+        "updated": "2026-11-06 16:23 KST"
       },
       {
         "title": "Fidelity 等曾录 BTC ETF 净流入，但现价仍受压制",
-        "summary": "新闻称 FBTC 等曾录可观净流入；但现价 BTC/ETH 仍受风险偏好压制（ETH 约 $2,227，-8.2%）。",
+        "summary": "新闻称 Fidelity 等曾录可观净流入、ETH ETF 结束连流出；但现价 BTC/ETH 仍受风险偏好压制（ETH 约 $2,223，-8.5%）。",
         "coins": [
           "BTC",
           "ETH"
         ],
         "url": "https://x.com/i/trending/2118235382823412121",
-        "updated": "2026-11-06 15:38 KST"
+        "updated": "2026-11-06 16:23 KST"
       }
     ]
   },
   "recommendationAtSnapshot": {
-    "time": "2026-11-06 15:38 KST",
+    "time": "2026-11-06 16:23 KST",
     "binance": [],
     "okx": [],
-    "note": "本轮选币：BTC/ETH/SOL + 现货涨幅 CYBER(~+31.6%)、ERA(~+8.7%)、PARTI(~+5.8%)、ACT(~+9.7%)、HFT(~+6.3%)、INJ(~+1.7%)、ARB(~+2.4%)。 long-signal：Binance fapi 自本机 geo-blocked(451)；OKX 扫描无 match（沿用前轮），故 binance=[] 与 okx=[]。 X：search_posts_all/search_news 共 15 次（10 币初搜 recency + 1 新闻 + 4 次 relevancy 补搜 CYBER/ERA/HFT/ARB）。 价格来源 data-api.binance.vision。"
+    "note": "本轮选币：BTC/ETH/SOL + 现货涨幅 CYBER(~+44.5%)、ERA(~+10.4%)、PARTI(~+7.2%)、ACT(~+10.7%)、HFT(~+6.3%)、INJ(~+0.0%)、ARB(~+1.3%)。 long-signal：Binance fapi 自本机 geo-blocked(451)；OKX 可连但趋势回撤 long-signal 扫描无 match，故 binance=[] 与 okx=[]。 X：search_posts_all/search_news 共 15 次（10 币初搜 recency + 1 新闻 + 4 次 relevancy 补搜 CYBER/ERA/HFT/PARTI）。 价格来源 data-api.binance.vision。"
   }
 };
