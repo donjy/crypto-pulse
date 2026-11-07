@@ -1,6 +1,6 @@
 /* Auto-generated snapshot — see update_sentiment.md */
 window.SNAPSHOT = {
-  "snapshotTime": "2026-11-07 14:36 KST",
+  "snapshotTime": "2026-11-07 15:07 KST",
   "sentiment": {
     "BTC": {
       "sample": 14,
@@ -8,8 +8,8 @@ window.SNAPSHOT = {
       "bear": 0.43,
       "neutral": 0.28,
       "score": -0.14,
-      "headline": "约 76,030 守 76K，24h +0.62%",
-      "summary": "BTC 约 $76,030，24h 约 +0.62%。过滤营销/喊单噪声后可用样本约 14：偏空聚焦 7 日现货 ETF 约 $1.47B 流出、Nov 5 现货 BTC+ETH ETF 合计约 $530M 流出、实现亏损约 $2B、Fear&Greed≈25；偏多谈 Strive 10 月增持约 15,124 BTC、静默巨鲸买入约 3,009 BTC。短线仍略偏空，score≈-0.14。",
+      "headline": "约 76,034 守 76K，24h +0.53%",
+      "summary": "BTC 约 $76,034，24h 约 +0.53%。过滤营销/喊单噪声后可用样本约 14：偏空聚焦 7 日现货 ETF 约 $1.47B 流出、实现亏损约 $2B、Fear&Greed≈25、盘中多次试探 75.5–76K；偏多谈 Strive 10 月增持约 15,124 BTC、静默巨鲸买入约 3,009 BTC 并从币安提出约 1,286 BTC。短线仍略偏空，score≈-0.14。",
       "themes": [
         "ETF流出",
         "Fear&Greed≈25",
@@ -33,11 +33,11 @@ window.SNAPSHOT = {
           "time": "2026-11-07T02:04:48.000Z"
         },
         {
-          "url": "https://x.com/doge_law/status/2118856279921926280",
-          "text": "BITCOIN ACCUMULATION CONTINUES! Strive reveals it bought 15,124 BTC in October, bringing reported holdings to 43,124 BTC. Corporate Bitcoin conviction remains strong despite market volatility.",
+          "url": "https://x.com/GCandleGazette/status/2118940797366055028",
+          "text": "Bitcoin Stalls Below $76K as Late-Day Stock Bounce Fades. BTC traded sideways under $76,000 while equities lost momentum into the close, signaling cautious risk appetite across markets.",
           "likes": 0,
-          "note": "偏多",
-          "time": "2026-11-07T00:01:18.000Z"
+          "note": "偏空",
+          "time": "2026-11-07T05:37:08.000Z"
         }
       ],
       "whale": "讨论提到静默地址买入约 3,009 BTC 并从币安提出约 1,286 BTC；并行有 ETF 大额流出，未做链上复核。"
@@ -48,8 +48,8 @@ window.SNAPSHOT = {
       "bear": 0.38,
       "neutral": 0.31,
       "score": -0.07,
-      "headline": "约 2,248.36 企稳，24h +1.12%",
-      "summary": "ETH 约 $2,248.36，24h 约 +1.12%。可用样本约 13：偏空谈约 $300M 多单清算、现货 ETF 流出、Glamsterdam 测试网再推迟与 Fidelity 向 Galaxy 转出约 27,000 ETH；偏多聚焦巨鲸购入约 18,500 ETH、质押锁仓约 43.8M ETH 与代币化叙事。情绪略偏空，score≈-0.07。",
+      "headline": "约 2,248.53 企稳，24h +1.15%",
+      "summary": "ETH 约 $2,248.53，24h 约 +1.15%。可用样本约 13：偏空谈约 $300M 多单清算、现货 ETF 流出、Glamsterdam 测试网再推迟与 Fidelity 向 Galaxy 转出约 27,000 ETH；偏多聚焦巨鲸购入约 18,500 ETH、质押锁仓约 43.8M ETH 与代币化叙事。情绪略偏空，score≈-0.07。",
       "themes": [
         "2200支撑",
         "清算压力",
@@ -83,16 +83,16 @@ window.SNAPSHOT = {
       "whale": "讨论提到两钱包合计购入约 18,500 ETH（约 $42M）；另有 Fidelity 转出约 27,000 ETH 至 Galaxy，未做链上复核。"
     },
     "SOL": {
-      "sample": 11,
-      "bull": 0.45,
-      "bear": 0.18,
-      "neutral": 0.37,
-      "score": 0.27,
-      "headline": "约 90.15 贴 90，24h +0.94%",
-      "summary": "SOL 约 $90.15，24h 约 +0.94%。过滤 mint/空投噪声后可用样本约 11：偏多谈 10 月 $5B RWA、$60B DEX 量、Schroders 债策略上链、Leap iPhone 与代币化股票；偏空指中国广告监管传闻与巨鲸向 Kraken 再转约 $6.85M SOL。情绪偏多，score≈+0.27。",
+      "sample": 12,
+      "bull": 0.42,
+      "bear": 0.17,
+      "neutral": 0.41,
+      "score": 0.25,
+      "headline": "约 90.30 贴 90，24h +1.07%",
+      "summary": "SOL 约 $90.30，24h 约 +1.07%。过滤 mint/空投噪声后可用样本约 12：偏多谈 10 月 $5B RWA、$60B DEX 量、Schroders 债策略上链、代币化股票流通约 $19.2B 与 Leap iPhone beta；偏空指中国广告监管传闻与巨鲸向 Kraken 再转约 $6.85M SOL。情绪偏多，score≈+0.25。",
       "themes": [
         "10月生态数据",
-        "RWA 5B",
+        "RWA/代币化股票",
         "90支撑",
         "中国监管传闻",
         "巨鲸出货"
@@ -124,18 +124,18 @@ window.SNAPSHOT = {
     },
     "ONE": {
       "sample": 10,
-      "bull": 0.8,
-      "bear": 0.0,
+      "bull": 0.7,
+      "bear": 0.1,
       "neutral": 0.2,
-      "score": 0.8,
-      "headline": "约 0.001915 续暴涨，24h +70.8%",
-      "summary": "ONE（Harmony）约 $0.001915，24h 约 +70.8%。二次检索后可用样本约 10：币安涨幅榜持续靠前、放量突破（约 62.5x 量）、信号号连续 TP、「无人知其因」与迁移叙事偏多/中性。情绪偏多但噪声/信号号占比高，score≈+0.80。",
+      "score": 0.6,
+      "headline": "约 0.001885 续暴涨，24h +68.9%",
+      "summary": "ONE（Harmony）约 $0.001885，24h 约 +68.9%。二次检索后可用样本约 10：币安涨幅榜持续靠前、放量突破、「无人知其因」与迁移叙事偏多；亦有币安下架臆测偏空。情绪偏多但噪声/信号号占比高，score≈+0.60。",
       "themes": [
         "暴涨跟风",
         "放量突破",
-        "信号号TP",
         "无明确催化剂",
-        "样本偏薄"
+        "迁移叙事",
+        "下架臆测"
       ],
       "posts": [
         {
@@ -146,18 +146,18 @@ window.SNAPSHOT = {
           "time": "2026-11-06T19:13:35.000Z"
         },
         {
-          "url": "https://x.com/VolTellApp/status/2118856591025787124",
-          "text": "$ONE closed above the 12-hour channel. Volume: 62.5x normal Buy side: 51%. Most breakouts lack volume. This one has it.",
+          "url": "https://x.com/Jaysontatum0_0/status/2118915099402334343",
+          "text": "Harmony (ONE) just ripped 59% in 24h on volume 25x its 30-day average, and nobody knows why. No announcement, no catalyst. Still 99.5% below its all-time high, so this is a bounce from the floor, not a comeback.",
           "likes": 0,
-          "note": "偏多",
-          "time": "2026-11-07T00:02:32.000Z"
+          "note": "中性偏多",
+          "time": "2026-11-07T03:55:01.000Z"
         },
         {
-          "url": "https://x.com/KucoinArab/status/2118660779931046183",
-          "text": "$ONE NOW TOP #3 GAINER ON BINANCE! Shared in our VIP channel just hours ago, and already climbing the TOP GAINERS list! Strong bullish momentum following the breakout…",
-          "likes": 23,
-          "note": "偏多",
-          "time": "2026-11-06T11:04:27.000Z"
+          "url": "https://x.com/TeamQuantAI/status/2118941754997272691",
+          "text": "Next future prediction $One / harmony would be delisted by binance soon",
+          "likes": 2,
+          "note": "偏空",
+          "time": "2026-11-07T05:40:57.000Z"
         }
       ],
       "whale": "喊单与放量突破为主，未见可复核巨鲸明细；未做链上复核。"
@@ -168,8 +168,8 @@ window.SNAPSHOT = {
       "bear": 0.0,
       "neutral": 0.25,
       "score": 0.75,
-      "headline": "约 0.01109 续强，24h +17.9%",
-      "summary": "ACT（Act I : The AI Prophecy）约 $0.01109，24h 约 +17.9%。过滤戏剧/法案同名噪声后可用样本约 8：成交量相对市值偏高（约 2x mcap）、榜单持续靠前与目标区间喊单偏多。情绪偏多，score≈+0.75。",
+      "headline": "约 0.01091 续强，24h +16.2%",
+      "summary": "ACT（Act I : The AI Prophecy）约 $0.01091，24h 约 +16.2%。过滤戏剧/法案同名噪声后可用样本约 8：成交量相对市值偏高（约 2x mcap）、榜单持续靠前与目标区间喊单偏多。情绪偏多，score≈+0.75。",
       "themes": [
         "AI meme",
         "成交量异动",
@@ -202,14 +202,54 @@ window.SNAPSHOT = {
       ],
       "whale": "公开讨论以动量/成交量为主；未见巨鲸明细，未做链上复核。"
     },
+    "RAY": {
+      "sample": 11,
+      "bull": 0.55,
+      "bear": 0.18,
+      "neutral": 0.27,
+      "score": 0.37,
+      "headline": "约 1.812 跟涨，24h +7.0%",
+      "summary": "RAY（Raydium）约 $1.812，24h 约 +7.0%。过滤 launchpad/空投噪声后可用样本约 11：偏多谈相对抗跌、手续费回购约 31% 流通、代币化股票流量与收入环比大增；亦有日线头肩顶风险与「Raydium 团队诈骗」类 FUD 偏空。情绪偏多，score≈+0.37。",
+      "themes": [
+        "相对抗跌",
+        "DEX回购",
+        "代币化股票",
+        "头肩顶风险",
+        "launchpad噪声"
+      ],
+      "posts": [
+        {
+          "url": "https://x.com/Sas2Bob/status/2118813835993706647",
+          "text": "$RAY is 90% below its all-time high. Raydium has still bought back ~31% of its circulating supply. A DEX token with a fixed 555M cap, mint disabled, and 12% of every trading fee buying it back.",
+          "likes": 0,
+          "note": "偏多",
+          "time": "2026-11-06T21:12:38.000Z"
+        },
+        {
+          "url": "https://x.com/ourcryptotalk/status/2118603056715866408",
+          "text": "Will $RAY cross $3B market cap this time? Raydium is now Solana’s main venue for trading tokenized stocks, revenue grew 264% last quarter…",
+          "likes": 25,
+          "note": "偏多",
+          "time": "2026-11-06T07:15:05.000Z"
+        },
+        {
+          "url": "https://x.com/cryptowithgopal/status/2118661347982668005",
+          "text": "$RAY / USDT – 1D. A potential Head & Shoulders pattern is taking shape after the massive rally. The right shoulder has formed, and sellers are showing resistance near the $2.00–$2.10 zone.",
+          "likes": 0,
+          "note": "偏空",
+          "time": "2026-11-06T11:06:42.000Z"
+        }
+      ],
+      "whale": "讨论以 DEX 收入/回购叙事为主；未见明确巨鲸异动，未做链上复核。"
+    },
     "ZIL": {
       "sample": 12,
       "bull": 0.5,
       "bear": 0.17,
       "neutral": 0.33,
       "score": 0.33,
-      "headline": "约 0.001813 跟涨，24h +6.8%",
-      "summary": "ZIL（Zilliqa）约 $0.001813，24h 约 +6.8%。可用样本约 12：偏多聚焦 9 年后迁往以太坊 L2/机构层、Latin 合作与机构 AI 代理身份基建；中性/偏空讨论代币效用与质押/回购需求，亦有多空信号交织。情绪偏多，score≈+0.33。",
+      "headline": "约 0.001805 跟涨，24h +7.3%",
+      "summary": "ZIL（Zilliqa）约 $0.001805，24h 约 +7.3%。可用样本约 12：偏多聚焦 9 年后迁往以太坊 L2/机构层、Latin 合作与机构 AI 代理身份基建；中性/偏空讨论代币效用与质押/回购需求，亦有多空信号交织。情绪偏多，score≈+0.33。",
       "themes": [
         "ETH L2迁移",
         "机构层叙事",
@@ -233,69 +273,29 @@ window.SNAPSHOT = {
           "time": "2026-11-06T06:37:18.000Z"
         },
         {
-          "url": "https://x.com/Web3Craver/status/2118743172402790621",
-          "text": "Appreciate the openness, @zilliqa. My suggestion: let institutions pay fees in fiat or stablecoins, but use a fixed % of network revenue to buy back and burn $ZIL. Add meaningful staking utility…",
-          "likes": 2,
+          "url": "https://x.com/krit71803685/status/2118865200078283186",
+          "text": "@zilliqa What I want to know now is, what can the ZIL token actually be used for?",
+          "likes": 0,
           "note": "中性",
-          "time": "2026-11-06T16:31:51.000Z"
+          "time": "2026-11-07T00:36:44.000Z"
         }
       ],
       "whale": "公开讨论以 L2 迁移与机构叙事为主；未见明确巨鲸异动，未做链上复核。"
     },
-    "RAY": {
-      "sample": 10,
-      "bull": 0.5,
-      "bear": 0.2,
-      "neutral": 0.3,
-      "score": 0.3,
-      "headline": "约 1.7908 跟涨，24h +6.1%",
-      "summary": "RAY（Raydium）约 $1.7908，24h 约 +6.1%。过滤 launchpad/空投噪声后可用样本约 10：偏多谈相对抗跌、手续费回购约 31% 流通与代币化股票流量；亦有日线头肩顶风险与「Raydium 团队诈骗」类 FUD 偏空。情绪偏多，score≈+0.30。",
-      "themes": [
-        "相对抗跌",
-        "DEX回购",
-        "代币化股票",
-        "头肩顶风险",
-        "launchpad噪声"
-      ],
-      "posts": [
-        {
-          "url": "https://x.com/Sas2Bob/status/2118813835993706647",
-          "text": "$RAY is 90% below its all-time high. Raydium has still bought back ~31% of its circulating supply. A DEX token with a fixed 555M cap, mint disabled, and 12% of every trading fee buying it back.",
-          "likes": 0,
-          "note": "偏多",
-          "time": "2026-11-06T21:12:38.000Z"
-        },
-        {
-          "url": "https://x.com/cryptowithgopal/status/2118661347982668005",
-          "text": "$RAY / USDT – 1D. A potential Head & Shoulders pattern is taking shape after the massive rally. The right shoulder has formed, and sellers are showing resistance near the $2.00–$2.10 zone.",
-          "likes": 0,
-          "note": "偏空",
-          "time": "2026-11-06T11:06:42.000Z"
-        },
-        {
-          "url": "https://x.com/rafol19620/status/2118720673874846077",
-          "text": "$RAY is leaving the crypto market speechless. While most of the market is bleeding, Raydium is holding its ground. One of the few tokens standing out in a sea of red.",
-          "likes": 4,
-          "note": "偏多",
-          "time": "2026-11-06T15:02:27.000Z"
-        }
-      ],
-      "whale": "讨论以 DEX 收入/回购叙事为主；未见明确巨鲸异动，未做链上复核。"
-    },
     "XTZ": {
-      "sample": 10,
-      "bull": 0.5,
-      "bear": 0.1,
-      "neutral": 0.4,
-      "score": 0.4,
-      "headline": "约 0.2638 跟涨，24h +5.9%",
-      "summary": "XTZ（Tezos）约 $0.2638，24h 约 +5.9%。可用样本约 10：偏多谈 RWA/铀矿追踪器、下降楔形与多单目标、Etherlink 8.0；其余为 NFT 生态与榜单跟涨。情绪偏多，score≈+0.40。",
+      "sample": 9,
+      "bull": 0.56,
+      "bear": 0.0,
+      "neutral": 0.44,
+      "score": 0.56,
+      "headline": "约 0.2631 跟涨，24h +5.8%",
+      "summary": "XTZ（Tezos）约 $0.2631，24h 约 +5.8%。过滤大量 NFT 挂单噪声后可用样本约 9：偏多谈 RWA/铀矿追踪器、SMC 多头结构与 Smart Rollup；其余为艺术生态挂单中性。情绪偏多，score≈+0.56。",
       "themes": [
         "RWA叙事",
-        "楔形突破",
-        "多单信号",
-        "Etherlink升级",
-        "NFT生态"
+        "SMC多头",
+        "Smart Rollup",
+        "NFT生态噪声",
+        "样本偏艺术向"
       ],
       "posts": [
         {
@@ -306,18 +306,18 @@ window.SNAPSHOT = {
           "time": "2026-11-07T01:22:37.000Z"
         },
         {
-          "url": "https://x.com/cryptowithgopal/status/2118683511045702069",
-          "text": "tezos:native / USDT – 4H. Printing a textbook Falling Wedge formation. Price is bouncing from the lower trendline near $0.25. A breakout above $0.30 could trigger a strong bullish reversal.",
+          "url": "https://x.com/TradeShunya/status/2118894162124955948",
+          "text": "#XTZ SMC Order Flow Footprint Trading: $0.2671 (Bullish Structure) • Key Demand Floor: $0.2426 – 0.2449 • 50% Equilibrium: $0.2944",
           "likes": 0,
           "note": "偏多",
-          "time": "2026-11-06T12:34:46.000Z"
+          "time": "2026-11-07T02:31:50.000Z"
         },
         {
-          "url": "https://x.com/popmemecoin/status/2118700836792533337",
-          "text": "JUST IN: Tezos unveils Etherlink 8.0 upgrade to revolutionize cross-chain fund recovery! The new preview changes EVM alias derivation to seamlessly secure and recover funds across chains.",
-          "likes": 0,
+          "url": "https://x.com/GranCube/status/2118604020638269878",
+          "text": "Smart Rollup. $XTZ #Tezos #Post_quantum #Formal_verification #Protocol_Longevity #SmartRollup",
+          "likes": 9,
           "note": "中性偏多",
-          "time": "2026-11-06T13:43:37.000Z"
+          "time": "2026-11-06T07:18:54.000Z"
         }
       ],
       "whale": "讨论以 RWA/升级与技术形态为主；未见明确巨鲸异动，未做链上复核。"
@@ -328,22 +328,22 @@ window.SNAPSHOT = {
       "bear": 0.25,
       "neutral": 0.33,
       "score": 0.17,
-      "headline": "约 47.04 跟涨，24h +5.4%",
-      "summary": "DASH 约 $47.04，24h 约 +5.4%。样本约 12：偏多聚焦长期下降楔形突破、v24 主节点升级与多单信号；亦有短单、Eclipse 风险提示与看空目标偏空。情绪略偏多，score≈+0.17。",
+      "headline": "约 47.00 跟涨，24h +5.6%",
+      "summary": "DASH 约 $47.00，24h 约 +5.6%。样本约 12：偏多聚焦长期下降楔形突破、v24 主节点升级、ZEC→DASH 轮动与支付/隐私叙事；亦有短单、Eclipse 风险提示与看空目标偏空。情绪略偏多，score≈+0.17。",
       "themes": [
         "楔形突破",
         "v24升级",
-        "短单信号",
-        "支付叙事",
-        "Eclipse警告"
+        "隐私轮动",
+        "Eclipse警告",
+        "短单信号"
       ],
       "posts": [
         {
-          "url": "https://x.com/6epukk/status/2118792559442985337",
-          "text": "$DASH 1M — $DASH has broken out of a falling wedge that had been forming since january 2018. The trend line has been holding for almost 12 YEARS.",
-          "likes": 9,
+          "url": "https://x.com/ssamilion/status/2118735906970669198",
+          "text": "Sold all my $ZEC for $DASH. $Zcash wrote Orchard. $Dash shipped it and made it fast. → 1s shielded confirmations … 25% dash supply locked as masternode collateral",
+          "likes": 106,
           "note": "偏多",
-          "time": "2026-11-06T19:48:06.000Z"
+          "time": "2026-11-06T16:02:59.000Z"
         },
         {
           "url": "https://x.com/popmemecoin/status/2118763851063632122",
@@ -363,15 +363,15 @@ window.SNAPSHOT = {
       "whale": "讨论以升级与短线交易为主；未见可靠巨鲸异动，未做链上复核。"
     },
     "MOVR": {
-      "sample": 8,
-      "bull": 0.5,
-      "bear": 0.25,
-      "neutral": 0.25,
-      "score": 0.25,
-      "headline": "约 1.047 跟涨，24h +5.7%",
-      "summary": "MOVR（Moonriver）约 $1.047，24h 约 +5.7%。可用样本约 8（偏薄）：偏多谈相对 BTC 跑赢、多单信号 TP 与跟风 ONE；亦有迁往 Base 的迁移清单、Moonbeam 团队 FUD 与短单信号偏空。情绪略偏多，score≈+0.25。",
+      "sample": 9,
+      "bull": 0.56,
+      "bear": 0.22,
+      "neutral": 0.22,
+      "score": 0.34,
+      "headline": "约 1.043 跟涨，24h +5.0%",
+      "summary": "MOVR（Moonriver）约 $1.043，24h 约 +5.0%。过滤韩剧同名噪声后可用样本约 9（偏薄）：偏多谈下降通道突破回踩、多单 TP 与跟风 ONE；亦有迁往 Base 的迁移清单与 Moonbeam 团队 FUD 偏空。情绪略偏多，score≈+0.34。",
       "themes": [
-        "相对抗跌",
+        "通道突破",
         "多单TP",
         "Base迁移",
         "团队FUD",
@@ -379,18 +379,18 @@ window.SNAPSHOT = {
       ],
       "posts": [
         {
+          "url": "https://x.com/GlobeOfcrypto1/status/2118786872944341089",
+          "text": "$MOVR #MOVR Broken Descending Channel & currently retesting on 4H chart. Successful retest could provide 40-45% rise",
+          "likes": 25,
+          "note": "偏多",
+          "time": "2026-11-06T19:25:30.000Z"
+        },
+        {
           "url": "https://x.com/crynetio/status/2118760513198768182",
           "text": "CryptoRank lists nine recent crypto project chain migrations … Harmony ($ONE) to Ethereum ($ETH) … Moonriver ($MOVR) to Base…",
           "likes": 1,
           "note": "中性",
           "time": "2026-11-06T17:40:45.000Z"
-        },
-        {
-          "url": "https://x.com/Orvillo1/status/2118877326846873958",
-          "text": "$ONE pumping massively as it breaks $0.0018. If you missed $ONE when I called it, don't miss $MOVR",
-          "likes": 4,
-          "note": "偏多",
-          "time": "2026-11-07T01:24:56.000Z"
         },
         {
           "url": "https://x.com/AGuseffTectum/status/2118729203075973420",
@@ -400,39 +400,39 @@ window.SNAPSHOT = {
           "time": "2026-11-06T15:36:20.000Z"
         }
       ],
-      "whale": "讨论以信号号与迁移清单为主；未见可复核巨鲸明细，未做链上复核。"
+      "whale": "讨论以信号号与迁移清单为主；未见可复核巨鲸明细；未做链上复核。"
     }
   },
   "news": {
-    "snapshotTime": "2026-11-07 14:36 KST",
+    "snapshotTime": "2026-11-07 15:07 KST",
     "items": [
       {
-        "title": "Coinbase 上线 Collector Crypt CARD 现货交易",
-        "summary": "Coinbase 于 11/6 上线 Collector Crypt 代币现货（ticker CARD），项目将评级卡牌代币化为可赎回 Solana NFT，属 RWA/收藏品叙事。",
-        "coins": [
-          "SOL"
-        ],
-        "url": "https://x.com/i/trending/2118780727491772832",
-        "updated": "2026-11-06T23:00:04.000Z"
-      },
-      {
-        "title": "Arch Prime 收购 Horizon，支持用加密资产抵押购房",
-        "summary": "Arch Network 旗下 Arch Prime 收购 Horizon，美国买家可用比特币等加密资产作抵押购房或提取住房净值，无需卖出持仓。",
-        "coins": [
-          "BTC"
-        ],
-        "url": "https://x.com/i/trending/2118420613710881266",
-        "updated": "2026-11-05T19:17:40.000Z"
-      },
-      {
-        "title": "白宫审阅 SEC 简化加密券商规则提案",
-        "summary": "SEC 提交更新券商净资本、客户保护与记录留存等规则的提案，市场视为监管清晰化的早期信号。",
+        "title": "俄罗斯央行批准零售交易 BTC/ETH/USDT",
+        "summary": "俄央行允许非合格零售投资者通过持牌券商交易比特币、以太坊与 USDT，单券商年额度约 30 万卢布（约 $3,670），需通过知识测试；合格投资者无额度上限。莫斯科交易所计划 12/1 启动比特币交易。",
         "coins": [
           "BTC",
           "ETH"
         ],
-        "url": "https://x.com/i/trending/2118424043120431593",
-        "updated": "2026-11-06T03:10:26.000Z"
+        "url": "https://x.com/i/trending/2118824975025221955",
+        "updated": "2026-11-07T05:34:18.000Z"
+      },
+      {
+        "title": "比特币跌破 7.5 万美元，市场抛售加剧",
+        "summary": "BTC 一度跌破 $75,000（近七周低点），伴随美股科技股抛售与现货 ETF 流出、逾 $10 亿清算；Fear&Greed 落入恐惧区间，交易员盯防 $70K–$75.5K 支撑。",
+        "coins": [
+          "BTC"
+        ],
+        "url": "https://x.com/i/trending/2118719828877877698",
+        "updated": "2026-11-07T05:50:54.000Z"
+      },
+      {
+        "title": "静默巨鲸从币安提出约 1,286 BTC（约 $98M）",
+        "summary": "地址 3Ps78… 沉寂逾一年后自币安提出约 1,286 BTC；同地址此前曾一日囤积约 3,009 BTC。市场解读为逢低吸筹，但未证实后续动向。",
+        "coins": [
+          "BTC"
+        ],
+        "url": "https://x.com/i/trending/2118633353234559368",
+        "updated": "2026-11-06T20:02:43.000Z"
       },
       {
         "title": "Vitalik 在 Devcon 8 称 ETH 是价值储存与货币",
@@ -444,31 +444,30 @@ window.SNAPSHOT = {
         "updated": "2026-11-06T18:16:58.000Z"
       },
       {
-        "title": "众议院民主党酝酿扩大加密监管法案",
-        "summary": "中期选举后民主党掌控国会，拟在 Waters 2025 投资者权利法案基础上加强 SEC 监管并限制 CFTC 职权，尚无正式草案。",
+        "title": "Zcash 大涨，量子威胁凸显隐私叙事",
+        "summary": "ZEC 逼近 $1,350，伴随 Network Upgrade 7（出块约 25 秒）与量子抗性讨论；同时有研究称约 3 万量子比特或可在约一小时内威胁比特币钱包加密。",
         "coins": [
           "BTC",
-          "ETH"
+          "DASH"
         ],
-        "url": "https://x.com/i/trending/2118057889285968039",
-        "updated": "2026-11-06T02:15:10.000Z"
+        "url": "https://x.com/i/trending/2118928417424839116",
+        "updated": "2026-11-07T04:53:56.000Z"
       },
       {
-        "title": "中期选举后民主党掌控国会，加密业内看法分裂",
-        "summary": "民主党中期选举大胜后，业内对监管走向分歧：有人预期拥抱加密，亦有警告或因数据中心能耗等议题承压。",
+        "title": "Trump Media 向 Crypto.com 转移约 4,259 BTC",
+        "summary": "链上监测显示 Trump Media 本周分两批向 Crypto.com 转入约 4,259 BTC（约 $3.43 亿），时点临近 11/30 债务相关节点；是否抛售尚未确认。",
         "coins": [
-          "BTC",
-          "SOL"
+          "BTC"
         ],
-        "url": "https://x.com/i/trending/2118752269659234776",
-        "updated": "2026-11-06T17:17:18.000Z"
+        "url": "https://x.com/i/trending/2118553338274824537",
+        "updated": "2026-11-06T04:02:58.000Z"
       }
     ]
   },
   "recommendationAtSnapshot": {
-    "time": "2026-11-07 14:36 KST",
+    "time": "2026-11-07 15:07 KST",
     "binance": [],
     "okx": [],
-    "note": "币种：BTC/ETH/SOL + 币安现货24h涨幅榜筛选 ONE(+70.8%)、ACT(+17.9%)、ZIL(+6.8%)、RAY(+6.1%)、XTZ(+5.9%)、DASH(+5.4%)、MOVR(+5.7%)；已跳过杠杆/反向/代币化股票(*B)/超低量/中文名噪音；相对上轮 14:05 KST 去掉 STG/ZRO，换入 ZIL(+6.8%) 与 MOVR(+5.7%)；保留 DASH 而非 HFT（历史样本极薄）。价格快照(data-api.binance.vision)：BTC≈76,030.04 (+0.62%), ETH≈2,248.36 (+1.12%), SOL≈90.15 (+0.94%), ONE≈0.001915, ACT≈0.01109, ZIL≈0.001813, RAY≈1.7908, XTZ≈0.2638, DASH≈47.04, MOVR≈1.047。X 调用 12 次（10 币 + news + ONE 二次）；ONE/MOVR 样本偏薄已注明。Binance fapi 地理限制；OKX 无标准化多头信号，recommendation.binance=[] okx=[]。"
+    "note": "币种：BTC/ETH/SOL + 币安现货24h涨幅榜筛选 ONE(+68.9%)、ACT(+16.2%)、RAY(+7.0%)、ZIL(+7.3%)、XTZ(+5.8%)、DASH(+5.6%)、MOVR(+5.0%)；已跳过杠杆/反向/代币化股票(*B)/超低量/中文名噪音/HFT（历史样本极薄）；相对上轮 14:36 KST 保持同一币种集合以延续连续性（STRK(+6.0%) 未换入）。价格快照(data-api.binance.vision)：BTC≈76,034.02 (+0.53%), ETH≈2,248.53 (+1.15%), SOL≈90.30 (+1.07%), ONE≈0.001885, ACT≈0.01091, ZIL≈0.001805, RAY≈1.812, XTZ≈0.2631, DASH≈47.0, MOVR≈1.043。X 调用 13 次（10 币 + news + ONE/ACT 二次）；ONE/MOVR/ACT 样本偏薄已注明。Binance fapi 地理限制；OKX 无标准化多头信号，recommendation.binance=[] okx=[]。"
   }
 };
