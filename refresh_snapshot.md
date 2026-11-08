@@ -14,13 +14,14 @@
 window.SNAPSHOT = {
   snapshotTime: 'YYYY-MM-DD HH:mm KST',
   sentiment: { BTC: { sample, bull, bear, neutral, score, headline, summary, themes:[...],
-                      posts:[{url,text,likes,note,time}], whale:null }, ... },
+                      posts:[{url,text,textEn,likes,note,time}], whale:null }, ... },
   news: { snapshotTime: '... KST', items:[{title,summary,url,updated}] },
   recommendationAtSnapshot: [...]
 };
 ```
 - bull/bear/neutral 填百分比，score = (bull − bear) / 100。剔除 spam 和机器人帖。
 - headline 和 summary 用中文写，每个币挑 2–3 条代表帖，附真实链接。
+- **帖子必须译成简体中文**写入 `text`，英文原文写入 `textEn`（页面悬停显示原文）。帖子原本是中文时可省略 `textEn`。
 
 ## 4. 发布
 - 页面每 5 分钟会带时间戳重新拉取 `./snapshot.js` 并原地更新。只要托管处的 snapshot.js 被替换，用户不用刷新页面就能看到新快照。

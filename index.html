@@ -27,10 +27,12 @@ html,body,#root{height:100%;margin:0;background:#0B0E11;color:#EAECEF;font-famil
 <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone@7.26.2/babel.min.js"></script>
 <script src="./signals.js"></script>
+<script src="./levels.js"></script>
 <script src="./snapshot.js"></script>
 <script type="text/babel" data-presets="react">
 const { useState, useEffect, useMemo, useRef, useCallback } = React;
 const S = window.Signals;
+const LV = window.Levels;
 const SNAP = window.SNAPSHOT || { sentiment:{}, news:{items:[]}, snapshotTime:'—' };
 // 每 5 分钟带时间戳重新拉取 snapshot.js，原地更新 SNAP（页面每秒重渲染，无需刷新）
 setInterval(() => {
@@ -157,6 +159,11 @@ const BINANCE = {
     const a = +d[0].sumOpenInterestValue, b = +d[d.length - 1].sumOpenInterestValue;
     return { now:b, chg:(b / a - 1) * 100 };
   },
+  // 订单簿深度（真实挂单，用于找大单墙）
+  async depth(id, limit = 500) {
+    const d = await getJSON(`https://fapi.binance.com/fapi/v1/depth?symbol=${id}&limit=${limit}`);
+    return { bids: d.bids, asks: d.asks };
+  },
   recentLiq: null,
 };
 
@@ -190,9 +197,9 @@ const OKX = {
   },
   majorId: b => `${b}-USDT-SWAP`,
   klines(id, tf, limit = 60) {
-    const bar = { '15m':'15m', '1h':'1H', '4h':'4H', '1d':'1Dutc' }[tf];
+    const bar = { '5m':'5m', '15m':'15m', '1h':'1H', '4h':'4H', '1d':'1Dutc' }[tf];
     return cached(`okx|${id}|${tf}|${limit}`, () => this.queue(async () =>
-      S.normOkx((await getJSON(`https://www.okx.com/api/v5/market/candles?instId=${id}&bar=${bar}&limit=${limit}`)).data)));
+      S.normOkx((await getJSON(`https://www.okx.com/api/v5/market/candles?instId=${id}&bar=${bar}&limit=300`)).data.slice(0, limit))));
   },
   async funding(id) {
     const [p, h] = await Promise.all([
@@ -219,6 +226,12 @@ const OKX = {
     let long = 0, short = 0, n = 0, since = Date.now();
     (d[0]?.details || []).forEach(x => { const usd = +x.sz * cv * +x.bkPx; n++; since = Math.min(since, +x.ts); x.posSide === 'long' ? long += usd : short += usd; });
     return { long, short, n, since };
+  },
+  // 订单簿深度（sz 单位是张，需乘 ctVal 换成币本位数量）
+  async depth(id, sz = 400) {
+    const cv = (await OKX.ctVal())[id] || 1;
+    const d = (await getJSON(`https://www.okx.com/api/v5/market/books?instId=${id}&sz=${sz}`)).data[0];
+    return { bids: d.bids.map(r => [r[0], +r[1] * cv]), asks: d.asks.map(r => [r[0], +r[1] * cv]) };
   },
 };
 const PLATFORMS = { binance: BINANCE, okx: OKX };
@@ -311,12 +324,16 @@ function Header({ platform, setPlatform, ws, lastUpdate, onRefresh, search, setS
         </div>
         <div className="flex items-center gap-2 flex-1 justify-end flex-wrap">
           <input value={search} onChange={e => setSearch(e.target.value)} placeholder="搜索交易对…" className="w-44 bg-panel border border-border rounded-lg px-3 py-1.5 text-xs placeholder:text-muted focus:outline-none focus:border-accent/60" />
-          <button onClick={() => setColorMode(colorMode === 'gr' ? 'rg' : 'gr')} className="text-[10px] px-2 py-1 rounded border border-border text-muted hover:text-white">{colorMode === 'gr' ? '绿涨红跌' : '红涨绿跌'}</button>
+          <div className="flex rounded-lg border border-border overflow-hidden text-[10px]" title="K 线与涨跌幅的配色方案">
+            {[['rg','红涨绿跌'],['gr','绿涨红跌']].map(([m, label]) => (
+              <button key={m} onClick={() => setColorMode(m)} className={`px-2 py-1 ${colorMode === m ? 'bg-accent text-bg font-semibold' : 'bg-panel text-muted hover:text-white'}`}>{label}</button>
+            ))}
+          </div>
           <span className="tip">
             <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-xs ${tone}`}>
-              <span className={`w-1.5 h-1.5 rounded-full ${allOpen ? 'bg-emerald-400' : 'bg-accent pulse-dot'}`} />WS {label}
+              <span className={`w-1.5 h-1.5 rounded-full ${allOpen ? 'bg-emerald-400' : 'bg-accent pulse-dot'}`} />行情推送 {label}
             </span>
-            <span className="tipbox">{Object.entries(ws).map(([k, v]) => <div key={k}>{k}: {v}</div>)}<div className="text-muted mt-1">WS 断开时自动退避重连（1s→30s），并以 REST 每 5s 轮询兜底。</div></span>
+            <span className="tipbox">{Object.entries(ws).map(([k, v]) => <div key={k}>{k}：{{ open:'已连接', connecting:'连接中', reconnecting:'重连中' }[v] || v}</div>)}<div className="text-muted mt-1">推送断开时自动退避重连（1s→30s），并以 REST 每 5s 轮询兜底。</div></span>
           </span>
           <span className="text-[11px] text-muted font-mono">更新 {lastUpdate ? KSTt(lastUpdate) : '—'} KST</span>
           <button onClick={onRefresh} className="text-xs px-3 py-1.5 rounded-lg bg-panel border border-border hover:border-accent/50">刷新</button>
@@ -339,9 +356,9 @@ function MajorCard({ base, spot, fut, mark, up, down }) {
         <span className="text-[10px] text-muted">资金费率 <span className="font-mono" style={{ color: (mark?.funding ?? 0) >= 0 ? up : down }}>{fmtFund(mark?.funding)}</span></span>
       </div>
       <div className="grid grid-cols-3 gap-3">
-        <div><div className="text-[10px] text-muted mb-1">现货 Spot</div><div className="font-mono text-sm font-semibold tabular">{fmtPrice(spot?.last)}</div><Pct v={spot?.chg} up={up} down={down} className="text-xs" /></div>
-        <div><div className="text-[10px] text-muted mb-1">永续 Mark</div><div className="font-mono text-sm font-semibold tabular">{fmtPrice(mark?.mark)}</div><Pct v={fut?.chg} up={up} down={down} className="text-xs" /><div className="text-[10px] text-muted">Index {fmtPrice(mark?.index)}</div></div>
-        <div><div className="text-[10px] text-muted mb-1">基差 Basis</div><div className="font-mono text-sm font-semibold tabular" style={{ color: (basis ?? 0) >= 0 ? up : down }}>{fmtPct(basis, 4)}</div><div className="text-[10px] text-muted">{basis == null ? '' : basis >= 0 ? '正溢价' : '负溢价'} (Mark−现货)/现货</div></div>
+        <div><div className="text-[10px] text-muted mb-1">现货价格</div><div className="font-mono text-sm font-semibold tabular">{fmtPrice(spot?.last)}</div><Pct v={spot?.chg} up={up} down={down} className="text-xs" /></div>
+        <div><div className="text-[10px] text-muted mb-1">永续标记价</div><div className="font-mono text-sm font-semibold tabular">{fmtPrice(mark?.mark)}</div><Pct v={fut?.chg} up={up} down={down} className="text-xs" /><div className="text-[10px] text-muted">指数价 {fmtPrice(mark?.index)}</div></div>
+        <div><div className="text-[10px] text-muted mb-1">基差</div><div className="font-mono text-sm font-semibold tabular" style={{ color: (basis ?? 0) >= 0 ? up : down }}>{fmtPct(basis, 4)}</div><div className="text-[10px] text-muted">{basis == null ? '' : basis >= 0 ? '正溢价' : '负溢价'}（标记价 − 现货）/ 现货</div></div>
       </div>
     </div>
   );
@@ -355,7 +372,7 @@ function GainersTable({ rows, P, sel, onSelect, up, down, sortKey, setSortKey })
   return (
     <div className="bg-panel border border-border rounded-xl overflow-hidden">
       <div className="px-4 py-3 border-b border-border flex items-center justify-between">
-        <div><h2 className="text-sm font-semibold">USDT 永续涨幅榜 Top 20 <Live /></h2><p className="text-[10px] text-muted mt-0.5">按 24h 涨幅取前 20（已过滤已下架合约）· 走势 = 近 24 根 1h 收盘（真实 K 线）· 点击查看详情</p></div>
+        <div><h2 className="text-sm font-semibold">USDT 永续合约 24h 涨幅榜 Top 20 <Live /></h2><p className="text-[10px] text-muted mt-0.5">按 24h 涨幅取前 20（已过滤已下架合约）· 走势 = 近 24 根 1h 收盘（真实 K 线）· 点击查看详情</p></div>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full text-xs">
@@ -438,20 +455,95 @@ function SignalBoard({ P, scan, opts, setOpts, onSelect, up, down, newSet, notif
 }
 
 /* ============================================================
+ * 关键价位：成交量分布阶梯图
+ * ============================================================ */
+const LEVEL_TFS = [['5m','m5'],['15m','m15'],['1h','h1'],['4h','h4'],['1d','d1']];
+const SUP_COL = '#22D3EE', RES_COL = '#F59E0B', BUY_COL = '#26A69A', SELL_COL = '#EF5350';
+
+function LevelLadder({ an, price, h = 236 }) {
+  if (!an) return null;
+  const W = 440, PAD = 12, plotW = 292;
+  const { prof, supports, resistances } = an;
+  const lo = Math.min(prof.lo, price), hi = Math.max(prof.hi, price);
+  const span = (hi - lo) || price * 0.01;
+  const y = p => PAD + ((hi - p) / span) * (h - PAD * 2);
+  const maxQv = Math.max(...prof.bins.map(b => b.qv)) || 1;
+  const barMax = plotW * 0.52;
+  const rows = prof.bins.map(b => ({ ...b, yy: y(b.hi), hh: Math.max(1, y(b.lo) - y(b.hi) - 0.6) }));
+  // 右侧标签防重叠：先占位现价，其余标签需要时上下微调
+  const taken = [];
+  const marks = [];
+  const addMark = (p, text, color, dash = '3 3', bold = false) => {
+    const y0 = y(p);
+    if (!isFinite(y0) || y0 < PAD + 4 || y0 > h - PAD) return;
+    let yText = y0;
+    if (!bold) {
+      for (let k = 1; k < 8; k++) {
+        const cand = y0 + (k % 2 ? 1 : -1) * Math.ceil(k / 2) * 10;
+        if (cand > PAD + 4 && cand < h - PAD && !taken.some(t => Math.abs(t - cand) < 9)) { yText = cand; break; }
+      }
+    }
+    if (taken.some(t => Math.abs(t - yText) < 8) && !bold) return;
+    taken.push(yText);
+    marks.push({ lineY: y0, y: yText, text, color, dash, bold });
+  };
+  addMark(price, `现价 ${LV.fmtNum(price)}`, '#FFFFFF', '', true);
+  addMark(an.prof.poc.mid, `POC ${LV.fmtNum(an.prof.poc.mid)}`, '#F0B90B', '5 3');
+  [...supports].slice(0, 2).forEach(l => addMark(l.price, `支撑 ${LV.fmtNum(l.price)} · ${l.strength}`, SUP_COL));
+  [...resistances].slice(0, 2).forEach(l => addMark(l.price, `阻力 ${LV.fmtNum(l.price)} · ${l.strength}`, RES_COL));
+  return (
+    <svg viewBox={`0 0 ${W} ${h}`} className="w-full block" style={{ height: h }}>
+      <rect x="0" y={y(prof.vaHi)} width={plotW} height={Math.max(1, y(prof.vaLo) - y(prof.vaHi))} fill="#F0B90B" opacity="0.06" />
+      {rows.map(b => {
+        const bw = barMax * (b.qv / maxQv);
+        const buyW = bw * (b.qv ? b.buy / b.qv : 0.5);
+        return (
+          <g key={b.i}>
+            <rect x="0" y={b.yy} width={Math.max(0.6, bw)} height={b.hh} fill={SELL_COL} opacity="0.42" />
+            <rect x="0" y={b.yy} width={Math.max(0.6, buyW)} height={b.hh} fill={BUY_COL} opacity="0.62" />
+          </g>
+        );
+      })}
+      {marks.map((m, i) => (
+        <g key={i}>
+          <line x1="0" x2={plotW} y1={m.lineY} y2={m.lineY} stroke={m.color} strokeWidth={m.bold ? 1.3 : 1} strokeDasharray={m.dash} opacity={m.bold ? 0.95 : 0.8} />
+          {Math.abs(m.y - m.lineY) > 1 && <line x1={plotW - 6} x2={plotW} y1={m.lineY} y2={m.y} stroke={m.color} strokeWidth="0.6" opacity="0.5" />}
+          <text x={plotW + 6} y={m.y + 3} fill={m.color} fontSize="9.5" fontWeight={m.bold ? 700 : 500}>{m.text}</text>
+        </g>
+      ))}
+      <line x1={plotW} x2={plotW} y1={PAD} y2={h - PAD} stroke="#2B3139" />
+    </svg>
+  );
+}
+
+/* ============================================================
  * 详情抽屉
  * ============================================================ */
 function Drawer({ id, P, tick, liqAgg, onClose, up, down }) {
   const [d, setD] = useState(null); const [err, setErr] = useState(null);
+  const [tf, setTf] = useState('h1');
   const base = P.base(id);
+  const tickRef = useRef(tick); tickRef.current = tick;
   useEffect(() => {
     let alive = true; setD(null); setErr(null);
+    const LIM = { '5m':288, '15m':288, '1h':288, '4h':180, '1d':180 };
+    const BINS = { m5:28, m15:30, h1:30, h4:26, d1:24 };
     const load = async () => {
       try {
-        const [m15, h1, h4, d1] = await Promise.all(['15m','1h','4h','1d'].map(tf => P.klines(id, tf, tf === '1h' ? 60 : 60)));
-        const [fund, oi, rl] = await Promise.all([P.funding(id).catch(() => null), P.oi(id).catch(() => null), P.recentLiq ? P.recentLiq(id).catch(() => null) : null]);
+        const [m5, m15, h1, h4, d1] = await Promise.all(Object.keys(LIM).map(t => P.klines(id, t, LIM[t])));
+        const [fund, oi, rl, depth] = await Promise.all([
+          P.funding(id).catch(() => null), P.oi(id).catch(() => null),
+          P.recentLiq ? P.recentLiq(id).catch(() => null) : null,
+          P.depth ? P.depth(id).catch(() => null) : null]);
         if (!alive) return;
-        const k = { m15, h1, h4, d1 };
-        setD({ k, met:S.metrics(k), fund, oi, rl, t:Date.now() });
+        const k = { m5, m15, h1, h4, d1 };
+        const price = tickRef.current?.last || m15[m15.length - 1]?.c || 0;
+        const an = {};
+        for (const [, key] of LEVEL_TFS) an[key] = LV ? LV.analyze(k[key], price, { bins: BINS[key], tf: key }) : null;
+        const wl = depth && LV ? LV.walls(depth, price) : null;
+        const reso = LV ? LV.resonance(an, price) : [];
+        const plan = LV ? LV.plan({ price, an, walls: wl, funding: fund?.predicted }) : null;
+        setD({ k, met:S.metrics(k), fund, oi, rl, depth, price, an, wl, reso, plan, t:Date.now() });
       } catch (e) { alive && setErr(e.message); }
     };
     load(); const iv = setInterval(load, 60000);
@@ -462,6 +554,9 @@ function Drawer({ id, P, tick, liqAgg, onClose, up, down }) {
   const m = d?.met; const liq = liqAgg[id];
   const rsiTag = v => v == null ? '' : v >= 70 ? '超买' : v <= 30 ? '超卖' : '中性';
   const rsiCol = v => v >= 70 ? down : v <= 30 ? up : '#EAECEF';
+  const an = d?.an?.[tf];
+  const plan = d?.plan;
+  const sideCol = plan?.side === 'long' ? up : plan?.side === 'short' ? down : '#848E9C';
   return (<>
     <div className="fixed inset-0 bg-black/50 z-40" onClick={onClose} />
     <aside className="fixed right-0 top-0 bottom-0 w-full max-w-md bg-panel2 border-l border-border z-50 overflow-y-auto drawer-enter flex flex-col">
@@ -473,8 +568,103 @@ function Drawer({ id, P, tick, liqAgg, onClose, up, down }) {
       <div className="p-4 flex-1">
         {err && <div className="text-xs text-amber-400 mb-3">加载失败：{err}</div>}
         <Section title="多周期涨跌幅（当前 K 线相对开盘）" right={<Live />}>
-          <div className="grid grid-cols-4 gap-2">{[['15m','m15'],['1h','h1'],['4h','h4'],['1d(UTC)','d1']].map(([l, k]) =>
-            <div key={k} className="bg-panel border border-border rounded-lg p-2 text-center"><div className="text-[10px] text-muted mb-1">{l}</div><Pct v={m?.ret[k]} up={up} down={down} className="text-sm font-semibold" /></div>)}</div>
+          <div className="grid grid-cols-5 gap-2">{[['5m','m5'],['15m','m15'],['1h','h1'],['4h','h4'],['1d（UTC）','d1']].map(([l, k]) =>
+            <div key={k} className="bg-panel border border-border rounded-lg p-2 text-center"><div className="text-[10px] text-muted mb-1">{l}</div><Pct v={k === 'm5' ? (d?.k?.m5 && S.liveReturn(d.k.m5)) : m?.ret[k]} up={up} down={down} className="text-sm font-semibold" /></div>)}</div>
+        </Section>
+        <Section title="关键价位 · 支撑 / 阻力" right={<><Live t="交易所 K 线" />{d?.wl ? <Badge tone="live" title="订单簿实时深度（Binance / OKX 公开接口）">盘口</Badge> : null}</>}>
+          <div className="bg-panel border border-border rounded-lg p-2.5">
+            <div className="flex items-center gap-1 mb-1.5">
+              {LEVEL_TFS.map(([l, k]) => (
+                <button key={k} onClick={() => setTf(k)} className={`px-2 py-0.5 rounded text-[10px] border ${tf === k ? 'bg-accent text-bg border-accent font-semibold' : 'bg-bg border-border text-muted hover:text-white'}`}>{l}</button>
+              ))}
+              <span className="ml-auto text-[9px] text-muted">{an ? `${an.levels.length} 个价位 · ATR ${LV.fmtNum(an.atr)}` : ''}</span>
+            </div>
+            <div className="flex items-center gap-3 text-[9px] text-muted mb-1">
+              <span><span className="inline-block w-2 h-2 mr-1 rounded-sm align-middle" style={{ background:BUY_COL }} />主动买盘</span>
+              <span><span className="inline-block w-2 h-2 mr-1 rounded-sm align-middle" style={{ background:SELL_COL }} />主动卖盘</span>
+              <span><span className="inline-block w-2 h-2 mr-1 rounded-sm align-middle" style={{ background:'#F0B90B' }} />70% 价值区</span>
+            </div>
+            {an ? <LevelLadder an={an} price={d.price} /> : <div className="py-10 text-center text-[11px] text-muted">{err ? '数据不足，无法计算' : '计算中…'}</div>}
+            <div className="grid grid-cols-3 gap-2 mt-1.5 text-center">
+              {[
+                { label: '最近支撑', lv: an?.supports[0], col: SUP_COL, flow: v => `主动买 ${Math.round(v.buyRatio * 100)}%` },
+                { label: '最近阻力', lv: an?.resistances[0], col: RES_COL, flow: v => `主动卖 ${Math.round((1 - v.buyRatio) * 100)}%` },
+                { label: '成交密集区 POC', lv: an ? { price: an.prof.poc.mid } : null, col: '#F0B90B', flow: null },
+              ].map(item => (
+                <div key={item.label} className="bg-bg border border-border rounded p-1.5">
+                  <div className="text-[9px] text-muted">{item.label}</div>
+                  <div className="font-mono text-[11px] font-semibold" style={{ color: item.lv ? item.col : undefined }}>{item.lv ? LV.fmtNum(item.lv.price) : '—'}</div>
+                  <div className="text-[9px] text-muted">{item.lv && d?.price ? `${(((item.lv.price / d.price) - 1) * 100).toFixed(2)}%${item.flow ? ` · ${item.flow(item.lv)}` : ''}` : ''}</div>
+                </div>))}
+            </div>
+            {an && (
+              <div className="text-[9px] text-muted mt-1.5">价值区 {LV.fmtNum(an.prof.vaLo)}–{LV.fmtNum(an.prof.vaHi)} · 区间 {LV.fmtNum(an.prof.lo)}–{LV.fmtNum(an.prof.hi)} · 主动买占比 {(an.buyRatio * 100).toFixed(0)}%（近 {Math.min(24, d.k[tf].length)} 根）</div>
+            )}
+            <div className="mt-2 bg-bg border border-border rounded-lg px-2 py-1.5">
+              <div className="flex justify-between text-[9px] text-muted mb-1"><span>各周期最近支撑 / 阻力（点击周期可切换上图）</span></div>
+              <div className="grid grid-cols-4 text-[9px] text-muted"><span>周期</span><span className="text-right">支撑</span><span className="text-right">阻力</span><span className="text-right">POC</span></div>
+              {LEVEL_TFS.map(([label, key]) => {
+                const a = d?.an?.[key];
+                const sp = a?.supports?.[0], rs = a?.resistances?.[0];
+                return (
+                  <div key={key} className={`grid grid-cols-4 text-[10px] font-mono py-0.5 ${tf === key ? 'bg-white/[0.06] rounded' : ''}`}>
+                    <span className={tf === key ? 'text-accent' : 'text-muted'}>{label}</span>
+                    <span className="text-right" style={{ color: sp ? SUP_COL : undefined }}>{sp ? LV.fmtNum(sp.price) : '—'}</span>
+                    <span className="text-right" style={{ color: rs ? RES_COL : undefined }}>{rs ? LV.fmtNum(rs.price) : '—'}</span>
+                    <span className="text-right text-muted">{a ? LV.fmtNum(a.prof.poc.mid) : '—'}</span>
+                  </div>);
+              })}
+            </div>
+            {d?.reso?.length ? (
+              <div className="mt-2 bg-bg border border-border rounded-lg p-2">
+                <div className="text-[10px] text-muted mb-1">跨周期共振位（≥2 个周期叠加，越强越值得关注）</div>
+                {d.reso.map((r, i) => (
+                  <div key={i} className="flex items-baseline justify-between text-[11px] font-mono py-0.5">
+                    <span style={{ color: r.side === 'support' ? SUP_COL : RES_COL }}>{r.side === 'support' ? '支撑' : '阻力'} {LV.fmtNum(r.price)}</span>
+                    <span className="text-[9px] text-muted">{r.tfs.map(t => (LEVEL_TFS.find(([, k]) => k === t) || [t])[0]).join(' / ')} · 强度 {r.strength}</span>
+                  </div>))}
+              </div>) : null}
+            {d?.wl && (
+              <div className="mt-2 bg-bg border border-border rounded-lg p-2">
+                <div className="flex justify-between text-[10px] text-muted mb-1">
+                  <span>盘口大单墙（现价 ±{(d.wl.bandPct * 100).toFixed(0)}%，按 USD 排序）</span>
+                  <span style={{ color: d.wl.imbalance >= 0 ? BUY_COL : SELL_COL }}>买卖失衡 {(d.wl.imbalance * 100).toFixed(1)}%</span>
+                </div>
+                <div className="grid grid-cols-2 gap-x-3 gap-y-0.5">
+                  <div>
+                    <div className="text-[9px] mb-0.5" style={{ color: BUY_COL }}>买盘墙</div>
+                    {d.wl.bids.length ? d.wl.bids.map((b, i) => (
+                      <div key={i} className="flex justify-between text-[10px] font-mono"><span style={{ color: BUY_COL }}>{LV.fmtNum(b.price)}</span><span className="text-muted">{b.dist.toFixed(2)}% · ${(b.usd / 1e6).toFixed(2)}M</span></div>
+                    )) : <div className="text-[10px] text-muted">—</div>}
+                  </div>
+                  <div>
+                    <div className="text-[9px] mb-0.5" style={{ color: SELL_COL }}>卖盘墙</div>
+                    {d.wl.asks.length ? d.wl.asks.map((a, i) => (
+                      <div key={i} className="flex justify-between text-[10px] font-mono"><span style={{ color: SELL_COL }}>{LV.fmtNum(a.price)}</span><span className="text-muted">+{a.dist.toFixed(2)}% · ${(a.usd / 1e6).toFixed(2)}M</span></div>
+                    )) : <div className="text-[10px] text-muted">—</div>}
+                  </div>
+                </div>
+              </div>)}
+            {d?.plan && (
+              <div className="mt-2 bg-bg border rounded-lg p-2.5" style={{ borderColor: `${sideCol}66` }}>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[11px] font-semibold">入场建议 · 机械计算</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded font-semibold" style={{ color: sideCol, border: `1px solid ${sideCol}66` }}>{d.plan.bias} · {d.plan.side === 'long' ? '做多' : d.plan.side === 'short' ? '做空' : '观望'}</span>
+                </div>
+                <div className="text-[11px] space-y-0.5 font-mono">
+                  {d.plan.entry && <div className="flex justify-between"><span className="text-muted font-sans">{d.plan.side === 'neutral' ? '震荡区间' : '入场区间'}</span><span>{LV.fmtNum(d.plan.entry[0])} – {LV.fmtNum(d.plan.entry[1])}</span></div>}
+                  {d.plan.stop != null && <div className="flex justify-between"><span className="text-muted font-sans">止损</span><span style={{ color: SELL_COL }}>{LV.fmtNum(d.plan.stop)}</span></div>}
+                  {d.plan.targets?.length ? <div className="flex justify-between"><span className="text-muted font-sans">目标</span><span style={{ color: BUY_COL }}>{d.plan.targets.map(LV.fmtNum).join(' / ')}</span></div> : null}
+                  {d.plan.rr != null && <div className="flex justify-between"><span className="text-muted font-sans">盈亏比（到目标 1）</span><span>{d.plan.rr.toFixed(2)}</span></div>}
+                </div>
+                <div className="mt-1.5 text-[10px] text-white/85 leading-relaxed">{d.plan.trigger}</div>
+                <div className="mt-1 text-[10px] text-amber-400/80 leading-relaxed">{d.plan.invalid}</div>
+                <div className="mt-1.5 space-y-0.5">{d.plan.reasons.slice(0, 6).map((r, i) => <div key={i} className="text-[9px] text-muted leading-snug">· {r}</div>)}</div>
+              </div>)}
+            <div className="mt-2 text-[9px] text-muted leading-relaxed">
+              价位来自 {P.label} 公开 K 线与订单簿：成交量分布（POC / 70% 价值区 / 密集区）+ 摆动高低点聚类 + 盘口挂单墙；强度为同一周期内相对分。不含手续费与滑点，仅供参考，不构成投资建议。
+            </div>
+          </div>
         </Section>
         <Section title="动量与连续性" right={<Live />}>
           <div className="bg-panel border border-border rounded-lg p-3 space-y-2 text-xs">
@@ -489,10 +679,10 @@ function Drawer({ id, P, tick, liqAgg, onClose, up, down }) {
             <div className="bg-panel border border-border rounded-lg p-2.5"><div className="text-[10px] text-muted">上期已结算费率</div><div className="font-mono mt-1" style={{ color: (d?.fund?.settled ?? 0) >= 0 ? up : down }}>{fmtFund(d?.fund?.settled)}</div></div>
             <div className="bg-panel border border-border rounded-lg p-2.5"><div className="text-[10px] text-muted">本期预测费率 · 结算 {d?.fund?.nextTime ? KSTt(d.fund.nextTime) : '—'}</div><div className="font-mono mt-1" style={{ color: (d?.fund?.predicted ?? 0) >= 0 ? up : down }}>{fmtFund(d?.fund?.predicted)}</div></div>
             <div className="bg-panel border border-border rounded-lg p-2.5 col-span-2">
-              <div className="text-[10px] text-muted mb-1">强平（WS 自页面打开起累计{liq ? `，${liq.n} 笔` : ''}）</div>
+              <div className="text-[10px] text-muted mb-1">强平（行情推送自页面打开起累计{liq ? `，${liq.n} 笔` : ''}）</div>
               <div className="flex justify-between font-mono"><span>多头爆仓 <span style={{ color: down }}>${fmtVol(liq?.long || 0)}</span></span><span>空头爆仓 <span style={{ color: up }}>${fmtVol(liq?.short || 0)}</span></span></div>
-              {d?.rl && <div className="text-[10px] text-muted mt-1">OKX REST 最近 {d.rl.n} 笔（自 {KSTt(d.rl.since)}）：多 ${fmtVol(d.rl.long)} / 空 ${fmtVol(d.rl.short)}</div>}
-              {P.id === 'binance' && <div className="text-[10px] text-muted mt-1">注：Binance 强平流每秒每币仅推送最新 1 笔，为下限估计。</div>}
+              {d?.rl && <div className="text-[10px] text-muted mt-1">OKX 接口最近 {d.rl.n} 笔（自 {KSTt(d.rl.since)}）：多 ${fmtVol(d.rl.long)} / 空 ${fmtVol(d.rl.short)}</div>}
+              {P.id === 'binance' && <div className="text-[10px] text-muted mt-1">注：Binance 强平推送每秒每币仅含最新 1 笔，为下限估计。</div>}
             </div>
             <div className="bg-panel border border-border rounded-lg p-2.5 col-span-2 flex justify-between"><span className="text-[10px] text-muted">持仓量 OI {d?.oi ? `$${fmtVol(d.oi.now)}` : ''} · 24h 变化</span><Pct v={d?.oi?.chg} up={up} down={down} className="font-semibold" /></div>
           </div>
@@ -505,22 +695,21 @@ function Drawer({ id, P, tick, liqAgg, onClose, up, down }) {
             <div className="text-[11px] text-muted">情绪指数 (−1~+1)：<span className="font-mono" style={{ color: s.score >= 0 ? up : down }}>{s.score > 0 ? '+' : ''}{s.score}</span></div>
             <p className="text-white/85 leading-relaxed">{s.summary}</p>
             <div className="flex flex-wrap gap-1">{s.themes.map(t => <span key={t} className="px-2 py-0.5 rounded bg-bg border border-border text-[10px] text-muted">{t}</span>)}</div>
-            <div className="space-y-1.5 pt-1">{s.posts.map(p => <a key={p.url} href={p.url} target="_blank" rel="noreferrer" className="block bg-bg border border-border rounded p-2 hover:border-accent/50"><div className="text-[10px] text-accent mb-0.5">{p.note} · ♥ {p.likes}</div><div className="text-[11px] text-white/75 line-clamp-3">{p.text}</div></a>)}</div>
+            <div className="space-y-1.5 pt-1">{s.posts.map(p => <a key={p.url} href={p.url} target="_blank" rel="noreferrer" title={p.textEn ? `原文：${p.textEn}` : undefined} className="block bg-bg border border-border rounded p-2 hover:border-accent/50"><div className="text-[10px] text-accent mb-0.5">{p.note} · ♥ {p.likes}</div><div className="text-[11px] text-white/75 line-clamp-3">{p.text}</div></a>)}</div>
           </div> : <div className="bg-panel border border-border rounded-lg p-3 text-xs text-muted">该币种暂无 X 情绪快照（快照覆盖 BTC、ETH 及当时涨幅/推荐榜头部币种）。运行 update_sentiment.md 中的流程可补充。</div>}
         </Section>
         <Section title="快讯" right={<Snap t={SNAP.news.snapshotTime} />}>
           <div className="space-y-2">{(news.length ? news : SNAP.news.items.slice(0, 3)).slice(0, 3).map(n =>
             <a key={n.url} href={n.url} target="_blank" rel="noreferrer" className="block bg-panel border border-border rounded-lg p-2.5 hover:border-accent/50">
-              <div className="text-[10px] text-sky-300 mb-1">X News {news.length ? '' : '· 大盘'} · {n.updated ? KST(n.updated) : ''}</div>
+              <div className="text-[10px] text-sky-300 mb-1">𝕏 快讯 {news.length ? '' : '· 大盘'} · {n.updated ? KST(n.updated) : ''}</div>
               <div className="text-xs text-white/90">{n.title}</div><div className="text-[11px] text-muted mt-0.5">{n.summary}</div></a>)}
-            <div className="text-[10px] text-muted">Foresight News / BlockBeats 无可从本机访问的免 Key 接口，暂以 X News 快照替代。</div>
+            <div className="text-[10px] text-muted">Foresight News / BlockBeats 没有可从本机访问的免密钥接口，暂以 𝕏 快讯快照替代。</div>
           </div>
         </Section>
         <Section title="链上异动" right={s?.whale ? <Snap t={SNAP.snapshotTime} /> : <Demo />}>
-          <div className="bg-panel border border-border rounded-lg p-3 text-xs text-white/85">{s?.whale || '示例：暂无免 Key 的链上巨鲸数据源接入（可接 Whale Alert / Arkham API）。'}</div>
+          <div className="bg-panel border border-border rounded-lg p-3 text-xs text-white/85">{s?.whale || '示例：暂无免密钥的链上巨鲸数据源接入（可接 Whale Alert / Arkham API）。'}</div>
         </Section>
       </div>
-      <MacroStrip compact up={up} down={down} />
     </aside>
   </>);
 }
@@ -568,12 +757,20 @@ function MacroStrip({ compact, up, down }) {
  * App
  * ============================================================ */
 function App() {
-  const [platform, setPlatform] = useState(() => localStorage.getItem('cp_plat') || 'binance');
+  const [platform, setPlatform] = useState(() => {
+    const q = new URLSearchParams(location.search).get('plat');
+    if (q && PLATFORMS[q]) return q;
+    return localStorage.getItem('cp_plat') || 'binance';
+  });
   const P = PLATFORMS[platform];
-  const [colorMode, setColorMode] = useState(() => localStorage.getItem('cp_color') || 'gr');
+  const [colorMode, setColorMode] = useState(() => localStorage.getItem('cp_color_v2') || 'rg');
   const up = colorMode === 'gr' ? '#0ECB81' : '#F6465D', down = colorMode === 'gr' ? '#F6465D' : '#0ECB81';
   const [search, setSearch] = useState('');
-  const [sel, setSel] = useState(null);
+  // 支持 #/BTCUSDT 这类深链直接打开详情
+  const [sel, setSel] = useState(() => {
+    const h = (location.hash || '').replace(/^#\/?/, '').trim();
+    return /^[A-Za-z0-9._-]{2,30}$/.test(h) ? h : null;
+  });
   const [sortKey, setSortKey] = useState('chg');
   const [ws, setWs] = useState({});
   const [lastUpdate, setLastUpdate] = useState(null);
@@ -588,7 +785,11 @@ function App() {
   const prevSigs = useRef(null);
 
   useEffect(() => localStorage.setItem('cp_plat', platform), [platform]);
-  useEffect(() => localStorage.setItem('cp_color', colorMode), [colorMode]);
+  useEffect(() => localStorage.setItem('cp_color_v2', colorMode), [colorMode]);
+  useEffect(() => {
+    const want = sel ? `#/${sel}` : '';
+    if (location.hash !== want) history.replaceState(null, '', location.pathname + location.search + want);
+  }, [sel]);
   const touch = () => setLastUpdate(Date.now());
 
   // ---------- 行情：REST 初始化 + 轮询兜底 + WS ----------
@@ -604,7 +805,7 @@ function App() {
         t.forEach(x => st.tickers.set(x.id, { ...st.tickers.get(x.id), ...x }));
         st.spot = { ...st.spot, ...sp }; if (mk) st.marks = { ...st.marks, ...mk };
         setErr(null); touch(); setVer(v => v + 1);
-      } catch (e) { alive && setErr(`REST 请求失败：${e.message}（若用 file:// 打开，请改用 python3 -m http.server）`); }
+      } catch (e) { alive && setErr(`行情接口请求失败：${e.message}（若用 file:// 打开，请改用 python3 -m http.server）`); }
     };
     restAll(true);
     const anyWsDown = () => conns.some(c => !c.ws || c.ws.readyState !== 1);
@@ -739,9 +940,9 @@ function App() {
         </div>
         <SignalBoard {...{ P, scan, opts, setOpts, onSelect:setSel, up, down, newSet, notifyOn, enableNotify, runNow:() => runScan() }} />
         <GainersTable rows={rows} P={P} sel={sel} onSelect={setSel} up={up} down={down} sortKey={sortKey} setSortKey={setSortKey} />
-        <div className="text-[10px] text-muted">数据源：<Live /> {P.label} 公开 REST / WebSocket（无需 Key）· <Snap t="" /> X 情绪/快讯 {SNAP.snapshotTime} · 宏观数据人工核实截至 {MACRO_AS_OF} · <Demo /> 未接入的数据。仅供参考，不构成投资建议。</div>
+        <div className="text-[10px] text-muted">数据源：<Live /> {P.label} 公开行情接口（REST / WebSocket，无需密钥）· <Snap t="" /> 𝕏 情绪 / 快讯 {SNAP.snapshotTime} · 宏观数据人工核实截至 {MACRO_AS_OF} · <Demo /> 未接入的数据。仅供参考，不构成投资建议。</div>
       </main>
-      {!sel && <MacroStrip up={up} down={down} />}
+      <MacroStrip up={up} down={down} />
       {sel && <Drawer id={sel} P={P} tick={st.tickers.get(sel)} liqAgg={st.liq} onClose={() => setSel(null)} up={up} down={down} />}
     </div>
   );

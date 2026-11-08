@@ -1,4 +1,6 @@
-/* Auto-generated snapshot — see update_sentiment.md */
+/* Auto-generated snapshot — see update_sentiment.md
+ * 说明：posts[].text 统一为简体中文译文，原文保留在 posts[].textEn；
+ *       ui 中悬停帖子可查看原文。新增快照请沿用这个约定。 */
 window.SNAPSHOT = {
   "snapshotTime": "2026-11-07 19:11 KST",
   "sentiment": {
@@ -20,21 +22,24 @@ window.SNAPSHOT = {
       "posts": [
         {
           "url": "https://x.com/iiam_Akshay/status/2119008884509770181",
-          "text": "🐋 WHALE OPENS A $66.8 MILLION BITCOIN SHORT · 13X LEVERAGE",
+          "text": "🐋 巨鲸开出一笔 6680 万美元的比特币空单 · 13 倍杠杆",
+          "textEn": "🐋 WHALE OPENS A $66.8 MILLION BITCOIN SHORT · 13X LEVERAGE",
           "likes": 1,
           "note": "偏空",
           "time": "2026-11-07T10:07:42.000Z"
         },
         {
           "url": "https://x.com/Millon_Sancet/status/2119005332131225749",
-          "text": "midterm week just bled $1.28B out of US spot BTC ETFs — 94% was IBIT alone (−$1.21B).",
+          "text": "中期选举周，美国现货 BTC ETF 净流出 12.8 亿美元 —— 其中 94% 来自 IBIT 一只（−12.1 亿美元）。",
+          "textEn": "midterm week just bled $1.28B out of US spot BTC ETFs — 94% was IBIT alone (−$1.21B).",
           "likes": 1,
           "note": "偏空",
           "time": "2026-11-07T09:53:35.000Z"
         },
         {
           "url": "https://x.com/5waps/status/2119008779383521774",
-          "text": "$BTC update: TWAP ~76k [key level]. ~70k to ~85k short to near-term range.",
+          "text": "$BTC 更新：TWAP 约 76k（关键位）。短期大致在 70k～85k 区间内运行。",
+          "textEn": "$BTC update: TWAP ~76k [key level]. ~70k to ~85k short to near-term range.",
           "likes": 0,
           "note": "中性",
           "time": "2026-11-07T10:07:16.000Z"
@@ -60,21 +65,24 @@ window.SNAPSHOT = {
       "posts": [
         {
           "url": "https://x.com/TedPillows/status/2119008794026110988",
-          "text": "$ETH is still holding at its $2,250 support zone. Bitcoin made a new low recently, but Ethereum didn't — sign of strength.",
+          "text": "$ETH 仍守住在 2,250 美元的支撑区。比特币近日创出新低，以太坊却没有 —— 这是相对强势的信号。",
+          "textEn": "$ETH is still holding at its $2,250 support zone. Bitcoin made a new low recently, but Ethereum didn't — sign of strength.",
           "likes": 14,
           "note": "偏多",
           "time": "2026-11-07T10:07:20.000Z"
         },
         {
           "url": "https://x.com/abergavenny/status/2119008687456932111",
-          "text": "I'm currently long about $130 million on #Bitcoin and #Ethereum. Set up for the expected short squeeze and Sunday-to-Monday pump.",
+          "text": "我目前持有约 1.3 亿美元的 #比特币 和 #以太坊 多单，为预期的逼空行情以及周日到周一的拉升做准备。",
+          "textEn": "I'm currently long about $130 million on #Bitcoin and #Ethereum. Set up for the expected short squeeze and Sunday-to-Monday pump.",
           "likes": 0,
           "note": "偏多",
           "time": "2026-11-07T10:06:55.000Z"
         },
         {
           "url": "https://x.com/Alphractal/status/2119008892680077551",
-          "text": "Bitcoin vs. Ethereum: Two Very Different Supply and Circulation Dynamics. BTC supply velocity at decade lows…",
+          "text": "比特币 vs 以太坊：两种截然不同的供应与流通机制。BTC 的供应周转率正处于十年低位……",
+          "textEn": "Bitcoin vs. Ethereum: Two Very Different Supply and Circulation Dynamics. BTC supply velocity at decade lows…",
           "likes": 0,
           "note": "中性",
           "time": "2026-11-07T10:07:43.000Z"
@@ -100,21 +108,24 @@ window.SNAPSHOT = {
       "posts": [
         {
           "url": "https://x.com/WarriorCommunX/status/2119008941317459974",
-          "text": "IS SOLANA REALLY OVER? A crypto expert claims SOL will never make a comeback — analysis or bold prediction?",
+          "text": "Solana 真的完了吗？一位加密专家声称 SOL 永远不会回暖 —— 这究竟是分析，还是大胆预言？",
+          "textEn": "IS SOLANA REALLY OVER? A crypto expert claims SOL will never make a comeback — analysis or bold prediction?",
           "likes": 0,
           "note": "中性偏空",
           "time": "2026-11-07T10:07:55.000Z"
         },
         {
           "url": "https://x.com/psyycho1/status/2119008893196185781",
-          "text": "SOL is facing pressure from multiple directions right now.",
+          "text": "SOL 目前正面临来自多个方向的压力。",
+          "textEn": "SOL is facing pressure from multiple directions right now.",
           "likes": 0,
           "note": "偏空",
           "time": "2026-11-07T10:07:44.000Z"
         },
         {
           "url": "https://x.com/ramensolz/status/2119008946417791233",
-          "text": "@AnchoredFi @solana @centrifuge Tokenized stocks work harder as collateral.",
+          "text": "@AnchoredFi @solana @centrifuge 代币化股票作为抵押品能发挥更大的作用。",
+          "textEn": "@AnchoredFi @solana @centrifuge Tokenized stocks work harder as collateral.",
           "likes": 0,
           "note": "中性偏多",
           "time": "2026-11-07T10:07:56.000Z"
@@ -140,21 +151,24 @@ window.SNAPSHOT = {
       "posts": [
         {
           "url": "https://x.com/SmCrypto_bro/status/2118955139751145964",
-          "text": "$ONE: Another Breakout Coming, or Are Bulls Walking Into a Trap? Harmony rallied nearly 9x then sellers took control.",
+          "text": "$ONE：又一次突破要来，还是多头正走进陷阱？Harmony 曾拉升近 9 倍，随后卖方接管了盘面。",
+          "textEn": "$ONE: Another Breakout Coming, or Are Bulls Walking Into a Trap? Harmony rallied nearly 9x then sellers took control.",
           "likes": 3,
           "note": "中性偏空",
           "time": "2026-11-07T06:34:08.000Z"
         },
         {
           "url": "https://x.com/jobpraiz149832/status/2118968459677573280",
-          "text": "Harmony is navigating a major transition as it shuts down its original chain amid speculative trading — $ONE in the spotlight.",
+          "text": "Harmony 正经历一次重大转型：在投机交易的喧嚣中关闭其原链 —— $ONE 处在聚光灯下。",
+          "textEn": "Harmony is navigating a major transition as it shuts down its original chain amid speculative trading — $ONE in the spotlight.",
           "likes": 0,
           "note": "中性偏空",
           "time": "2026-11-07T07:27:03.000Z"
         },
         {
           "url": "https://x.com/cexscan/status/2118939877425189285",
-          "text": "Binance Spot Top Gainers — Layer1: $ONE (Harmony)",
+          "text": "币安现货涨幅榜 —— Layer1：$ONE（Harmony）",
+          "textEn": "Binance Spot Top Gainers — Layer1: $ONE (Harmony)",
           "likes": 0,
           "note": "偏多",
           "time": "2026-11-07T05:33:29.000Z"
@@ -180,21 +194,24 @@ window.SNAPSHOT = {
       "posts": [
         {
           "url": "https://x.com/DyorNetCrypto/status/2119007786067706248",
-          "text": "Top 5 Bullish Trends — 1️⃣ $ACT — Act I : The AI Prophecy",
+          "text": "看涨趋势 Top 5 —— 1️⃣ $ACT —— Act I：The AI Prophecy",
+          "textEn": "Top 5 Bullish Trends — 1️⃣ $ACT — Act I : The AI Prophecy",
           "likes": 0,
           "note": "偏多",
           "time": "2026-11-07T10:03:20.000Z"
         },
         {
           "url": "https://x.com/WhisprNews/status/2119007584824787361",
-          "text": "memecoins winners: Act I : The AI Prophecy $ACT +17.00%",
+          "text": "Meme 币赢家：Act I：The AI Prophecy $ACT +17.00%",
+          "textEn": "memecoins winners: Act I : The AI Prophecy $ACT +17.00%",
           "likes": 0,
           "note": "偏多",
           "time": "2026-11-07T10:02:32.000Z"
         },
         {
           "url": "https://x.com/crypto_withfaiz/status/2118871881143181775",
-          "text": "$ACT – Act I: The AI Prophecy · Upper 0.0125–0.0170 · Lower 0.0079–0.0060",
+          "text": "$ACT —— Act I：The AI Prophecy · 上方目标 0.0125–0.0170 · 下方区间 0.0079–0.0060",
+          "textEn": "$ACT – Act I: The AI Prophecy · Upper 0.0125–0.0170 · Lower 0.0079–0.0060",
           "likes": 0,
           "note": "中性偏多",
           "time": "2026-11-07T01:03:17.000Z"
@@ -220,21 +237,24 @@ window.SNAPSHOT = {
       "posts": [
         {
           "url": "https://x.com/cexscan/status/2118966998038167954",
-          "text": "$MITO is up 14% in 12 hours on Binance Spot — nearly all in the last 3 hours ($831K of $944K volume).",
+          "text": "$MITO 在币安现货 12 小时内上涨 14% —— 成交量几乎全部集中在最近 3 小时（94.4 万美元中的 83.1 万美元）。",
+          "textEn": "$MITO is up 14% in 12 hours on Binance Spot — nearly all in the last 3 hours ($831K of $944K volume).",
           "likes": 0,
           "note": "偏多",
           "time": "2026-11-07T07:21:15.000Z"
         },
         {
           "url": "https://x.com/CryptoBoykaX/status/2118715205198758059",
-          "text": "93% of the $MITO supply appears held in Binance-labeled wallets. Mcap ~$3.6M after 65 consecutive down days.",
+          "text": "$MITO 约 93% 的供应量似乎集中在带有币安标签的钱包中。连续 65 天下跌之后，市值约 360 万美元。",
+          "textEn": "93% of the $MITO supply appears held in Binance-labeled wallets. Mcap ~$3.6M after 65 consecutive down days.",
           "likes": 11,
           "note": "偏空",
           "time": "2026-11-06T14:40:43.000Z"
         },
         {
           "url": "https://x.com/Finora_EN/status/2118946279346565496",
-          "text": "$MITO jumps 5.3% with 16.4x volume — short-term bullish bias, but is this the real deal?",
+          "text": "$MITO 上涨 5.3%，成交量为 16.4 倍 —— 短线偏多，但这究竟是真的吗？",
+          "textEn": "$MITO jumps 5.3% with 16.4x volume — short-term bullish bias, but is this the real deal?",
           "likes": 0,
           "note": "中性偏多",
           "time": "2026-11-07T05:58:55.000Z"
@@ -260,21 +280,24 @@ window.SNAPSHOT = {
       "posts": [
         {
           "url": "https://x.com/EntitledTrader/status/2118975753412915435",
-          "text": "METEORA ON THE MOVE · Price $0.2936 (+7.84% 24h) · 24H volume $14.4M",
+          "text": "Meteora 异动 · 价格 0.2936 美元（24h +7.84%）· 24h 成交额 1440 万美元",
+          "textEn": "METEORA ON THE MOVE · Price $0.2936 (+7.84% 24h) · 24H volume $14.4M",
           "likes": 0,
           "note": "偏多",
           "time": "2026-11-07T07:56:02.000Z"
         },
         {
           "url": "https://x.com/GlassDexio/status/2119007817407377786",
-          "text": "Most traded Solana coins… 🟡 MET $2.26M vol, +6.9%, Caution",
+          "text": "Solana 上成交最活跃的币…… 🟡 MET 成交 226 万美元，+6.9%，注意风险",
+          "textEn": "Most traded Solana coins… 🟡 MET $2.26M vol, +6.9%, Caution",
           "likes": 0,
           "note": "中性偏多",
           "time": "2026-11-07T10:03:27.000Z"
         },
         {
           "url": "https://x.com/ArmstrongOfDefi/status/2119008119632044327",
-          "text": "Making that with $3k on a token like $MET shows opportunities",
+          "text": "用 3000 美元在 $MET 这样的代币上做出这样的收益，说明机会确实存在。",
+          "textEn": "Making that with $3k on a token like $MET shows opportunities",
           "likes": 0,
           "note": "偏多",
           "time": "2026-11-07T10:04:39.000Z"
@@ -300,21 +323,24 @@ window.SNAPSHOT = {
       "posts": [
         {
           "url": "https://x.com/Cryptocratico/status/2118992728478396670",
-          "text": "MAJOR BREAKOUT SETUP — $250 & $285 TARGETS. QNT approaching a critical technical level.",
+          "text": "重大突破形态 —— 目标 250 与 285 美元。QNT 正在逼近关键技术位。",
+          "textEn": "MAJOR BREAKOUT SETUP — $250 & $285 TARGETS. QNT approaching a critical technical level.",
           "likes": 1,
           "note": "偏多",
           "time": "2026-11-07T09:03:30.000Z"
         },
         {
           "url": "https://x.com/xstelixxx/status/2119006653463011436",
-          "text": "If QNT cleanly breaks and closes a 4H candle above $200 with ADX climbing, the trend is real. Below $183, exit.",
+          "text": "如果 QNT 干脆地突破、并在 4 小时 K 线收于 200 美元上方且 ADX 走高，趋势就成立；跌破 183 美元则离场。",
+          "textEn": "If QNT cleanly breaks and closes a 4H candle above $200 with ADX climbing, the trend is real. Below $183, exit.",
           "likes": 1,
           "note": "中性偏多",
           "time": "2026-11-07T09:58:50.000Z"
         },
         {
           "url": "https://x.com/yskqz_/status/2118974981845455018",
-          "text": "$QNT (Quant) is up 7.2% in 24h with $58M volume and a $2.9B market cap",
+          "text": "$QNT（Quant）24 小时上涨 7.2%，成交额 5800 万美元，市值 29 亿美元。",
+          "textEn": "$QNT (Quant) is up 7.2% in 24h with $58M volume and a $2.9B market cap",
           "likes": 4,
           "note": "偏多",
           "time": "2026-11-07T07:52:58.000Z"
@@ -340,21 +366,24 @@ window.SNAPSHOT = {
       "posts": [
         {
           "url": "https://x.com/LanaValentis/status/2118659713080410382",
-          "text": "$TIA The Unlocks Are Done. The Products Are Live. The Chart Is Turning — Celestia holding above broken descending resistance.",
+          "text": "$TIA 解锁已经结束，产品已经上线，图表正在转向 —— Celestia 站稳在被突破的下降阻力上方。",
+          "textEn": "$TIA The Unlocks Are Done. The Products Are Live. The Chart Is Turning — Celestia holding above broken descending resistance.",
           "likes": 148,
           "note": "偏多",
           "time": "2026-11-06T11:00:13.000Z"
         },
         {
           "url": "https://x.com/Cumulo_pro/status/2118942066097144284",
-          "text": "3 years of @celestia mainnet — 2.6x usage, 115x throughput and Fibre live.",
+          "text": "@celestia 主网三周年 —— 用量 2.6 倍、吞吐 115 倍，Fibre 已上线。",
+          "textEn": "3 years of @celestia mainnet — 2.6x usage, 115x throughput and Fibre live.",
           "likes": 13,
           "note": "偏多",
           "time": "2026-11-07T05:42:11.000Z"
         },
         {
           "url": "https://x.com/EA32376/status/2118841106247139753",
-          "text": "Celestia: Holder revenue is $0. There is no mechanism for value to flow to the token! Utility is very limited!",
+          "text": "Celestia：持币者收益为 0。没有任何机制让价值流向代币！实用性非常有限！",
+          "textEn": "Celestia: Holder revenue is $0. There is no mechanism for value to flow to the token! Utility is very limited!",
           "likes": 0,
           "note": "偏空",
           "time": "2026-11-06T23:01:00.000Z"
@@ -380,21 +409,24 @@ window.SNAPSHOT = {
       "posts": [
         {
           "url": "https://x.com/theKOLLAB_io/status/2119008088871063752",
-          "text": "Zcash now targets a block every 25 seconds. NU7 activated on 6 November at block 3,543,405.",
+          "text": "Zcash 现在目标为每 25 秒出一个区块。NU7 已于 11 月 6 日在区块 3,543,405 激活。",
+          "textEn": "Zcash now targets a block every 25 seconds. NU7 activated on 6 November at block 3,543,405.",
           "likes": 0,
           "note": "偏多",
           "time": "2026-11-07T10:04:32.000Z"
         },
         {
           "url": "https://x.com/RPTIME/status/2119007992100028446",
-          "text": "Over $15 million in $ZEC just became unspendable — NU7 and the original Sprout privacy pool.",
+          "text": "超过 1500 万美元的 $ZEC 刚刚变得无法花费 —— 由 NU7 与最初的 Sprout 隐私池所致。",
+          "textEn": "Over $15 million in $ZEC just became unspendable — NU7 and the original Sprout privacy pool.",
           "likes": 0,
           "note": "中性",
           "time": "2026-11-07T10:04:09.000Z"
         },
         {
           "url": "https://x.com/oracleperps/status/2119007128211832941",
-          "text": "Top-1% wallet just flipped ZEC LONG — $341K at 1,318.1",
+          "text": "前 1% 的钱包刚刚转为 ZEC 多单 —— 34.1 万美元，成本 1,318.1。",
+          "textEn": "Top-1% wallet just flipped ZEC LONG — $341K at 1,318.1",
           "likes": 0,
           "note": "偏多",
           "time": "2026-11-07T10:00:43.000Z"
