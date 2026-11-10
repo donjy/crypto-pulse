@@ -48,11 +48,12 @@ setInterval(() => {
 /* ============================================================
  * 宏观数据（人工核实快照，见 README）。无法核实的值为 '—'
  * ============================================================ */
-const MACRO_AS_OF = '2026-11-05 (KST)';
+const MACRO_AS_OF = '2026-11-11 (KST)';
 const MACRO = [
-  { key:'CPI', name:'CPI 同比', period:'2026年9月', released:'10/14', prev:'3.4%', forecast:'3.6%', actual:'3.7%', type:'inflation',
-    next:{ date:'11/10 22:30 KST', period:'10月', forecast:'3.7%' },
-    src:[['CNBC','https://www.cnbc.com/2026/10/14/cpi-inflation-report-september-2026.html'],['BLS 日程','https://www.bls.gov/schedule/2026/11_sched.htm']] },
+  { key:'CPI', name:'CPI 环比', period:'2026年10月', released:'11/10 22:30 KST', prev:'0.6%', forecast:'0.3%', actual:'0.4%', type:'inflation',
+    note:'同比本月未公布；核心环比 +0.3%（预期 +0.2%，前值 +0.3%），均高于预期（偏鹰）',
+    next:{ date:'12/10 22:30 KST', period:'11月', forecast:'—' },
+    src:[['CNBC','https://www.cnbc.com/2026/11/10/cpi-inflation-report-october-2026.html'],['BLS 日程','https://www.bls.gov/schedule/2026/12_sched.htm']] },
   { key:'PCE', name:'核心 PCE 同比', period:'2026年9月', released:'10/29', prev:'3.0%', forecast:'3.1%', actual:'3.1%', type:'inflation',
     next:{ date:'11/25 22:30 KST', period:'10月', forecast:'—' },
     src:[['Nowflation 日历','https://nowflation.com/calendar'],['FedRateCalc','https://fedratecalc.com/us-economic-calendar/november-2026/']] },
