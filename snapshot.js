@@ -2,538 +2,519 @@
  * 说明：posts[].text 统一为简体中文译文，原文保留在 posts[].textEn；
  * ui 中悬停帖子可查看原文。新增快照请沿用这个约定。 */
 window.SNAPSHOT = {
-  "snapshotTime": "2026-11-10 18:37 KST",
+  "snapshotTime": "2026-11-10 19:16 KST",
   "sentiment": {
     "BTC": {
-      "sample": 18,
-      "bull": 0.39,
-      "bear": 0.28,
-      "neutral": 0.33,
-      "score": 0.11,
-      "headline": "约 74,406 最新价持平，24h 翻红至 +0.19%",
-      "summary": "BTC 约 $74,406.01，24h 约 +0.19%（qv≈8.96 亿 USDT），最新价较上轮约 74,410.77 几乎持平，只再落约 5 美元，但 24h 由约 -0.37% 翻转为约 +0.19%，主要是窗口滚动把更早的跌幅移出，而不是新的一轮急涨。过滤钱包恢复广告、乞讨、测验、迷因奖励和价格机器人后可用样本约 18：吸纳和卖压仍在同一窗口里对打。Eric Trump“数字黄金”转述仍是最高互动帖（约 8 赞）。Strategy 再买 1,036 枚、总持仓约 850,364 枚的材料还在，持仓排行帖也把 Strategy 写在约 6,350 万美元级持仓的第二位。本轮新出现的偏多材料是：有帖称特朗普相关公司持有 15,649 枚比特币、约合 11.7 亿美元，并在三季度再增持 1,510 枚、约合 1.13 亿美元。卖压侧，MARA 三季度净利约 6.321 亿美元、营收下降约 35% 至约 1.642 亿美元，季后卖出 13,597 枚、筹资约 11 亿美元并还清约 7.5 亿美元比特币抵押贷款的口径替代了上轮“还没有卖完”的写法；上轮缺席的 Hut 8 转出 1,617 枚、约合 1.214 亿美元材料本轮回到样本。2031 年约 62.2 万–118 万美元的长期模型也再次出现。资金费率约 +0.0093%，接近中性略正，与上轮约 +0.0092% 几乎持平。最新价没有真正拉开，但 24h 已经翻红，样本略转偏多，score 由约 0.05 升至约 0.11。",
+      "sample": 17,
+      "bull": 0.41,
+      "bear": 0.29,
+      "neutral": 0.3,
+      "score": 0.12,
+      "headline": "约 74,454 小幅回升，24h +0.27%",
+      "summary": "BTC 约 $74,454.01，24h 约 +0.27%（qv≈8.87 亿 USDT），最新价较上轮约 74,406.01 再抬约 48 美元，24h 涨幅由约 +0.19% 略扩至约 +0.27%。过滤钱包恢复广告、乞讨、测验、迷因奖励和价格机器人后可用样本约 17：吸纳和卖压仍在同一窗口里对打。上轮最高互动的 Eric Trump“数字黄金”转述本轮未再出现。Strategy 再买 1,036 枚、总持仓约 850,364 枚的材料仍在，但互动降至约 3 赞。卖压侧，MARA 在约六个星期内卖出 13,597 枚、筹资约 11 亿美元的口径还在，并新出现“还计划继续卖”的转述。特朗普相关公司持有 15,649 枚、约合 11.7 亿美元、三季度再增持 1,510 枚的材料仍在样本。上轮回到样本的 Hut 8 转出本轮再次缺席。资金费率约 +0.0087%，接近中性略正，较上轮约 +0.0093% 略收。最新价小幅回升，样本仍略偏多，score 由约 0.11 升至约 0.12。",
       "themes": [
-        "24h翻红",
-        "特朗普公司增持",
-        "特朗普家族站台",
-        "MARA卖币还贷",
-        "Hut8转出回归"
+        "24h小幅回升",
+        "MARA计划继续卖",
+        "Strategy再买仍在",
+        "特朗普公司持仓",
+        "Eric Trump转述缺席"
       ],
       "whale": null,
       "posts": [
         {
-          "url": "https://x.com/COACHCHADC/status/2120013114817061371",
-          "text": "有帖转述 Eric Trump 称，比特币是现代金融的未来，也是新的数字黄金，并提问机构加密时代是否已经到来。",
-          "textEn": "🚨 BREAKING CRYPTO NEWS! 🔥\n\nERIC TRUMP: “BITCOIN IS THE FUTURE OF MODERN FINANCE. BITCOIN IS THE NEW DIGITAL GOLD.” 🟠\n\nTHE INSTITUTIONAL CRYPTO ERA IS HERE? 👀\n\n#Bitcoin #BTC #Crypto #XRP https://t.co/Yfa52A9FqC",
-          "likes": 8,
+          "url": "https://x.com/TheChainVanta/status/2119983094522392942",
+          "text": "早。刚刚：Strategy 再买 1,036 枚比特币，约合 8,200 万美元，总持仓现在是 850,364 枚。人工智能交易降温、英伟达承压的时候，比特币还在继续堆。谁还在吸纳？",
+          "textEn": "Gm Ct\nJUST IN: Strategy buys another 1,036 $BTC for ~$82M\nTotal holdings now 850,364 Bitcoin\n\nWhile the AI trade cools and Nvidia faces heat, Bitcoin keeps stacking.\n\nWho’s still accumulating? 👀\n\n#Bitcoin #BTC #Crypto #AI #StackSats",
+          "likes": 3,
           "note": "偏多",
-          "time": "2026-11-10T04:38:09.000Z"
+          "time": "2026-11-10T02:38:51.000Z"
+        },
+        {
+          "url": "https://x.com/SniffChainn/status/2120034531747008832",
+          "text": "突发：比特币矿企 MARA 在六个星期里卖出 13,597 枚比特币，筹资 11 亿美元，并计划继续卖出，援引 CoinDesk。",
+          "textEn": "🚨 BREAKING: Bitcoin miner MARA sold 13,597 BTC for $1.1 billion in six weeks and plans to sell more, via CoinDesk.\n\n#literasikeuangan #Bitcoin #BTC",
+          "likes": 2,
+          "note": "偏空",
+          "time": "2026-11-10T06:03:15.000Z"
         },
         {
           "url": "https://x.com/PropfirmExpress/status/2120064711723282673",
-          "text": "有帖称特朗普相关公司持有 15,649 枚比特币，约合 11.7 亿美元，并在三季度再增持 1,510 枚、约合 1.13 亿美元，称这是市场不确定时值得关注的企业持仓。",
+          "text": "特朗普的公司持有约 11.7 亿美元比特币。报道称该公司持有 15,649 枚，并在三季度再增持 1,510 枚、约合 1.13 亿美元。在市场不确定的时候，这是一个值得关注的大型公司持仓。",
           "textEn": "🚨 TRUMP'S COMPANY HOLDS $1.17B IN BITCOIN\n\nThe company reportedly holds 15,649 BTC and added another 1,510 BTC worth $113M in Q3.\n\n🎯 A major corporate Bitcoin position worth watching amid market uncertainty.\n\n#Bitcoin #BTC #Crypto #Trump #InstitutionalInvesting #CryptoMarkets https://t.co/H5XWYu4iQW",
           "likes": 1,
           "note": "偏多",
           "time": "2026-11-10T08:03:10.000Z"
-        },
-        {
-          "url": "https://x.com/USACryptoGroup/status/2120020736832073760",
-          "text": "有帖称矿企 MARA 三季度净利约 6.321 亿美元，高于上年同期约 1.231 亿美元，主要来自比特币涨价；营收下降约 35% 至约 1.642 亿美元。季后它卖出 13,597 枚比特币、筹资约 11 亿美元，并还清约 7.5 亿美元的比特币抵押贷款。",
-          "textEn": "Crypto News\n\nBitcoin miner MARA posted Q3 net income of $632.1M, up from $123.1M, mostly from BTC price gains. Revenue fell 35% to $164.2M. After the quarter it sold 13,597 BTC for ~$1.1B and fully repaid $750M in BTC-backed loans.\n\n#Bitcoin #MARA #BTC #usacryptogroup",
-          "likes": 1,
-          "note": "偏空",
-          "time": "2026-11-10T05:08:26.000Z"
         }
       ]
     },
     "ETH": {
-      "sample": 15,
-      "bull": 0.33,
-      "bear": 0.33,
-      "neutral": 0.34,
-      "score": 0.0,
-      "headline": "约 2,102 最新价略回，24h 跌幅收窄至 -0.35%",
-      "summary": "ETH 约 $2,102.00，24h 约 -0.35%（qv≈3.92 亿 USDT），最新价较上轮约 2,104.26 再落约 2 美元，24h 由约 -1.01% 收窄至约 -0.35%。过滤迷因喊单、重复编辑帖和离题对比后可用样本约 15。沉寂约 10 年的地址转出全部 2,155 枚、约合 459 万美元的材料仍是最高互动帖（约 6 赞）；另有较新转述把这笔约 2,154 枚的转移和投毒诈骗放在一起。现货 ETF 约 1.8451 亿美元流出、当时以太坊跌至约 2,123 美元、同时 BitMine 再买 9,587 枚的口径还在。本轮较明确的对冲是：有帖称机构继续从以太坊 ETF 撤出资金时，部分大额钱包仍在吸纳，并问聪明钱是否在为反弹做准备。Sharplink 三季度净利约 7.514 亿美元、账上约 892,708 枚的材料仍有出现；贝莱德卖出约 2.1323 亿美元比特币和约 1.1828 亿美元以太坊的转述也还在。上轮互动较高的“主流交易所卖出以太坊”材料本轮样本里没有再出现。资金费率约 +0.0032%，接近中性略正，与上轮相同。价格跌幅收窄，流出和吸纳同时在场，样本收成接近平衡，score 由约 -0.07 升至约 0.00。",
+      "sample": 16,
+      "bull": 0.38,
+      "bear": 0.31,
+      "neutral": 0.31,
+      "score": 0.07,
+      "headline": "约 2,101 基本持平，24h 跌幅收窄至 -0.27%",
+      "summary": "ETH 约 $2,101.34，24h 约 -0.27%（qv≈3.94 亿 USDT），最新价较上轮约 2,102.00 几乎持平，24h 跌幅由约 -0.35% 再收至约 -0.27%。过滤迷因、历史回顾和题外帖后可用样本约 16。沉寂约 10 年的地址转出全部 2,155 枚、约合 459 万美元，仍是最高互动材料（约 6 赞）；本轮新出现把这同一笔转出写成地址投毒骗局的角度。美国现货以太坊 ETF 净流出约 1.8451 亿美元、BitMine 再购约 9,587 枚、总持仓约 6,070,092 枚、均价约 2,234 美元的材料还在。大额钱包吸纳、Sharplink 三季度持仓约 892,708 枚、贝莱德卖出约 2.1323 亿美元比特币和约 1.1828 亿美元以太坊、Vitalik 更强调价值存储，以及约 2,000 美元防守的讨论仍在样本里。资金费率约 +0.0030%，接近中性。最新价没有真正拉开，样本由上轮完全中性略转偏多，score 由约 0.00 升至约 0.07。",
       "themes": [
-        "跌幅收窄",
-        "ETF流出仍在",
-        "大额钱包对冲吸纳",
-        "沉寂地址转出",
+        "跌幅再收",
+        "沉寂地址转出仍在",
+        "投毒骗局角度",
+        "ETF流出",
         "BitMine续买"
       ],
       "whale": null,
       "posts": [
         {
           "url": "https://x.com/EyeOnChain/status/2120009873777889528",
-          "text": "有帖称一个沉寂约 10 年的早期以太坊地址刚刚苏醒，把钱包里全部 2,155 枚 ETH 转出，当时约合 459 万美元。",
+          "text": "一个沉寂了 10 年的以太坊早期持有者刚刚转出约 459 万美元。这个地址在沉默十多年后突然醒来，约 2 小时前把钱包里全部 2,155 枚 ETH 转出，现在约值 459 万美元。这个钱包背后的历史是…",
           "textEn": "A 10-YEAR-DORMANT #Ethereum OG JUST MOVED $4.59M.\nAn early Ethereum holder has suddenly come back to life after more than a decade of silence, transferring the wallet's entire 2,155 ETH stash, now worth around $4.59 million, just 2 hours ago.\n\nThe history behind this wallet is https://t.co/4cKscwyYRr",
           "likes": 6,
           "note": "中性",
           "time": "2026-11-10T04:25:16.000Z"
         },
         {
+          "url": "https://x.com/RehmatCrypto/status/2119861470624350429",
+          "text": "突发：BitMine 再买入 9,587 枚 ETH，约合 2,000 万美元。Tom Lee 的 BitMine 继续扩大以太坊持仓。总持仓：6,070,092 枚 ETH。平均买入价：每枚 2,234 美元。",
+          "textEn": "🚨 BitMine Adds Another 9,587 ETH Worth $20 Million!\n\nTom Lee’s BitMine continues expanding its Ethereum holdings with another major purchase.\n\n📊 Total Holdings: 6,070,092 ETH\n💰 Average Purchase Price: $2,234 per ETH\n\n#Ethereum #ETH #BitMine #Crypto https://t.co/SEUdzNDO6K",
+          "likes": 2,
+          "note": "偏多",
+          "time": "2026-11-09T18:35:34.000Z"
+        },
+        {
           "url": "https://x.com/PiEDawg_/status/2120077794046550383",
-          "text": "有帖称以太坊现货 ETF 录得约 1.8451 亿美元流出，当时 ETH 跌至约 2,123 美元；同一帖仍提到 BitMine 再买 9,587 枚。",
+          "text": "以太坊现货 ETF 净流出 1.8451 亿美元，以太坊跌至 2,123 美元，与此同时 BitMine 吸纳了 9,587 枚 ETH。",
           "textEn": "$ETH | Ethereum spot ETFs saw $184.51 million in outflows as Ether fell to $2,123, while BitMine accumulated 9,587 ETH. #Ethereum #ETF #Crypto https://t.co/ajgjSJJjhl",
           "likes": 1,
           "note": "偏空",
           "time": "2026-11-10T08:55:09.000Z"
-        },
-        {
-          "url": "https://x.com/JacobLarbi74069/status/2119760983061397762",
-          "text": "有帖称鲸钱包正在买入以太坊：机构投资者继续从以太坊 ETF 撤出资金时，部分大额钱包仍在吸纳 ETH，并提问这是否在为反弹做准备。",
-          "textEn": "🐋 WHALES ARE BUYING ETHEREUM!\n\nWhile institutional investors continue pulling money from Ethereum ETFs, some large wallets are accumulating ETH.\n\nIs smart money preparing for a comeback?\n\n#Ethereum #ETH #WhaleAlert https://t.co/Oj4eWDa1Ao",
-          "likes": 2,
-          "note": "偏多",
-          "time": "2026-11-09T11:56:16.000Z"
         }
       ]
     },
     "SOL": {
-      "sample": 16,
-      "bull": 0.25,
-      "bear": 0.48,
-      "neutral": 0.27,
-      "score": -0.23,
-      "headline": "约 85.32 最新价略回，24h 跌幅收窄至 -1.67%",
-      "summary": "SOL 约 $85.32，24h 约 -1.67%（qv≈1.46 亿 USDT），最新价较上轮约 85.45 再落约 0.13 美元，24h 由约 -1.94% 略收至约 -1.67%。过滤土狗喊单和重复标签帖后可用样本约 16：价格跌幅稍收，但验证者主线没有退场。独立验证者团体 Layer33 的 SFDP 公开信仍是高互动材料（约 150 赞），12 个月任期、外部质押约 30 万枚即可“毕业”、硬顶 100 个验证者的内容还在；有验证者称朋友节点大量关停、自己跑了两年几乎难以维持的帖互动约 147 赞。Breakpoint London（11 月 15–17 日）前的盘点帖互动约 133 赞，继续把价格写在约 86–88 美元、重新跌破 200 日线、连续第五周收跌、30 日约下跌 20%，以及美国现货 SOL ETF 连续五日流出。偏多材料仍主要是三季度复盘、称现在约 85 美元是“便宜货”的帖（约 159 赞）。另有帖讨论基金会 Jacob Creech 对 SFDP 新规的回应，认为基金会需要把“项目已经相当成功”讲得更清楚。资金费率约 +0.0095%，接近中性略正，较上轮约 +0.0087% 略升。跌幅略收，但验证者争议和 ETF 流出仍占主导，score 由约 -0.25 略升至约 -0.23。",
+      "sample": 8,
+      "bull": 0.38,
+      "bear": 0.25,
+      "neutral": 0.37,
+      "score": 0.13,
+      "headline": "约 85.42 跌幅收窄，DFDV 再扩金库，24h -0.99%",
+      "summary": "SOL 约 $85.42，24h 约 -0.99%（qv≈1.45 亿 USDT），最新价较上轮约 85.32 略抬约 0.10 美元，24h 跌幅由约 -1.67% 收窄至约 -0.99%。过滤 pump.fun、喊单雷达、VIP 信号和打赏帖后可用样本偏薄，约 8。上轮验证者公开信、Breakpoint 盘点和高互动“便宜货”材料本轮未再出现。新的高互动主线是 DeFi Development Corp（$DFDV）再买入 8,881 枚、金库扩至约 261 万枚 SOL（约 82 赞）。链上则有帖称 Solana DEX 现货周成交约 120.7 亿美元；另有材料称 Gemini、Perplexity 更看好 SOL，并提到现货 SOL ETF 自 10 月 28 日以来净流入超过约 14 亿美元。卖压侧，有帖称大额钱包在约 16 小时内向币安和 OKX 存入 299,838 枚、约合 2,600 万美元。资金费率约 +0.0100%，接近中性略正。样本从偏空转为略偏多，但可用帖偏少，不宜过读，score 由约 -0.23 升至约 0.13。",
       "themes": [
-        "跌幅略收",
-        "SFDP公开信仍在",
-        "Breakpoint前盘点",
-        "ETF连续流出",
-        "约85美元便宜货"
+        "跌幅明显收窄",
+        "DFDV再扩金库",
+        "DEX周成交",
+        "现货ETF流入",
+        "样本偏薄"
       ],
       "whale": null,
       "posts": [
         {
-          "url": "https://x.com/DamiDefi/status/2119763433360908469",
-          "text": "有帖复盘 Solana 2026 年三季度：从约 73.56 美元涨至约 118.04 美元，区间约 +60.5%；7 月走平后，8 月初在约 72 美元见底，9 月 25 日收盘高点约 122.08 美元。作者认为现在约 85 美元是“便宜货”，并提到链上治理等网络升级。",
-          "textEn": "$SOL - Q3 2026 Recap, $85 is such a steal\n\n$SOL gained 60.5% in Q3, from $73.56 to $118.04. After a flat July, it bottomed near $72 at the start of August, then rallied to a high close of $122.08 on September 25.\n\nNetwork upgrades\n\n🔹 On-chain Governance: Solana activated its https://t.co/wsRZyG63Fe",
-          "likes": 159,
+          "url": "https://x.com/CryptoCurb/status/2119847555697676417",
+          "text": "刚刚：Solana 头部数字资产金库公司 DeFi Development Corp / $DFDV 再买入 8,881 枚 SOL，把 Solana 金库扩大到约 261 万枚！",
+          "textEn": "🚨 JUST IN:     SOLANA LEADING DAT @DefiDevCorp / $DFDV ADDS 8,881 $SOL, EXPANDING ITS SOLANA TREASURY TO ~2.61 MILLION $SOL!\n\n#SOLANA ⚡️ https://t.co/yjVVQiqOnH",
+          "likes": 82,
           "note": "偏多",
-          "time": "2026-11-09T12:06:00.000Z"
+          "time": "2026-11-09T17:40:16.000Z"
         },
         {
-          "url": "https://x.com/Layer_33_/status/2119891682082648475",
-          "text": "独立验证者团体 Layer33 向 Solana 基金会发出公开信，讨论 SFDP 新规。信中写到，基金会于 11 月 6 日宣布新规则，包括 12 个月任期、外部质押约 30 万枚即可“毕业”，以及 100 个验证者的硬顶。",
-          "textEn": "An open letter to the Solana Foundation on the new SFDP rules\n \nOn November 6, the Solana Foundation announced new rules for the Solana Foundation Delegation Program: a twelve-month membership term, graduation at 300k SOL of external stake, a hard cap of 100 validators, and the",
-          "likes": 150,
-          "note": "偏空",
-          "time": "2026-11-09T20:35:37.000Z"
+          "url": "https://x.com/SolCommunityy/status/2120079015281139780",
+          "text": "Solana DEX 成交量在升温！Solana 上现货周成交 120.7 亿美元。链上活跃度自己会说话。",
+          "textEn": "SOLANA DEX VOLUME IS HEATING UP! 🔥\n\n$12.07 BILLION in weekly spot trading volume on Solana. \n\nThe on-chain activity speaks for itself.\n\n#Solana #SOL https://t.co/Jm9kvLsinr https://t.co/09dsDn5SOs",
+          "likes": 3,
+          "note": "偏多",
+          "time": "2026-11-10T09:00:01.000Z"
         },
         {
-          "url": "https://x.com/Ellaweb_3/status/2120065762282840234",
-          "text": "有帖在 Breakpoint London（11 月 15–17 日）前盘点 Solana：价格约 86–88 美元，连续第五周收跌后重新跌破 200 日线，30 日约下跌 20%；并指出美国现货 SOL ETF 已连续五日流出。",
-          "textEn": "SOL check-in before Breakpoint London (Nov 15-17). A lot happened in the last few weeks, so here's where things stand:\n\n→ Price: ~$86-88, back below the 200-day line after a fifth straight weekly decline. Down ~20% over 30 days.\n\n→ Flows: US spot SOL ETFs are on five straight https://t.co/VtMN5KfuFv",
-          "likes": 133,
-          "note": "偏空",
-          "time": "2026-11-10T08:07:21.000Z"
+          "url": "https://x.com/cvj_ai/status/2120090114432827521",
+          "text": "Gemini 和 Perplexity 在 2026 年四季度更看好 Solana 而不是 Cardano，理由包括现货 SOL ETF 自 10 月 28 日以来已吸引超过 14 亿美元净流入。ChatGPT 也更偏向 SOL，但提醒 ADA 的 Dijkstra 升级可能带来意外。",
+          "textEn": "Gemini and Perplexity favor Solana over Cardano for Q4 2026, citing spot SOL ETFs that have drawn over $1.4 billion in net inflows since October 28. ChatGPT gives SOL the edge too but flags ADA's Dijkstra upgrade as a possible surprise. #Solana https://t.co/oatqdiHsMP",
+          "likes": 2,
+          "note": "偏多",
+          "time": "2026-11-10T09:44:07.000Z"
         }
       ]
     },
     "INIT": {
-      "sample": 20,
-      "bull": 0.05,
-      "bear": 0.67,
-      "neutral": 0.28,
-      "score": -0.62,
-      "headline": "约 0.2197 现货略抬，L1 仍暂停，24h +60.05%",
-      "summary": "INIT 约 $0.21965，24h 约 +60.05%（qv≈1,935 万 USDT），最新价较上轮约 0.21558 再升约 0.0041 美元，24h 由约 +60.86% 略收至约 +60.05%，主要是窗口滚动；现货仍高于永续（fapi 最新价约 0.21200，24h 约 +58.64%）。因为讨论在事故后明显升温，本轮改用 recency 检索，25 条里大量是短回复，过滤后可用样本约 20，几乎全部仍围绕 L1 暂停和资金被抽走。本轮最突出的增量是高互动告别帖：有人写“initia 真的完了”，称早上因再次遭到攻击而停链，这已是两周内第二次，而且“几乎没人在讨论，因为它几乎没人用”（约 49 赞）。事实材料也更集中：有帖写 Initia 在 06:18 UTC 暂停 L1，攻击者用被盗的 rollup 密钥伪造 IBC 转账，约 60.5 万美元 USDC 经 Noble 转出，另有约 1 万美元其他代币，大部分剩余资金仍留在已暂停的链上（约 15 赞）。另有帖提醒不要点击任何“退款”链接，并对照代币仍上涨约 70%；还有人写这是三周内第二次停链，两次代币都在涨，真正值得看的是链恢复之后会发生什么。资金费率约 -1.0087%，空头付费仍极深，与上轮约 -1.0104% 几乎持平。现货只是略抬，但舆论更加决绝，score 由约 -0.59 降至约 -0.62。",
+      "sample": 16,
+      "bull": 0.12,
+      "bear": 0.62,
+      "neutral": 0.26,
+      "score": -0.5,
+      "headline": "约 0.2212 现货再抬，24h 扩大至 +71.21%，Bithumb 暂停提现",
+      "summary": "INIT 现货约 $0.22118，24h 约 +71.21%（qv≈1,949 万 USDT），最新价较上轮约 0.21965 再抬约 0.0015 美元，24h 涨幅由约 +60.05% 明显扩大至约 +71.21%。永续更软，fapi 最新价约 0.21364 / +67.17%。L1 仍因约 61.5 万美元被抽走、rollup 密钥泄露后伪造跨链转账而暂停出块。最高互动帖指出低点约 0.117、高点约 0.232、现价约 0.217，并称找不到已确认的上涨新闻（约 8 赞）；另有帖强调链还停着、24h 却涨约 71%，并追问是黑客拉盘还是离场陷阱（约 7 赞）。本轮新出现 Bithumb 突然暂停 INIT 提现、待网络稳定性确认的材料。上轮约 49 赞的告别帖本轮未再出现。资金费率约 -0.9935%，仍接近约 -1%。涨幅虽再扩大，讨论仍以事故和提现限制为主，score 由约 -0.62 升至约 -0.50，仍明显偏空。",
       "themes": [
-        "现货略抬",
-        "L1仍暂停",
-        "告别帖互动升高",
-        "约60.5万美元被抽走",
-        "谨防假退款链接"
+        "24h再扩大至+71%",
+        "L1仍冻结",
+        "Bithumb暂停提现",
+        "缺少上涨新闻",
+        "资金费率仍近-1%"
       ],
       "whale": null,
       "posts": [
         {
-          "url": "https://x.com/oxtochi/status/2120081803574698302",
-          "text": "有用户写道“initia 真的完了”：它会留在自己心里，但现在是时候放手；早上链因再次遭到攻击而暂停，这已是两周内第二次，而且几乎没人讨论，因为几乎没人在用。",
-          "textEn": "initia is done fr\n\nit will will forever be in my heart but tbh, it's time to let go\n\ni mean the chain was halted this morning after suffering another exploit\n\nit's like the second time in two weeks \n\nworst is, barely anyone is talking about it cos you know, barely anyone uses it",
-          "likes": 49,
+          "url": "https://x.com/cleofinance/status/2120066250193994093",
+          "text": "$INIT 24 小时涨了 70%。11 月 8 日低点 0.117 美元，11 月 10 日高点 0.232 美元，现价 0.217 美元。有报道称 Initia 今天布拉格时间 07:18 暂停了主网，此前约 61.5 万美元代币在未经授权的情况下被转出。我们没有找到已确认的上涨新闻。",
+          "textEn": "$INIT is up 70% in 24 hours.\n\nLow (8 Nov): $0.117\nHigh (10 Nov): $0.232\nNow: $0.217\n\nReported: Initia paused its main network at 07:18 Prague today, after about $615,000 in tokens moved out without permission.\n\nWe found no confirmed news for the rise. https://t.co/Z0ugO48HZ3",
+          "likes": 8,
           "note": "偏空",
-          "time": "2026-11-10T09:11:05.000Z"
+          "time": "2026-11-10T08:09:17.000Z"
         },
         {
-          "url": "https://x.com/DistrictDegen/status/2120081737115984293",
-          "text": "有帖称 Initia 在 06:18 UTC 暂停 L1，原因是桥接托管账户出现未授权转出。按照 Initia 的说法，被盗的 rollup 密钥让攻击者伪造了 IBC 转账，约 60.5 万美元 USDC 经 Noble 转出，另有约 1 万美元其他代币；大部分剩余资金仍留在已暂停的链上。",
-          "textEn": "Initia halted its L1 at 06:18 UTC after unauthorized transfers from bridge escrow accounts.\n\nPer Initia, compromised rollup keys let an attacker fake IBC transfers. ~$605K USDC left via Noble plus ~$10K in other tokens; most remaining funds are still on the halted chain. https://t.co/m8YQccqr5o",
-          "likes": 15,
+          "url": "https://x.com/BFB/status/2120093856683422112",
+          "text": "一条 L1 在被抽走约 61.5 万美元之后冻结了整条链。Initia 在泄露的 rollup 密钥被用来伪造跨链转账后停止出块，约 60.5 万美元 USDC 被转出。转折是：$INIT 在链还停着的时候 24 小时涨了约 71%。这是黑客拉盘，还是离场陷阱？",
+          "textEn": "🚨 A LAYER 1 JUST FROZE ITS WHOLE CHAIN AFTER A $615K DRAIN 💀\n\nInitia halted block production after leaked rollup keys were used to forge cross-chain transfers. ~$605K USDC got out ⚠️\n\nThe twist: $INIT is UP ~71% in 24h while the chain sits offline 👀\n\nHack pump or exit trap? 🤔 https://t.co/7Elli2aqIb",
+          "likes": 7,
+          "note": "偏空",
+          "time": "2026-11-10T09:58:59.000Z"
+        },
+        {
+          "url": "https://x.com/popmemecoin/status/2120053440500081003",
+          "text": "刚刚：Bithumb 突然暂停 Initia 提现。在交易所确认网络稳定性之前，用户无法再提出 INIT。",
+          "textEn": "JUST IN: 🚨 Bithumb abruptly suspends withdrawals for Initia.\nUsers can no longer withdraw INIT tokens until network stability is fully confirmed by the exchange.\ninitia:native #Crypto #Initia",
+          "likes": 0,
+          "note": "偏空",
+          "time": "2026-11-10T07:18:23.000Z"
+        }
+      ]
+    },
+    "PIEVERSE": {
+      "sample": 8,
+      "bull": 0.38,
+      "bear": 0.25,
+      "neutral": 0.37,
+      "score": 0.13,
+      "headline": "永续约 2.09，24h +29.34%，首次纳入观察名单",
+      "summary": "PIEVERSE 无币安现货报价，永续最新价约 $2.0946，24h 约 +29.34%（fapi qv≈2.50 亿 USDT），资金费率约 +0.0050%。本轮因其是过滤代币化股票后的第 2 名涨幅品种、且永续成交约 2.50 亿 USDT，替换讨论一直偏薄的 TST。过滤电报喊单、止盈目标和信号群灌水后可用样本偏薄，约 8，且以交易点评为主。最高互动是一则 3 倍杠杆在约 2.197 美元做空、原预期看到 2.5 美元、现已回落并给出约 0.9–0.6 美元 FTP 的短线更新（约 10 赞）。另有创出新高、捕获约 +14% 的交易记录，以及必须守住日线约 1.55 美元、本地阻力曾在约 1.94 美元的看法。整体仍缺基本面讨论，短线多空对打，score 约 0.13。",
+      "themes": [
+        "首次纳入",
+        "永续+29%",
+        "交易喊单为主",
+        "短线做空回撤",
+        "样本偏薄"
+      ],
+      "whale": null,
+      "posts": [
+        {
+          "url": "https://x.com/ProfProfitBTC/status/2119895340060934486",
+          "text": "$PIEVERSE 空头更新。Professor Profit：一小时前在 2.197 美元用 3 倍杠杆做空。我预期还会冲到 2.5 美元，但现在看到它在回落。最终目标价：0.9–0.6 美元。我继续打中。",
+          "textEn": "$PIEVERSE Short Update 🔥‼️\nBy Professor Profit\n\nI shorted PIEVERSE at $2.197 with 3X Leverage an hour ago. I expected to pump more till $2.5 but now we see it’s dumping.\n\nFTP: $0.9-0.6\nI (P.P) keep nailing! \n#PIEVERSE $INIT $JCT #JCT $HYPE $AKE $ICNT $AXIS $ELSA $XRP $PEPE $DOGE https://t.co/rTmSHws4es",
+          "likes": 10,
+          "note": "偏空",
+          "time": "2026-11-09T20:50:09.000Z"
+        },
+        {
+          "url": "https://x.com/KiefTrades_/status/2119825517784498472",
+          "text": "$pieverse 创出新的历史高点。抓住了这波 +14% 的行情。",
+          "textEn": "$pieverse #pieverse\n\nNEW ALL-TIME HIGH UNLOCKED🤑\n+14% MOVE CAPTURED🥂 https://t.co/aykPnl3j5w https://t.co/OslAurukD8",
+          "likes": 6,
+          "note": "偏多",
+          "time": "2026-11-09T16:12:42.000Z"
+        },
+        {
+          "url": "https://x.com/KiefTrades_/status/2119798197556240615",
+          "text": "$pieverse 在我看来新高还在酝酿，本地阻力在 1.94 美元，支撑在 1.67 美元。日线必须守住 1.55 美元，才能继续偏多。",
+          "textEn": "$pieverse #pieverse \n\nNEW ATH LOADING IMO WITH LOCAL RESISTANCE AT 1.94 &amp; SUPPORT AT 1.67📈\nMUST HOLD 1.55 ON DAILY TIMEFRAME FOR BULLISH CONTINUATION🔥 https://t.co/QNpPXF0744",
+          "likes": 3,
           "note": "中性",
-          "time": "2026-11-10T09:10:49.000Z"
-        },
-        {
-          "url": "https://x.com/saadaltaflaldin/status/2120082847017099621",
-          "text": "有帖称 Initia 在有人用泄露的 rollup 密钥伪造跨链转账后暂停了整条链，约 60.5 万美元 USDC 已经 Noble 转出，其余资金仍困在已暂停的链上；代币却仍上涨约 70%。作者提醒有资金在链上的人先观望，不要去点任何“退款”链接。",
-          "textEn": "initia paused its whole chain after someone used leaked rollup keys to fake cross-chain transfers. ~$605k in usdc already left through @noble_xyz, the rest is stuck on the halted chain. token's up 70% anyway. if you have funds there, sit tight and ignore any \"refund\" links. https://t.co/XwF8pvv60I",
-          "likes": 1,
-          "note": "偏空",
-          "time": "2026-11-10T09:15:14.000Z"
+          "time": "2026-11-09T14:24:08.000Z"
         }
       ]
     },
     "AVAX": {
       "sample": 12,
-      "bull": 0.44,
-      "bear": 0.16,
-      "neutral": 0.4,
-      "score": 0.28,
-      "headline": "约 8.43 涨幅略回升，24h +5.35%",
-      "summary": "AVAX 约 $8.426，24h 约 +5.35%（qv≈6,174 万 USDT），最新价较上轮约 8.401 略升约 0.025 美元，24h 由约 +4.70% 回升至约 +5.35%。过滤重复编辑帖、乞讨地址和离题标签后可用样本约 12，主线仍是纽交所计划用 Avalanche 清算、结算其 24/7 代币化股票场所（尚待批准）。有报道继续把价格上涨和这一选择放在一起，另有较新转述写成“反弹约 10%”。上轮已经出现的“禁止直接钱包”提醒本轮仍在样本里。四周下跌约 28%、落后于比特币和以太坊的报道也还在。资金费率约 -0.0008%，接近中性略负，较上轮约 -0.0011% 几乎持平。机构结算叙事仍占主导，涨幅略为回升，score 由约 0.25 升至约 0.28。",
+      "bull": 0.42,
+      "bear": 0.17,
+      "neutral": 0.41,
+      "score": 0.25,
+      "headline": "约 8.37 略回，纽交所叙事仍在，24h +4.64%",
+      "summary": "AVAX 约 $8.374，24h 约 +4.64%（qv≈6,202 万 USDT），最新价较上轮约 8.426 回落约 0.05 美元，24h 涨幅由约 +5.35% 收至约 +4.64%。过滤乞讨和无关代码后可用样本约 12。新的最高互动帖写“重新看到希望”，但同时要求官方解释纽交所与 AVAX 代币之间的价值捕获（约 12 赞）。纽交所选择 Avalanche 作为计划中的代币化证券结算技术、以及价格随该消息上涨的转述仍在。本轮帖子样本里再次出现嘉信理财上架 SOL、AVAX 与 LINK 的材料（约 7 赞）；该条已从上轮快讯列表里消失，但讨论还在。资金费率由上轮略负翻为约 +0.0006%，接近中性。价格略回，score 由约 0.28 降至约 0.25，仍偏多。",
       "themes": [
-        "涨幅略回升",
+        "价格略回",
         "纽交所结算仍在",
-        "禁止直接钱包",
-        "约10%反弹转述",
-        "四周落后报道仍在"
+        "价值捕获疑问",
+        "嘉信上架仍在帖子里",
+        "资金费率翻正"
       ],
       "whale": null,
       "posts": [
         {
-          "url": "https://x.com/The_NewsCrypto/status/2120055919409250553",
-          "text": "有报道称，在纽交所选择 Avalanche 用于其计划中的代币化证券平台后，AVAX 价格上涨。",
-          "textEn": "AVAX Price Surges After NYSE Selects Avalanche for Tokenized Securities Platform📈🏦\n\nTo Know More👇\nhttps://t.co/GHw6YO7bU1\n\n#Avalanche #AVAX #NYSE",
-          "likes": 2,
-          "note": "偏多",
-          "time": "2026-11-10T07:28:14.000Z"
-        },
-        {
-          "url": "https://x.com/cryptonewsfocus/status/2120072812874584571",
-          "text": "有报道称，在纽交所选择 Avalanche 区块链用于代币化股票后，AVAX 反弹约 10%。",
-          "textEn": "Avalanche (AVAX) Rallies 10% as NYSE Selects Its Blockchain for Tokenized Stocks\n\n#Avalanche  #AVAX #CryptoNews \n\nhttps://t.co/yPlN73KMUA",
-          "likes": 1,
-          "note": "偏多",
-          "time": "2026-11-10T08:35:22.000Z"
-        },
-        {
-          "url": "https://x.com/chainoid_AVAX/status/2120060523710386350",
-          "text": "有帖称纽交所把股票带到 Avalanche，但禁止直接钱包。",
-          "textEn": "NYSE brings stocks to Avalanche, but bans direct wallets https://t.co/2Cer3b7jNe #Avalanche #AVAX $AVAX",
-          "likes": 0,
+          "url": "https://x.com/JP_Futures/status/2120032946325160148",
+          "text": "我开始重新对 Avalanche 感到有希望。正因为如此，现在很多人都在问 Avalanche 代币的用途，以及价值究竟如何捕获到它身上。拜托 @avax 团队解释一下纽交所和 $AVAX 之间的关系——具体是，哪里以及…",
+          "textEn": "I’m starting to see hope for avalanche-2:native again.\n\nThat’s why so many people are now asking questions about the utility of the Avalanche token and how value actually accrues to it.\n\nPlease, @avax team, explain the connection between @NYSE and $AVAX — specifically, where and",
+          "likes": 12,
           "note": "中性",
-          "time": "2026-11-10T07:46:32.000Z"
+          "time": "2026-11-10T05:56:57.000Z"
+        },
+        {
+          "url": "https://x.com/0xShellyy/status/2120062455175069753",
+          "text": "华尔街在看 Avalanche！纽交所已选择 Avalanche（$AVAX）作为其计划中的代币化证券平台的结算技术。想象传统股票进入区块链基础设施，支持全天候交易和更快结算。这比看起来更大…",
+          "textEn": "🚨 WALL STREET IS LOOKING AT AVALANCHE!\n\nNYSE has selected Avalanche ($AVAX ) as the settlement technology for its planned tokenized securities platform.\n\nImagine traditional stocks moving onto blockchain infrastructure with 24/7 trading and faster settlement.\n\nThis is bigger",
+          "likes": 11,
+          "note": "偏多",
+          "time": "2026-11-10T07:54:12.000Z"
+        },
+        {
+          "url": "https://x.com/PokePayGlobal/status/2119992768386990407",
+          "text": "行业速览｜传统金融正在拥抱加密！嘉信理财增加了 SOL、AVAX 和 LINK 的交易支持。加密正在进一步走进主流金融。下一步是什么？",
+          "textEn": "🔥 Industry Spotlight | Traditional Finance Is Embracing Crypto!\n\nCharles Schwab adds SOL, AVAX, and LINK trading support. 📈\n\nCrypto is moving further into mainstream finance. What's next? 👀\n\n#PokePay #Crypto #Solana #Avalanche #Chainlink https://t.co/yjLkqverwi",
+          "likes": 7,
+          "note": "偏多",
+          "time": "2026-11-10T03:17:18.000Z"
         }
       ]
     },
     "ETHFI": {
-      "sample": 15,
-      "bull": 0.53,
-      "bear": 0.03,
-      "neutral": 0.44,
-      "score": 0.5,
-      "headline": "约 0.6382 涨幅再扩大，贴近阻力，24h +8.30%",
-      "summary": "ETHFI 约 $0.6382，24h 约 +8.30%（qv≈452 万 USDT），最新价较上轮约 0.6372 几乎未动，24h 由约 +7.45% 扩大至约 +8.30%，仍明显强于跌幅刚刚收窄的以太坊本身。过滤卡推广、榜单广告、离题 NFT 和重复标签帖后可用样本约 15：产品采用和技术形态仍是主线。“结构、价位和价格行为不宜忽视、仍处 8 月开始的 WP 周期中段”的帖互动由约 30 赞升至约 31 赞。4 小时图从约 0.55–0.57 反弹、RSI 约 62、下一阻力约 0.64–0.65 的材料还在，现货约 0.6382，已非常贴近该阻力带下沿。本轮较新的技术材料是：有帖称它正在形成一个大的对称三角形，高低点收窄、接近顶点，买卖双方都在等待方向选择。观察名单里 ETHFI、GRAM、PEPE、ARB 开始出现动量、但仍不确定能否持续的帖互动由约 2 赞升至约 4 赞。资金费率约 +0.0050%，接近中性略正，与上轮相同。情绪仍偏多，涨幅再扩大，score 由约 0.46 升至约 0.50。",
+      "sample": 16,
+      "bull": 0.62,
+      "bear": 0.06,
+      "neutral": 0.32,
+      "score": 0.56,
+      "headline": "约 0.6390 贴近阻力，基金会宣布创纪录回购，24h +7.49%",
+      "summary": "ETHFI 约 $0.6390，24h 约 +7.49%（qv≈455 万 USDT），最新价较上轮约 0.6382 几乎持平，24h 涨幅由约 +8.30% 略收至约 +7.49%，仍明显强于 ETH。过滤推荐码、广告和榜单机器人后可用样本约 16。最大增量是基金会官方宣布上周创纪录回购：用 278,026 USDT 买入 475,619 枚，累计回购约 2,991,948 枚（约 109 赞）。另有帖列出能找到的 10 笔最大加密卡支付全部来自 ether.fi 卡、最小一笔也约 54.4 万美元（约 50 赞）。结构/WP 周期帖互动由上轮约 31 赞升至约 34 赞。价格仍贴在约 0.64–0.65 的阻力带附近。资金费率约 +0.0050%，与上轮持平。官方回购把样本进一步推向偏多，score 由约 0.50 升至约 0.56。",
       "themes": [
-        "涨幅再扩大",
+        "创纪录回购",
         "贴近0.64–0.65阻力",
-        "结构帖仍高互动",
-        "对称三角形接近顶点",
-        "动量能否持续"
+        "卡支付记录",
+        "结构帖互动升高",
+        "涨幅略收仍强于ETH"
       ],
       "whale": null,
       "posts": [
         {
+          "url": "https://x.com/ether_fi_Fdn/status/2119785142667632965",
+          "text": "上周创纪录回购：用共计 278,026 USDT 买入 475,619 枚 ETHFI。累计：2,991,948 枚 ETHFI。",
+          "textEn": "Record buyback last week:\n\nPurchased 475,619 ETHFI for a total of 278,026 USDT\n\nTotal: 2,991,948 ETHFI https://t.co/4TAM2vh0hN",
+          "likes": 109,
+          "note": "偏多",
+          "time": "2026-11-09T13:32:16.000Z"
+        },
+        {
           "url": "https://x.com/CryptoSays/status/2120029867135951157",
-          "text": "有技术帖称，就结构、价位和价格行为而言，这不是可以忽视的形态，尤其是仍处在 8 月开始的 WP 周期中段；并点名 ETHFI。",
+          "text": "这绝不是我会忽视的结构、位置和行为，尤其是我们仍处在 8 月开始的 WP 周期中段。我就说这么多…… $ETHFI",
           "textEn": "This is definitely not a structure, a level, and a behavior I would ignore, specially knowing we are still in the middle of a WP cycle that started in August.\n\nJust saying... 🫢 $ETHFI https://t.co/zIEdq6j0Ts",
-          "likes": 31,
+          "likes": 34,
           "note": "偏多",
           "time": "2026-11-10T05:44:43.000Z"
         },
         {
-          "url": "https://x.com/cryptowithgopal/status/2120086982738980972",
-          "text": "有技术帖称 ETHFI 正在形成一个较大的对称三角形整理，高点下移、低点上移，价格被挤向顶点，买卖双方都在等待一次方向选择。",
-          "textEn": "$ETHFI/USDT – forming a major triangle consolidation pattern 👀\n\nETHFI is approaching the apex of a large symmetrical triangle, with lower highs and higher lows squeezing price into a tighter range. Buyers and sellers are preparing for a decisive move.\n\nPrice is hovering around https://t.co/fAI02U4cHa",
-          "likes": 1,
-          "note": "中性",
-          "time": "2026-11-10T09:31:40.000Z"
-        },
-        {
-          "url": "https://x.com/_I_nsomni_A_/status/2120010692371599790",
-          "text": "有技术帖称 ETHFI 报约 0.628 美元，4 小时图从约 0.55–0.57 一带扎实反弹，并形成更高的低点；反弹时成交增加，RSI 约 62，动量改善，价格守在约 0.60 支撑上方，下一阻力约 0.64–0.65。",
-          "textEn": "ethereum:0xfe0c30065b384f05761f15d0cc899d4f9f9cc0eb  $0.628 | 4h: solid bounce from the 0.55-0.57 zone, higher lows forming\nvolume picked up on the rebound, rsi ~62 showing improving momentum\nprice action holding above 0.60 support, next resistance 0.64-0.65\n\n#ETHFI #crypto",
-          "likes": 5,
+          "url": "https://x.com/0xVishnya/status/2119763378486878506",
+          "text": "我能找到的 10 笔最大加密卡支付，全部是用 @ether_fi 卡完成的。最小一笔是 54.4 万美元，而且看不到他们付了什么。括号里是返现：715,260 美元（10 月 22 日，以 ETHFI 支付），635,267 美元（5 月 19 日，返现 3,176 美元），627,183 美元（7 月 28 日，返现 6,272 美元）…",
+          "textEn": "The 10 biggest Crypto Card payments I could find\n\nAll 10 were made with @ether_fi cards. The smallest one is $544K, and there is no way to see what they paid for. Cashback in brackets:\n\n- $715,260, Oct 22 (paid in ETHFI)\n- $635,267, May 19 ($3,176 back)\n- $627,183, Jul 28 ($6,272 https://t.co/KTqbvLlebw",
+          "likes": 50,
           "note": "偏多",
-          "time": "2026-11-10T04:28:31.000Z"
+          "time": "2026-11-09T12:05:47.000Z"
         }
       ]
     },
     "ONDO": {
-      "sample": 13,
-      "bull": 0.54,
-      "bear": 0.12,
-      "neutral": 0.34,
-      "score": 0.42,
-      "headline": "约 0.3732 价格回升，24h +5.75%",
-      "summary": "ONDO 约 $0.3732，24h 约 +5.75%（qv≈1,881 万 USDT），最新价较上轮约 0.3694 回升约 0.0038 美元，24h 由约 +4.20% 扩大至约 +5.75%。过滤信号群、广告和把“Ondo”当成尼日利亚地名的离题帖后可用样本约 13。约 40 亿美元代币化规模、代币相对管理资产折价交易的叙事仍是最高互动材料（约 97 赞和约 19 赞）。本轮较新的偏多技术材料是：有帖称 15 分钟图出现潜在倒头肩，买家守住约 0.371–0.372 美元支撑，颈线阻力约 0.376 美元（约 9 赞），现货约 0.3732，正处在该区间内。另有帖把当前写成超卖后空头流动性被兑现、适合看多头量能回流的位置（约 31 赞）。上轮“跌破全部日线均线、当时约 0.352 美元”的材料仍出现在样本里，但价格已经从该水平反弹，时效变弱。资金费率约 +0.0041%，接近中性略正，较上轮约 +0.0026% 略升。价格回升、形态转偏多，score 由约 0.33 升至约 0.42。",
+      "sample": 12,
+      "bull": 0.5,
+      "bear": 0.17,
+      "neutral": 0.33,
+      "score": 0.33,
+      "headline": "约 0.3721 略回，40 亿美元叙事仍在，24h +5.65%",
+      "summary": "ONDO 约 $0.3721，24h 约 +5.65%（qv≈1,857 万 USDT），最新价较上轮约 0.3732 略回约 0.0011 美元，24h 涨幅由约 +5.75% 几乎持平于约 +5.65%。过滤地名噪音、电报目标价和永续刷量帖后可用样本约 12。约 40 亿美元代币化规模、自称全球最大代币化平台的叙事仍在，但上轮约 97 赞的高互动帖本轮未再出现，改由约 39 赞的新转述顶上。15 分钟倒头肩讨论还在（约 11 赞），支撑约 0.371–0.372、颈线约 0.376，现价约 0.3721 仍在这个区间里。另有材料称计划在 Anthropic 上市日提供代币化敞口。资金费率约 +0.0048%，接近中性略正。价格略回、高互动帖换人，score 由约 0.42 降至约 0.33，仍偏多。",
       "themes": [
-        "价格回升",
-        "40亿美元规模仍在",
+        "价格略回",
+        "40亿美元叙事换帖",
         "15分钟倒头肩",
-        "超卖后反弹讨论",
-        "日线均线材料时效变弱"
+        "Anthropic上市日",
+        "高互动旧帖缺席"
       ],
       "whale": null,
       "posts": [
         {
-          "url": "https://x.com/CryptoVince_/status/2119738504800268775",
-          "text": "有帖称 Ondo Finance 正在以前所未见的速度推进链上股票代币化，并列举多项头条，其中包括 Ondo 成为全球最大的代币化平台、总规模超过 40 亿美元。",
-          "textEn": "💥 $ONDO Finance is absolutely crushing it with accelerating massive on-chain equities tokenization on a level never seen before.\n\n👇The major #Ondo tokenization news headlines speak for themselves:\n1⃣ Ondo becomes the world's largest tokenization platform, exceeding $4B in Total https://t.co/UPfbmn4DKj",
-          "likes": 97,
+          "url": "https://x.com/gandreou007/status/2120003517909958755",
+          "text": "$ONDO 这门约 40 亿美元的生意不只是代币化国债。Ondo 称自己现在是全球最大的代币化平台，援引数据显示 TVL 超过 40 亿美元。代币化国债只是业务的一部分。Ondo 还提供代币化股票和…",
+          "textEn": "🏦 $ONDO’S $4 BILLION STORY GOES BEYOND TREASURIES.\n\nOndo says it now ranks as the world’s largest tokenization platform, citing https://t.co/R4sGktab2B data showing more than $4B in TVL.\n\nTokenized Treasuries are one part of the business. Ondo also offers tokenized stocks and https://t.co/19dFWkg40h",
+          "likes": 39,
           "note": "偏多",
-          "time": "2026-11-09T10:26:57.000Z"
+          "time": "2026-11-10T04:00:01.000Z"
         },
         {
           "url": "https://x.com/cryptowithgopal/status/2120062668358988137",
-          "text": "有技术帖称 ONDO 在 15 分钟图上形成潜在的看多倒头肩，买家正在防守约 0.371–0.372 美元支撑，颈线阻力约在 0.376 美元；若放量突破颈线，可能打开上行空间。",
-          "textEn": "$ONDO/USDT – Inverse Head & Shoulders Forming! 👀\n\nONDO is showing a potential bullish inverse head & shoulders pattern on the 15-min chart. Buyers are defending the $0.371–0.372 support zone, with neckline resistance around $0.376. 🔥\n\nA breakout above $0.376 could trigger https://t.co/wGvnmcSL2i",
-          "likes": 9,
+          "text": "$ONDO/USDT——倒头肩形态正在形成！ONDO 在 15 分钟图上出现潜在的看涨倒头肩。买家正在防守 0.371–0.372 美元的支撑区，颈线阻力约在 0.376 美元。若有效突破 0.376 美元，可能触发…",
+          "textEn": "$ONDO/USDT – Inverse Head &amp; Shoulders Forming! 👀\n\nONDO is showing a potential bullish inverse head &amp; shoulders pattern on the 15-min chart. Buyers are defending the $0.371–0.372 support zone, with neckline resistance around $0.376. 🔥\n\nA breakout above $0.376 could trigger https://t.co/wGvnmcSL2i",
+          "likes": 11,
           "note": "偏多",
           "time": "2026-11-10T07:55:03.000Z"
         },
         {
-          "url": "https://x.com/134_Atlas/status/2120064492054667321",
-          "text": "有帖称截至 11 月 9 日，ONDO 约报 0.352 美元，仍位于全部三条日线指数均线下方，其中 EMA20 约在 0.4009 美元，并认为卖压仍让走势偏向下跌；不过现货现已回升至约 0.3732 美元，该条材料的时效已经变弱。",
-          "textEn": "Ondo Falls Below All 3 Daily EMAs as Selling Pressure Intensifies\nONDO remains tilted toward a downtrend.\nAs of November 9, ONDO is trading around $0.352, with the price still sitting below all three key daily EMAs. Specifically, the EMA20 is around $0.4009, the EMA50 is at https://t.co/pCwczi5DnU",
-          "likes": 0,
-          "note": "偏空",
-          "time": "2026-11-10T08:02:18.000Z"
-        }
-      ]
-    },
-    "TST": {
-      "sample": 5,
-      "bull": 0.4,
-      "bear": 0.2,
-      "neutral": 0.4,
-      "score": 0.2,
-      "headline": "约 0.01239 最新价略回，24h +5.81%",
-      "summary": "TST 约 $0.01239，24h 约 +5.81%（qv≈886 万 USDT），最新价较上轮约 0.01248 略回约 0.00009 美元，24h 由约 +5.94% 略收至约 +5.81%。因为 TST 也是时区和媒体缩写，噪音很多，过滤体育、电台和无关回复后可用样本仍只有约 5 条，讨论明显偏薄。有人继续展示“入场后已上涨约 30%”的交易记录（约 10 赞）；菱形形态的帖还在（约 2 赞）。本轮较新的谨慎材料是：有交易员把 1 小时结构写成偏多，但强调比特币和日线趋势都偏空，这只是大级别偏空里的逆势反弹，还想看到更强确认。此前 0.0128 美元的买入参考仍高于现货。资金费率约 -0.0623%，空头付费，较上轮约 -0.0593% 略深。价格略回、样本仍薄，score 维持约 0.20，短样本不宜过读。",
-      "themes": [
-        "最新价略回",
-        "讨论偏薄",
-        "入场上涨记录仍在",
-        "菱形形态",
-        "1小时逆势反弹提醒"
-      ],
-      "whale": null,
-      "posts": [
-        {
-          "url": "https://x.com/caisyclassic/status/2119984110986760230",
-          "text": "有交易员称 TST 已较其入场价上涨约 30%，并展示这是又一笔完成的交易。",
-          "textEn": "$TST is up 30% from our entry. ✅\n\nAnother trade delivered.\n\nHope you didn't miss this one. 🤝 https://t.co/CxLqGejA9v https://t.co/OfLTKZCgfK",
-          "likes": 10,
+          "url": "https://x.com/247FrontRunners/status/2120058146097885246",
+          "text": "Ondo 计划在 Anthropic 上市日把该公司上链。Ondo Finance 全球机构业务负责人 Matthieu de Vergnes 表示，公司计划从上市日起通过 Ondo Stocks 提供代币化的 Anthropic 敞口，做法类似此前的 SpaceX。“我们是第一批…”",
+          "textEn": "‼️ONDO PLANS TO BRING ANTHROPIC ON CHAIN ON IPO DAY\n\nOndo Finance’s Global Head of Institutional, Matthieu de Vergnes, says the company plans to offer tokenized Anthropic exposure through Ondo Stocks from its IPO day, following its approach with SpaceX.\n\n“We were the first ones https://t.co/REYVQSSOUg",
+          "likes": 6,
           "note": "偏多",
-          "time": "2026-11-10T02:42:54.000Z"
-        },
-        {
-          "url": "https://x.com/diagonaltraderx/status/2120050554013425815",
-          "text": "有交易员分享 TST 的菱形形态图表。",
-          "textEn": "$tst diamond pattern https://t.co/41VkfhN80I",
-          "likes": 2,
-          "note": "中性",
-          "time": "2026-11-10T07:06:55.000Z"
-        },
-        {
-          "url": "https://x.com/Finora_EN/status/2120067012621680907",
-          "text": "有交易员称，TST 永续 1 小时结构清楚偏多，但比特币和日线趋势都偏空，因此把这看成大级别偏空里的逆势反弹，还想看到更强确认。",
-          "textEn": "@chuongcoin88 @heinx20 @alimohamma51276 @Fomenkolizi hey! here’s my take on $TST #TSTUSDT.P 1h for you 🚦\n\n- my bias is bullish here as the 1h structure is clearly up, but I want to see strong confirmation since BTC and the daily trend are both bearish — this is a counter-trend move inside a bigger bearish context\n- price is https://t.co/rdwroQtQXr",
-          "likes": 1,
-          "note": "中性",
-          "time": "2026-11-10T08:12:19.000Z"
+          "time": "2026-11-10T07:37:05.000Z"
         }
       ]
     },
     "GRAM": {
       "sample": 16,
       "bull": 0.38,
-      "bear": 0.14,
-      "neutral": 0.48,
-      "score": 0.24,
-      "headline": "约 1.095 最新价略回，24h +7.78%",
-      "summary": "GRAM（原 Toncoin/TON）约 $1.095，24h 约 +7.78%（qv≈1,497 万 USDT），最新价较上轮约 1.098 略回约 0.003 美元，24h 由约 +8.18% 收至约 +7.78%。过滤农场广告和重复转述后可用样本约 16：钱包采用仍是主线，但价格没有跟上叙事的热度。Portals 称 Gram Wallet 可能成为把数百万人带进 Telegram 原生所有权的桥梁，该帖互动仍最高（约 249 赞，上轮约 247 赞）。Durov 所说 48 小时内创建超过 70 万个自托管钱包、以及浏览器创建数包含尚无链上交易钱包的提醒还在（约 28 赞）。本轮较明显的增量是：有用户批评 Durov 不够活跃，称 Gram Wallet 已有约 220 万活跃用户，而他的账号只发到约 74 万浏览（约 60 赞）。另有帖讨论 Telegram 内出现“Money”标签、以及用 0.10 枚 GRAM 做激活测试的用法。资金费率约 +0.0045%，接近中性略正，较上轮约 +0.0050% 几乎持平。采用叙事仍强，但最新价略回，score 由约 0.26 略降至约 0.24。",
+      "bear": 0.16,
+      "neutral": 0.46,
+      "score": 0.22,
+      "headline": "约 1.083 继续回落，24h +6.18%",
+      "summary": "GRAM 约 $1.083，24h 约 +6.18%（qv≈1,526 万 USDT），最新价较上轮约 1.095 再回约 0.012 美元，24h 涨幅由约 +7.78% 收至约 +6.18%。过滤农场游戏和索要 0.1 GRAM 的帖子后可用样本约 16。Portals 把 Gram Wallet 写成 Telegram 原生所有权入口的帖子互动由约 249 赞升至约 251 赞，仍是最高互动材料。抱怨 Durov 不够活跃、钱包已有约 220 万活跃用户的帖子仍在（约 60 赞）。本轮新出现邀请 Durov 来 X Space 讨论 Gram 钱包采用的材料（约 34 赞）。约 70 万钱包/浏览器数据与活跃地址口径差异的提醒还在。资金费率由上轮约 +0.0045% 翻为约 -0.0008%，接近中性略负。价格继续回落，采用叙事仍强，score 由约 0.24 略降至约 0.22。",
       "themes": [
-        "最新价略回",
+        "价格继续回落",
         "钱包采用帖仍高互动",
-        "48小时70万钱包",
-        "抱怨Durov不够活跃",
-        "Money标签讨论"
+        "邀请Durov上Space",
+        "抱怨不够活跃仍在",
+        "资金费率翻负"
       ],
       "whale": null,
       "posts": [
         {
           "url": "https://x.com/PortalsEco/status/2119867384961835417",
-          "text": "有帖称这只是开始：先有钱包，随后才是收藏品、用户名和人们能真正拥有的 Telegram 内资产；并认为 Gram Wallet 可能成为把数百万人带进 Telegram 原生所有权的桥梁，其中许多人从未接触过加密钱包。",
+          "text": "而这才只是开始。先是钱包，然后是收藏品、用户名，以及人们在 Telegram 里真正可以拥有的一切。Gram Wallet 有可能成为把数百万人带进 Telegram 原生所有权的桥梁，其中很多人从未接触过…",
           "textEn": "And this is just the beginning\n\nFirst comes the wallet. Then the collectibles, usernames and everything people can truly own inside Telegram\n\nGram Wallet could become the bridge that introduces millions of people to Telegram-native ownership, many of whom have never touched https://t.co/yFARPH04Al",
-          "likes": 249,
+          "likes": 251,
           "note": "偏多",
           "time": "2026-11-09T18:59:04.000Z"
         },
         {
           "url": "https://x.com/imechizen/status/2119778134107054145",
-          "text": "有用户直接向 Pavel Durov 抱怨他应该更活跃、多发布一些进展：Gram Wallet 已有约 220 万活跃用户，而他的账号只发到约 74 万浏览，并问是不是只有他们比创始人更关心 GRAM。",
+          "text": "@durov Pavel，你应该开始活跃起来，多公布一些事情。Gram 钱包已经有 220 万活跃用户，你发的还是 74 万。难道只有我们比你更关心 Gram？",
           "textEn": "@durov Pavel, you should start be active and announce more things, gram wallet has 2.2m active users yet u are posting at 740k \n\nAre we the only guys care more about gram than you?",
           "likes": 60,
           "note": "中性",
           "time": "2026-11-09T13:04:25.000Z"
         },
         {
-          "url": "https://x.com/DefiantNews/status/2119800175237779536",
-          "text": "有报道称，Durov 表示 Telegram 在 48 小时内创建了超过 70 万个自托管钱包，同时 Gram Wallet 已支持应用内转账；并提醒浏览器上的创建数包含尚无链上交易的钱包，与活跃钱包口径不同。",
-          "textEn": "DUROV SAYS 700K+ TELEGRAM WALLETS CREATED IN 48 HOURS AS GRAM WALLET ENABLES IN-APP TRANSFERS\n\nGram Wallet is self-custodial. The explorer’s creation count includes wallets without onchain transactions, unlike its active-wallet count.\n\nRead more here:\nhttps://t.co/iQYuNZshnP",
-          "likes": 28,
+          "url": "https://x.com/0xJeribond/status/2119798255445783002",
+          "text": "@durov，Telegram / TON 的创始人，会不会同意来 X Space，我们就 Telegram 和 TON 的未来做一次不设审查的讨论？让我们谈谈这轮 Gram 钱包采用的事。",
+          "textEn": "Will @durov , the founder of Telegram/ the-open-network:native  agree to come to X space let's have an uncensored discussion about the future of Telegram &amp; TON ?\n\nLet us discuss this Gram wallet adoption thing.",
+          "likes": 34,
           "note": "中性",
-          "time": "2026-11-09T14:32:00.000Z"
+          "time": "2026-11-09T14:24:22.000Z"
         }
       ]
     },
     "ONE": {
-      "sample": 5,
-      "bull": 0.2,
-      "bear": 0.44,
-      "neutral": 0.36,
-      "score": -0.24,
-      "headline": "约 0.001829 最新价略回，资金费率更深，24h +15.10%",
-      "summary": "ONE（Harmony）约 $0.001829，24h 约 +15.10%（qv≈1,250 万 USDT），最新价较上轮约 0.001838 略回，24h 由约 +16.40% 收至约 +15.10%。永续仍略软，fapi 最新价约 0.0018095 / +14.11%。因为“harmony / one”噪音极多，即使补做一次 recency 检索，过滤后可用样本仍只有约 5 条，讨论还是偏薄。未平仓合约两天内约增 5 倍、相当于市值近 40% 的帖还在；质押金库宣传和 Gate 已暂停 Harmony ONE 提现一个多月、并导致交易所价差的抱怨也还在。本轮更突出的变化不在新帖，而在资金费率：链上永续约 -0.4579%，空头付费较上轮约 -0.3044% 明显加深。涨幅仍靠前，但舆论样本薄、提现担忧还在，资金费率更深，score 由约 -0.20 降至约 -0.24，短样本不宜过读。",
+      "sample": 3,
+      "bull": 0.33,
+      "bear": 0.33,
+      "neutral": 0.34,
+      "score": 0.0,
+      "headline": "约 0.001763 回落，24h 收至 +13.38%，样本仍极薄",
+      "summary": "ONE 现货约 $0.001763，24h 约 +13.38%（qv≈1,367 万 USDT），最新价较上轮约 0.001829 再回约 0.000066 美元，24h 涨幅由约 +15.10% 收至约 +13.38%。永续约 0.0017282 / +10.70%。过滤大量无关“harmony”、竞猜和广告后，可用样本仍然极薄，仅约 3。Mintbes 金库推广仍是最高互动（约 17 赞，偏宣传）。未平仓合约约两天增加约 5 倍、接近市值约 40%、资金费率略负的材料还在（约 2 赞）。上轮 Gate 提现投诉本轮未再出现；本轮没有再为噪音做 recency 补检索。资金费率由约 -0.4579% 再加深至约 -0.5657%。短样本不宜过读，score 由约 -0.24 回至约 0.00，价格和资金费率的变化更硬。",
       "themes": [
-        "最新价略回",
-        "讨论仍偏薄",
+        "价格回落",
+        "讨论仍极薄",
         "未平仓大增仍在",
-        "Gate提现暂停",
+        "Gate提现帖缺席",
         "资金费率更深"
       ],
       "whale": null,
       "posts": [
         {
-          "url": "https://x.com/BitcoinStrat/status/2119807381270135231",
-          "text": "有帖称 Harmony 的未平仓合约在两天内约增加 5 倍，规模接近市值的 40%，当时资金费率略负，并提到约三分之一的现货相关仓位。",
-          "textEn": "📊 Harmony Bets Jumped 5x\n\nOpen interest on Harmony, all the open bets on the price, went up about 5x in 2 days. That is almost 40 % of the market cap. Funding was slightly negative, and a third of all spot…\n\n$ONE #harmony #crypto\n\nTry Premium for 7 days:\nhttps://t.co/UB1meVluSW https://t.co/6ZokFu98hn",
-          "likes": 2,
-          "note": "偏空",
-          "time": "2026-11-09T15:00:38.000Z"
-        },
-        {
           "url": "https://x.com/MintbuilderES/status/2119757378136474090",
-          "text": "有质押宣传称 Harmony 上约 137 万 USDT 的 Mintbes 金库已上线，并称约 1,500 万枚 ONE 的“甜点区”可能比大型金库多拿到最多约 2 倍的收益。",
+          "text": "Mintbes Vault 已上线，面向 Harmony，规模 137 万美元 USDT，顺滑的 EPoS。甜点仓位（约 1,500 万 ONE）可拿到比超大金库最多高约 2 倍的 USDT/ONE。费率低至 7%，协议已签署。Mintbes 委托超过 6 个月未活动？请确认。存入 #ONE。",
           "textEn": "🌿 Mintbes Vault is LIVE for #Harmony $1.37M USDT  Smooth EPoS!\n\n✅ Sweet spot (~15M ONE) = up to 2x more USDT/ONE than mega-vaults\n✅ Low 7% Fee · Agreement Signed\n⚠️ Inactive Mintbes delegator &gt;6m? Confirm at https://t.co/gx1ytScNpz\n\nDeposit #ONE 👇\n\nhttps://t.co/R5AiQooyD8",
           "likes": 17,
           "note": "偏多",
           "time": "2026-11-09T11:41:56.000Z"
         },
         {
-          "url": "https://x.com/Jortx1/status/2120075772735959095",
-          "text": "有用户向 Gate 抱怨 Harmony ONE 提现已暂停一个多月，其他交易所正常，并称因此出现了交易所之间的价差。",
-          "textEn": "@Gate Everything sounds great, but you have Harmony ONE withdrawals suspended for over a month now. Every other exchange is operating normally, except yours.\nWhy are withdrawals still disabled?Now there is price difference between exchanges due to your irresponsibility. https://t.co/S7ytA2JaTp",
-          "likes": 0,
+          "url": "https://x.com/BitcoinStrat/status/2119807381270135231",
+          "text": "Harmony 的未平仓合约跳升了约 5 倍。Harmony 上所有未平仓押注在两天里增加了约 5 倍，几乎相当于市值的 40%。资金费率略负，现货成交的三分之一…",
+          "textEn": "📊 Harmony Bets Jumped 5x\n\nOpen interest on Harmony, all the open bets on the price, went up about 5x in 2 days. That is almost 40 % of the market cap. Funding was slightly negative, and a third of all spot…\n\n$ONE #harmony #crypto\n\nTry Premium for 7 days:\nhttps://t.co/UB1meVluSW https://t.co/6ZokFu98hn",
+          "likes": 2,
           "note": "偏空",
-          "time": "2026-11-10T08:47:07.000Z"
+          "time": "2026-11-09T15:00:38.000Z"
+        },
+        {
+          "url": "https://x.com/CheralynMc42350/status/2119898930649460997",
+          "text": "不追涨。不猜底。等待确认。非投资建议。$ONE Harmony。",
+          "textEn": "Not chasing.\nNot guessing the bottom.\nWaiting for confirmation.\n\nNot financial advice.\n\n$ONE Harmony , Crypto , Altcoins , Trading",
+          "likes": 0,
+          "note": "中性",
+          "time": "2026-11-09T21:04:25.000Z"
         }
       ]
     }
   },
   "news": {
-    "snapshotTime": "2026-11-10 18:37 KST",
+    "snapshotTime": "2026-11-10 19:16 KST",
     "items": [
       {
-        "title": "贝莱德现货 ETF 为应对赎回卖出约 3.31 亿美元比特币和以太坊（仍在，报道时间未再刷新）",
-        "summary": "11 月 9 日，贝莱德因其客户赎回，从现货 ETF 中卖出约 2.1323 亿美元比特币和约 1.1828 亿美元以太坊。当日美国比特币 ETF 净流出约 2.01 亿美元，以太坊 ETF 净流出约 1.845 亿美元。贝莱德的 IBIT 已连续七个交易日面临流出，累计超过 14 亿美元，公司称这属于客户赎回而非主动减仓。",
-        "coins": [
-          "BTC",
-          "ETH"
-        ],
-        "url": "https://x.com/i/trending/2120032731170271701",
-        "updated": "2026-11-10T08:27:39.000Z"
+        "title": "Coinbase 获得美国联邦信托银行正式牌照",
+        "summary": "Coinbase 的全国性信托银行已获美国货币监理署（OCC）正式牌照，由此前 2026 年 4 月的有条件批准升为完整牌照。这意味着 Coinbase National Trust Company 可以作为受托人，为机构和客户提供更标准化的加密资产托管。这是该公司经营约 14 年后在联邦层面拿到的重要牌照进展。",
+        "coins": [],
+        "url": "https://x.com/i/trending/2119735424512061638",
+        "updated": "2026-11-10T06:45:26.000Z"
       },
       {
-        "title": "比特币周线收在 50 周均线下方，为近几个月首次（仍在，报道时间未再刷新）",
-        "summary": "比特币周线收在约 75,500 美元附近的 50 周均线下方，为近几个月首次。讨论里既有 Strategy 展示约 849,327 枚持仓的材料，也有 Peter Schiff 警告继续抛售；有分析认为守住该水平对确认升势很关键，若跌破或看向约 68,000–69,000 美元。情绪偏恐惧。",
+        "title": "Cosmos 将 IBC 协议捐赠给 Linux 基金会",
+        "summary": "11 月 9 日，Cosmos 与 Interchain Foundation 将已在生产环境验证的跨链通信协议 IBC 交给 Linux Foundation 旗下的 LF Decentralized Trust 治理，商标由基金会持有，代码保持开源。此举希望把区块链互联做成银行和开放金融可用的中立标准。",
+        "coins": [],
+        "url": "https://x.com/i/trending/2119817057353290105",
+        "updated": "2026-11-10T02:59:01.000Z"
+      },
+      {
+        "title": "Stripe 与 miPlata 推出稳定币 Visa 预付卡",
+        "summary": "Stripe 与面向拉丁裔劳工和家庭的钱包 miPlata 合作推出 Visa 预付卡，用户可直接用 USDC 余额在接受 Visa 的商户消费，商户仍按美元结算。宣传点是日常消费不必先手动把稳定币换成美元。",
+        "coins": [],
+        "url": "https://x.com/i/trending/2119863584587239501",
+        "updated": "2026-11-10T00:07:42.000Z"
+      },
+      {
+        "title": "特朗普在《60 分钟》采访中把加密资产比作石油",
+        "summary": "在《60 分钟》采访里，特朗普在回应家族加密业务的利益冲突问题时说，过去的总统也持有石油等重要资产，“以前有石油，现在有加密”。这条类比在加密社区里被广泛转述。",
         "coins": [
           "BTC"
         ],
-        "url": "https://x.com/i/trending/2119476451166531619",
-        "updated": "2026-11-10T09:01:03.000Z"
+        "url": "https://x.com/i/trending/2119817065746059353",
+        "updated": "2026-11-09T15:50:08.000Z"
       },
       {
-        "title": "嘉信理财上架 SOL、AVAX 与 LINK（本轮重新出现）",
-        "summary": "管理约 13 万亿美元资产、服务约 4,000 万个账户的嘉信理财，已在其 Schwab Crypto 平台上增加 Solana（SOL）、Avalanche（AVAX）和 Chainlink（LINK），此前该平台已提供比特币和以太坊交易。该服务分阶段上线，单笔交易收费 75 个基点，并与嘉信的股票和债券视图集成。数字资产负责人 Joe Vietri 称，这是根据客户兴趣做出的扩展，后续还计划增加更多品种；目前交易仍限于符合条件的美国零售客户。",
+        "title": "PNC 银行与 Coinbase 试点为对公客户办理 USDC 收款（仍在，报道时间已刷新）",
+        "summary": "PNC 银行与 Coinbase 的试点仍在快讯结果中，且报道时间已刷新：符合条件的公司和机构客户可在以太坊上收取 USDC，并按 1:1 自动兑换成美元存入 PNC 账户。",
         "coins": [
-          "SOL",
-          "AVAX"
+          "ETH"
         ],
-        "url": "https://x.com/i/trending/2119799343062327352",
-        "updated": "2026-11-10T07:21:35.000Z"
+        "url": "https://x.com/i/trending/2119972811955466579",
+        "updated": "2026-11-10T09:46:26.000Z"
       },
       {
-        "title": "Upbit 与 Bithumb 上架 Hyperliquid 的 HYPE（仍在，报道时间未再刷新）",
-        "summary": "韩国大型交易所 Upbit 于当日 15:00 KST 开放 Hyperliquid 的 HYPE 在韩元、比特币和 USDT 市场的交易，充提仅限 HyperEVM 网络；Bithumb 同日也上架韩元交易对，方便本地投资者交易这一去中心化永续交易所的平台币。",
+        "title": "Upbit 与 Bithumb 上架 Hyperliquid 的 HYPE（仍在）",
+        "summary": "韩国交易所 Upbit 今日 15:00 KST 开放 HYPE 的韩元、BTC 和 USDT 交易对，充提仅限 HyperEVM 网络；Bithumb 也已跟进。该条仍在本轮快讯结果中。",
         "coins": [],
         "url": "https://x.com/i/trending/2120036759371186249",
         "updated": "2026-11-10T08:33:26.000Z"
       },
       {
-        "title": "Vitalik 更强调以太坊应作为价值存储，而非靠销毁手续费（仍在，报道时间未再刷新）",
-        "summary": "在 11 月 8 日的帖子里，以太坊联合创始人 Vitalik Buterin 解释，为何更适合把 ETH 主要定位成价值存储，而不是强调销毁手续费。他指出，过去的销毁更多依赖内部活动而非外部需求，若一味放大销毁可能损害去中心化；ETH 在抗审查、开源、隐私和安全性上的优势，更适合支撑长期价值存储。",
-        "coins": [
-          "ETH"
-        ],
-        "url": "https://x.com/i/trending/2119403589760364617",
-        "updated": "2026-11-10T07:29:22.000Z"
+        "title": "IMF 敦促肯尼亚落实加密用户信息共享",
+        "summary": "国际货币基金组织建议肯尼亚要求加密平台收集并共享客户姓名、证件号、地址和钱包信息，以落实全球“旅行规则”，用于反洗钱和追踪交易。材料提到肯尼亚去年加密交易规模约 57 亿美元。",
+        "coins": [],
+        "url": "https://x.com/i/trending/2120053296731652115",
+        "updated": "2026-11-10T07:21:20.000Z"
       },
       {
-        "title": "PNC 银行与 Coinbase 试点为对公客户办理 USDC 收款（仍在，报道时间未再刷新）",
-        "summary": "PNC 深化与 Coinbase 的合作，在以太坊上推出试点：符合条件的公司和机构客户收到的 USDC 付款会按 1:1 自动换成美元并存入其 PNC 账户。这是在早先为私人银行客户提供比特币交易之后的下一步，目标是让企业更快拿到资金、并减少跨境收款中自行保管加密资产的麻烦。",
-        "coins": [
-          "ETH"
-        ],
-        "url": "https://x.com/i/trending/2119972811955466579",
-        "updated": "2026-11-10T07:29:10.000Z"
-      },
-      {
-        "title": "Peter Schiff 警告跌破约 75,000 美元可能崩溃（仍在，报道时间未再刷新）",
-        "summary": "长期批评比特币的 Peter Schiff 在比特币跌破约 75,000 美元支撑、而股票、黄金和白银上涨时呼吁卖出。他称比特币持有者错过了更广泛的市场走强，崩溃前只剩很短窗口。当天收盘约在 74,700 至 74,900 美元，较 2021 年约 69,000 美元的前高仍高出约 8%。",
+        "title": "Utexo 将于 11 月 28 日在比特币上推出带隐私工具的 USDT",
+        "summary": "Utexo 计划 11 月 28 日向公众开放比特币上的 USDT，并提供面向 web、React Native 和 Node.js 的 SDK（测试版），用于处理 RGB 资产、钱包功能和闪电网络支付，宣传点包括在比特币上发送美元稳定币并带有隐私工具。",
         "coins": [
           "BTC"
         ],
-        "url": "https://x.com/i/trending/2120004180408713254",
-        "updated": "2026-11-10T08:40:41.000Z"
+        "url": "https://x.com/i/trending/2119728280416997604",
+        "updated": "2026-11-09T09:50:19.000Z"
       },
       {
-        "title": "BitMine 再购约 9,587 枚 ETH，持仓接近流通量 5%（仍在）",
-        "summary": "由 Tom Lee 担任主席的这家上市公司自 2025 年 6 月 30 日启动金库策略以来，已连续 71 周买入 ETH，目前持有约 6,070,092 枚，约占以太坊流通量的 4.97%，距离其“炼成 5%”目标大约还差 40,000 枚。超过 86% 的持仓已质押，预计年化奖励约 3.09 亿美元，若全部质押或可升至约 3.59 亿美元。本轮又买入 9,587 枚，约合 2,030 万美元。",
-        "coins": [
-          "ETH"
-        ],
-        "url": "https://x.com/i/trending/2119876637173182823",
-        "updated": "2026-11-09T23:11:47.000Z"
-      },
-      {
-        "title": "贝莱德：因安全顾虑，自托管比特币换成 IBIT 的实物申赎创纪录（仍在）",
-        "summary": "管理规模超过 15 万亿美元的贝莱德称，把自托管比特币转换成其 iShares Bitcoin Trust（IBIT）份额的需求正在上升，主要原因是安全。数字资产负责人 Robbie Mitchnick 对《巴伦周刊》表示，监管机构 2025 年 7 月批准的实物申赎已达纪录水平，累计至少约 36 亿美元。",
+        "title": "TradingView 故障一度显示加密总市值假涨至约 6 万亿美元",
+        "summary": "TradingView 上前 125 种加密资产的指数出现数据错误，总市值一度被显示为超过约 6 万亿美元，比特币主导率看起来跌破 25%。实际总市值仍接近原先水平，属于图表故障而非行情暴涨。",
         "coins": [
           "BTC"
         ],
-        "url": "https://x.com/i/trending/2119797372762923490",
-        "updated": "2026-11-09T19:45:27.000Z"
-      },
-      {
-        "title": "以太坊以新的点对点协议加快区块数据传递（仍在）",
-        "summary": "Optimum 的 mump2p 协议自 10 月起在以太坊主网运行，使用随机线性网络编码发送编码后的数据组合而不是完整数据包，以减少冗余、改善慢速连接上的可靠性。早期结果显示，约 90% 的区块到达速度快约 1 倍，用户侧区块传播平均加快约 2.5–3.5 倍；已有超过 34 亿美元的质押 ETH 相关节点在使用。",
-        "coins": [
-          "ETH"
-        ],
-        "url": "https://x.com/i/trending/2120008287924208107",
-        "updated": "2026-11-10T04:24:41.000Z"
+        "url": "https://x.com/i/trending/2119726928747786492",
+        "updated": "2026-11-09T20:37:18.000Z"
       }
     ]
   },
   "recommendationAtSnapshot": {
-    "time": "2026-11-10 18:37 KST",
+    "time": "2026-11-10 19:16 KST",
     "binance": [],
     "okx": [],
-    "note": "币种：相对上轮 2026-11-10 18:17 KST，观察名单仍为同一 10 个币：BTC/ETH/SOL + INIT、ONE、AVAX、ETHFI、ONDO、TST、GRAM。始终保留 BTC+ETH；SOL 作为主流币继续保留，即使 24h 仍为下跌。现有涨幅榜品种仍全部高于约 3% 的门槛（INIT 约 +60.05%，ONE 约 +15.10%，ETHFI 约 +8.30%，GRAM 约 +7.78%，TST 约 +5.81%，ONDO 约 +5.75%，AVAX 约 +5.35%），故未把同样在涨幅榜上、但成交更薄的 ACT（约 +11.82%，qv≈349 万 USDT）、PYTH（约 +8.54%，qv≈330 万 USDT）或 JUP（约 +7.88%，qv≈379 万 USDT）换入；UNI（约 +3.76%，qv≈3,255 万 USDT）和 WLFI（约 +3.67%，qv≈752 万 USDT）也仍在门槛附近，但现有 10 个名额已满。PEPE 现货约 +2.73%，仍低于门槛。本轮继续过滤杠杆代币和 *B 代币化股票（SOXLB/KORUB/SNXXB 等）。平行扫描币安 USDT 永续前 80 个标的，本轮无多头命中，仅有 1 个空头命中 AKEUSDT（score≈70.12，日线约 -49.58%）。仅多头信号才会改观察名单，recommendation.binance=[] okx=[]。相对 18:17 KST：BTC 由约 74,410.77 / -0.365% 变为约 74,406.01 / +0.192%（最新价几乎持平，24h 由翻绿转为翻红，主要是窗口滚动）；ETH 由约 2,104.26 / -1.011% 变为约 2,102.00 / -0.348%（最新价略回，跌幅收窄）；SOL 由约 85.45 / -1.939% 变为约 85.32 / -1.671%（跌幅略收）；INIT 由约 0.21558 / +60.857% 变为约 0.21965 / +60.048%（现货再抬约 0.0041 美元，24h 因窗口略收，永续仍更软，fapi 最新价约 0.21200 / +58.64%）；AVAX 由约 8.401 / +4.698% 变为约 8.426 / +5.351%；ETHFI 由约 0.6372 / +7.454% 变为约 0.6382 / +8.298%（涨幅再扩大，更贴近约 0.64–0.65 阻力带）；ONDO 由约 0.3694 / +4.203% 变为约 0.3732 / +5.752%；TST 由约 0.01248 / +5.942% 变为约 0.01239 / +5.807%；GRAM 由约 1.098 / +8.177% 变为约 1.095 / +7.776%；ONE 由约 0.001838 / +16.403% 变为约 0.001829 / +15.104%，资金费率由约 -0.3044% 加深至约 -0.4579%。叙事增量主要是：BTC 最新价持平但 24h 翻红，新出现特朗普相关公司持有 15,649 枚、三季度再增持 1,510 枚的材料，Hut 8 转出回到样本，MARA 卖币还贷的口径补充了已还清约 7.5 亿美元贷款，Eric Trump 转述仍是最高互动，score 由约 0.05 升至约 0.11；ETH 跌幅收窄，沉寂地址转出仍居互动首位，ETF 流出和 BitMine 续买还在，新出现大额钱包对冲吸纳的材料，上轮交易所卖压帖本轮缺席，score 由约 -0.07 升至约 0.00；SOL 跌幅略收，验证者公开信、Breakpoint 前盘点和“约 85 美元便宜货”仍是高互动主线，score 由约 -0.25 略升至约 -0.23；INIT 现货略抬但 L1 仍暂停，出现约 49 赞的告别帖，约 60.5 万美元被抽走和假退款提醒还在，资金费率约 -1.0087%，score 由约 -0.59 降至约 -0.62；AVAX 涨幅略回升，纽交所结算、“禁止直接钱包”和约 10% 反弹转述仍在，score 由约 0.25 升至约 0.28；ETHFI 涨幅再扩大并更贴近阻力，结构帖互动约 31 赞，新出现对称三角形接近顶点的材料，score 由约 0.46 升至约 0.50；ONDO 价格回升，约 40 亿美元规模叙事仍在，15 分钟倒头肩和超卖反弹讨论增加，上轮日线均线材料时效变弱，score 由约 0.33 升至约 0.42；TST 讨论仍然偏薄，现货仍低于 0.0128 美元的买入参考，新出现 1 小时逆势反弹的提醒，score 维持约 0.20；GRAM 最新价略回，钱包采用帖互动约 249 赞，并出现抱怨 Durov 不够活跃的材料，score 由约 0.26 略降至约 0.24；ONE 最新价略回，样本仍薄，资金费率明显加深，score 由约 -0.20 降至约 -0.24。新闻方面：上轮从快讯结果中消失的嘉信理财上架 SOL/AVAX/LINK 本轮重新出现；贝莱德约 3.31 亿美元赎回卖出、比特币周线收在 50 周均线下方、Upbit 上架 HYPE、Schiff 警告、PNC 试点、Vitalik 价值存储、BitMine 续买、IBIT 实物申赎和以太坊 mump2p 协议等条目仍在，报道时间均未再刷新；上轮“以太坊跌破约 2,100 美元”的条目本轮被重新出现的嘉信上架替换。X 检索共 12 次（10 币 search_posts_all + 1 次 search_news + 1 次 ONE 因噪音做的 recency 补检索），start_time=2026-11-09T09:30:00Z，无失败。"
+    "note": "币种：相对上轮 2026-11-10 18:37 KST，观察名单由 BTC/ETH/SOL + INIT、AVAX、ETHFI、ONDO、TST、GRAM、ONE 调整为 BTC/ETH/SOL + INIT、PIEVERSE、AVAX、ETHFI、ONDO、GRAM、ONE。始终保留 BTC+ETH；SOL 作为主流币继续保留，即使 24h 仍为下跌。本轮换出 TST（现货仍约 +5.10%，qv≈890 万 USDT，但讨论一直偏薄），换入过滤代币化股票后的第 2 名涨幅品种 PIEVERSE（永续约 +29.34%，fapi qv≈2.50 亿 USDT，无币安现货报价）。为避免一次换掉过多名字，AIN（约 +26.74%，qv≈7,000 万）、ARIA（约 +25.94%，qv≈4,500 万）和 EDGE（约 +15.79%，qv≈1.20 亿）暂不轮入。其余原有品种仍全部高于约 3% 的门槛（INIT 约 +71.21%，ONE 约 +13.38%，ETHFI 约 +7.49%，GRAM 约 +6.18%，ONDO 约 +5.65%，AVAX 约 +4.64%）。本轮继续过滤杠杆代币和代币化股票（SOXL、COHR、SNXX、KORU、OKLO、ASTS、LITE、NBIS、AMD、MRVL 等，underlyingType 为 EQUITY / TRADIFI_PERPETUAL）。平行扫描币安 USDT 永续前 80 个标的，本轮无多头命中，recommendation.binance=[] okx=[]。相对 18:37 KST：BTC 由约 74,406.01 / +0.192% 变为约 74,454.01 / +0.269%；ETH 由约 2,102.00 / -0.348% 变为约 2,101.34 / -0.268%；SOL 由约 85.32 / -1.671% 变为约 85.42 / -0.985%；INIT 由约 0.21965 / +60.048% 变为约 0.22118 / +71.205%（24h 明显扩大，永续约 0.21364 / +67.17%，资金费率约 -0.9935%）；PIEVERSE 为新纳入，永续约 2.0946 / +29.336%，资金费率约 +0.0050%；AVAX 由约 8.426 / +5.351% 变为约 8.374 / +4.636%，资金费率由略负翻为约 +0.0006%；ETHFI 由约 0.6382 / +8.298% 变为约 0.6390 / +7.485%；ONDO 由约 0.3732 / +5.752% 变为约 0.3721 / +5.650%；GRAM 由约 1.095 / +7.776% 变为约 1.083 / +6.176%，资金费率由约 +0.0045% 翻为约 -0.0008%；ONE 由约 0.001829 / +15.104% 变为约 0.001763 / +13.376%，资金费率由约 -0.4579% 加深至约 -0.5657%。叙事增量主要是：BTC 最新价小幅回升，Eric Trump 转述本轮缺席，MARA“还计划继续卖”进入样本，Hut 8 再次缺席，score 由约 0.11 升至约 0.12；ETH 跌幅再收，沉寂地址转出仍居首位并出现投毒骗局角度，ETF 流出和 BitMine 续买还在，score 由约 0.00 升至约 0.07；SOL 跌幅明显收窄，上轮高互动的验证者/Breakpoint 材料缺席，改由 DFDV 再扩金库（约 82 赞）领衔，score 由约 -0.23 升至约 0.13（样本偏薄，不宜过读）；INIT 现货再抬且 24h 扩大至约 +71%，新出现 Bithumb 暂停提现，告别帖缺席，score 由约 -0.62 升至约 -0.50，仍偏空；PIEVERSE 首次纳入，讨论以交易点评为主，score 约 0.13；AVAX 价格略回，出现要求解释纽交所与代币价值捕获的帖子，嘉信上架仍出现在帖子样本，score 由约 0.28 降至约 0.25；ETHFI 贴近阻力，基金会宣布创纪录回购，score 由约 0.50 升至约 0.56；ONDO 价格略回，40 亿美元叙事换了一条互动较低的转述，score 由约 0.42 降至约 0.33；GRAM 继续回落，出现邀请 Durov 上 Space 的材料，score 由约 0.24 略降至约 0.22；ONE 继续回落、资金费率更深，Gate 提现帖缺席，本轮未做 recency 补检索，短样本下 score 由约 -0.24 回至约 0.00。新闻方面：上轮贝莱德赎回卖出约 3.31 亿美元、比特币周线收在 50 周均线下方、嘉信理财上架 SOL/AVAX/LINK、Schiff 警告、Vitalik 价值存储、BitMine 续买、IBIT 实物申赎、以太坊 mump2p 等条目本轮快讯结果中未再出现（其中嘉信上架、Vitalik 和 BitMine 仍出现在对应币种的帖子样本里）；Upbit 上架 HYPE 和 PNC 试点仍在，且 PNC 报道时间已刷新。本轮新出现 Coinbase 联邦信托牌照、Cosmos 捐赠 IBC、Stripe/miPlata 稳定币卡、特朗普“加密像石油”、IMF 敦促肯尼亚落实旅行规则、Utexo 在比特币上推出 USDT，以及 TradingView 总市值故障。X 检索共 11 次（10 币 search_posts_all + 1 次 search_news），start_time=2026-11-09T10:00:00Z，无失败。"
   }
 }
