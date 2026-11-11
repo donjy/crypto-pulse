@@ -79,6 +79,68 @@
       streak15: streak(k.m15), rsi15: rsi(closed(k.m15)), rsi1h: rsi(closed(k.h1)), volMult: volMultiple(k.h1),
     };
   }
-  const api = { normBinance, normOkx, streak, rsi, volMultiple, lastN, evaluate, metrics, liveReturn };
+  /**
+   * Trend-following long/short (顺势做多 / 顺势做空), distinct from evaluate()'s pullback-entry (顺大逆小).
+   * long defaults:
+   *   - last closed 1d candle bullish (N=1)
+   *   - last 2 closed 1d net return (open of first -> close of last) >= d1Min (default 3%)
+   *   - last 6 closed 4h net return > h4Min (default 0%), i.e. the 24h 4h structure is still up.
+   *     A single closed 4h pullback is allowed and is only a score penalty, not a hard filter.
+   *   - holding: current price vs open of the first of those last 2 closed d1 bars is still >= d1Min
+   *   - 1h direction and 15m pullback are NOT required (returned for context only)
+   * short mirrors the signs. Scoring ranks trend strength.
+   */
+  function evaluateTrend(k, opt = {}) {
+    const side = opt.side || 'long';
+    const L = side === 'long';
+    const d1Min = opt.d1Min != null ? opt.d1Min : 3;
+    const h4Min = opt.h4Min != null ? opt.h4Min : 0;
+    const h4Lookback = opt.h4Lookback || 6;
+    const d1n1 = lastN(k.d1, 1, L);
+    const d1n2 = lastN(k.d1, 2, L);
+    const h4n1 = lastN(k.h4, 1, L);
+    const h4n2 = lastN(k.h4, 2, L);
+    const h4n6 = lastN(k.h4, h4Lookback, L);
+    const h1n1 = lastN(k.h1, 1, L);
+    const h1n2 = lastN(k.h1, 2, L);
+    const m15pb = lastN(k.m15, 3, !L);
+    const st = streak(k.m15);
+    const r15 = rsi(closed(k.m15));
+    const live = { m15: liveReturn(k.m15), h1: liveReturn(k.h1), h4: liveReturn(k.h4), d1: liveReturn(k.d1) };
+    const price = k.m15[k.m15.length - 1].c;
+    const d1Ok = !!(d1n1.ok && d1n2.ret != null && (L ? d1n2.ret >= d1Min : d1n2.ret <= -d1Min));
+    const h4Ok = !!(h4n6.ret != null && (L ? h4n6.ret > h4Min : h4n6.ret < -h4Min));
+    const d1Closed = closed(k.d1).slice(-2);
+    const trailNet = d1Closed.length === 2 ? (price / d1Closed[0].o - 1) * 100 : null;
+    const dayHold = trailNet != null && (L ? trailNet >= d1Min : trailNet <= -d1Min);
+    const match = d1Ok && h4Ok && dayHold;
+    const missing = [];
+    if (!d1Ok) missing.push(!d1n1.ok ? 'd1(last closed dir)' : 'd1(2-bar net)');
+    if (!h4Ok) missing.push('h4(24h net)');
+    if (!dayHold) missing.push('d1 trail hold');
+    const c15 = closed(k.m15).slice(-3);
+    let pull = null;
+    if (c15.length) pull = L ? (price / Math.max(...c15.map(x => x.h)) - 1) * 100 : (price / Math.min(...c15.map(x => x.l)) - 1) * 100;
+    let score = null;
+    if (match) {
+      const sgn = L ? 1 : -1;
+      const trend = sgn * ((d1n2.ret || 0) + (h4n6.ret || 0));
+      const h1Bonus = (L ? Math.max(live.h1 || 0, 0) : Math.max(-(live.h1 || 0), 0)) * 0.3;
+      const h4Now = live.h4 != null ? live.h4 : (h4n1.ret || 0);
+      const against = (L && h4Now < 0) || (!L && h4Now > 0);
+      const pullPenalty = against ? Math.min(Math.abs(h4Now), 20) * 0.4 : 0;
+      const rsiPen = r15 == null ? 0 : (L ? Math.max(0, r15 - 80) : Math.max(0, 20 - r15)) * 0.2;
+      const vm = Math.min(volMultiple(k.h1) || 1, 3);
+      const cleanBonus = (d1n2.ok ? 2 : 0) + (h1n1.ok ? 1 : 0);
+      score = +(trend + h1Bonus - pullPenalty - rsiPen + vm + cleanBonus).toFixed(2);
+    }
+    return {
+      match, score, missing, d1Ok, h4Ok, dayHold, trailNet,
+      h1: h1n2, h4: h4n6, h4n2, d1: d1n2, m15: m15pb,
+      d1n1, h4n1, h1n1, h4n6,
+      live, streak15: st, pullback: pull, rsi15: r15, price,
+    };
+  }
+  const api = { normBinance, normOkx, streak, rsi, volMultiple, lastN, evaluate, evaluateTrend, metrics, liveReturn };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.Signals = api;
 })(typeof window !== 'undefined' ? window : globalThis);

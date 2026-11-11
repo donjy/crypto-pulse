@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Crypto Pulse — Binance / OKX 实时行情 · 顺大逆小 · 情绪</title>
+<title>Crypto Pulse — Binance / OKX 实时行情 · 顺势做多 · 顺大逆小 · 情绪</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = { theme: { extend: {
@@ -320,7 +320,7 @@ function Header({ platform, setPlatform, ws, lastUpdate, onRefresh, search, setS
       <div className="max-w-[1600px] mx-auto flex flex-wrap items-center gap-3 justify-between">
         <div className="flex items-center gap-3">
           <div className="w-7 h-7 rounded-md bg-accent/20 border border-accent/40 flex items-center justify-center text-accent font-bold text-sm">₿</div>
-          <div><div className="text-sm font-semibold">Crypto Pulse</div><div className="text-[10px] text-muted leading-none">实时行情 · 顺大逆小 · 情绪</div></div>
+          <div><div className="text-sm font-semibold">Crypto Pulse</div><div className="text-[10px] text-muted leading-none">实时行情 · 顺势做多 · 顺大逆小 · 情绪</div></div>
           <div className="flex rounded-lg border border-border overflow-hidden text-xs font-medium ml-2">
             {['binance','okx'].map(p => <button key={p} onClick={() => setPlatform(p)} className={`px-3 py-1.5 ${platform === p ? 'bg-accent text-bg' : 'bg-panel text-muted hover:text-white'}`}>{PLATFORMS[p].label}</button>)}
           </div>
@@ -405,53 +405,94 @@ function GainersTable({ rows, P, sel, onSelect, up, down, sortKey, setSortKey })
 /* ============================================================
  * 顺大逆小 推荐榜
  * ============================================================ */
-function SignalBoard({ P, scan, opts, setOpts, onSelect, up, down, newSet, notifyOn, enableNotify, runNow }) {
-  const rows = scan.results.filter(r => opts.short || r.side === 'long');
+function RecRow({ r, P, onSelect, up, down, newSet, mode }) {
+  const s = SNAP.sentiment[P.base(r.id)];
+  const isNew = newSet.has((mode || '') + r.side + r.id);
   return (
-    <div className="bg-panel border border-border rounded-xl overflow-hidden">
-      <div className="px-4 py-3 border-b border-border flex flex-wrap gap-3 items-center justify-between">
-        <div>
-          <h2 className="text-sm font-semibold">顺大逆小 · 做多推荐榜 <Live t="实时 K 线" /></h2>
-          <p className="text-[10px] text-muted mt-0.5">条件：1h / 4h / 1d 最近 {opts.N} 根已收盘 K 线全部收阳且区间涨幅 &gt; 0，同时最近 {opts.K} 根已收盘 15m K 线全部收阴。扫描 24h 成交额前 {opts.universe} 的 USDT 永续，每 {opts.every} 分钟刷新。</p>
+    <tr onClick={() => onSelect(r.id)} className={`border-b border-border/60 cursor-pointer hover:bg-white/[0.03] ${isNew ? 'flash-new' : ''}`}>
+      <td className="px-3 py-2"><span className="px-1.5 rounded text-[10px] font-semibold" style={{ color: r.side === 'long' ? up : down, border:`1px solid ${r.side === 'long' ? up : down}55` }}>{r.side === 'long' ? '多' : '空'}</span></td>
+      <td className="px-3 py-2 font-medium">{P.disp(r.id)}</td>
+      <td className="px-3 py-2 text-right font-mono">{fmtPrice(r.price)}</td>
+      <td className="px-3 py-2 text-right"><Pct v={r.d1} up={up} down={down} /></td>
+      <td className="px-3 py-2 text-right"><Pct v={r.h4} up={up} down={down} /></td>
+      {mode === 'trend' ? <>
+        <td className="px-3 py-2 text-right"><Pct v={r.liveD1} up={up} down={down} /></td>
+        <td className="px-3 py-2 text-right"><Pct v={r.liveH1} up={up} down={down} /></td>
+        <td className="px-3 py-2 text-right"><Pct v={r.liveH4} up={up} down={down} /></td>
+      </> : <>
+        <td className="px-3 py-2 text-right"><Pct v={r.h1} up={up} down={down} /></td>
+        <td className="px-3 py-2 text-right font-mono">{r.streak} 根 / <Pct v={r.pull} up={up} down={down} /></td>
+      </>}
+      <td className="px-3 py-2 text-right font-mono" style={{ color: r.rsi15 <= 30 ? up : r.rsi15 >= 70 ? down : undefined }}>{r.rsi15?.toFixed(1) ?? '—'}</td>
+      <td className="px-3 py-2 text-right font-mono">{fmtFund(r.funding)}</td>
+      <td className="px-3 py-2 text-right font-mono text-accent">{r.score}</td>
+      <td className="px-3 py-2 text-right">{s ? <span className="tip text-[10px]"><span style={{ color: s.score >= 0 ? up : down }}>{s.score >= 0 ? '偏多' : '偏空'} {Math.round(s.bull * 100)}%</span><span className="tipbox">{s.headline}<br /><span className="text-muted">快照 {SNAP.snapshotTime}</span></span></span> : <span className="text-muted text-[10px]">无快照</span>}</td>
+      <td className="px-3 py-2 text-right">{isNew ? <span className="px-1.5 rounded bg-accent text-bg text-[10px] font-semibold">新进入</span> : <span className="px-1.5 rounded border border-accent/40 text-accent text-[10px]">提醒</span>}</td>
+    </tr>
+  );
+}
+
+function SignalBoard({ P, scan, opts, setOpts, onSelect, up, down, newSet, notifyOn, enableNotify, runNow }) {
+  const trendRows = (scan.trend || []).filter(r => opts.short || r.side === 'long');
+  const pbRows = (scan.pullback || []).filter(r => opts.short || r.side === 'long');
+  const empty = (rows, which) => !rows.length && <tr><td colSpan={13} className="py-6 text-center text-muted">{scan.running ? `扫描中… ${scan.done}/${scan.total}` : scan.last ? (which === 'trend' ? '当前无符合顺势条件的币种' : '当前无符合顺大逆小回调条件的币种（条件较严格，属正常）') : '等待首次扫描…'}</td></tr>;
+  return (
+    <div className="space-y-4">
+      <div className="bg-panel border border-border rounded-xl overflow-hidden">
+        <div className="px-4 py-3 border-b border-border flex flex-wrap gap-3 items-center justify-between">
+          <div>
+            <h2 className="text-sm font-semibold">顺势做多榜 <Live t="实时 K 线" /></h2>
+            <p className="text-[10px] text-muted mt-0.5">趋势跟随，不是回调买入。条件：最近 1 根已收盘日线收阳，且近 2 根已收盘日线区间涨幅 ≥ 3%；近 6 根已收盘 4h（约 24 小时）区间仍上涨（允许单根 4h 回调）；当前价相对这 2 日起点仍满足 ≥ 3%。不要求 1h 连阳，也不要求 15m 连阴。扫描 24h 成交额前 {opts.universe} 的 USDT 永续，每 {opts.every} 分钟刷新。</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-2 text-[11px]">
+            <label className="text-muted">范围 <select value={opts.universe} onChange={e => setOpts({ ...opts, universe:+e.target.value })} className="bg-bg border border-border rounded px-1">{[40,80,120].map(n => <option key={n}>{n}</option>)}</select></label>
+            <label className="text-muted flex items-center gap-1"><input type="checkbox" checked={opts.short} onChange={e => setOpts({ ...opts, short:e.target.checked })} />含顺势做空</label>
+            <button onClick={enableNotify} className={`px-2 py-1 rounded border ${notifyOn ? 'border-emerald-500/50 text-emerald-400' : 'border-border text-muted hover:text-white'}`}>{notifyOn ? '🔔 提醒已开启' : '🔕 开启提醒'}</button>
+            <button onClick={runNow} disabled={scan.running} className="px-2 py-1 rounded border border-border text-muted hover:text-white disabled:opacity-50">{scan.running ? `扫描中 ${scan.done}/${scan.total}` : '立即扫描'}</button>
+          </div>
         </div>
-        <div className="flex flex-wrap items-center gap-2 text-[11px]">
-          <label className="text-muted">大周期 N <select value={opts.N} onChange={e => setOpts({ ...opts, N:+e.target.value })} className="bg-bg border border-border rounded px-1">{[1,2,3,4].map(n => <option key={n}>{n}</option>)}</select></label>
-          <label className="text-muted">15m 连阴 K <select value={opts.K} onChange={e => setOpts({ ...opts, K:+e.target.value })} className="bg-bg border border-border rounded px-1">{[2,3,4,5].map(n => <option key={n}>{n}</option>)}</select></label>
-          <label className="text-muted">范围 <select value={opts.universe} onChange={e => setOpts({ ...opts, universe:+e.target.value })} className="bg-bg border border-border rounded px-1">{[40,80,120].map(n => <option key={n}>{n}</option>)}</select></label>
-          <label className="text-muted flex items-center gap-1"><input type="checkbox" checked={opts.short} onChange={e => setOpts({ ...opts, short:e.target.checked })} />含做空信号（大跌小涨）</label>
-          <button onClick={enableNotify} className={`px-2 py-1 rounded border ${notifyOn ? 'border-emerald-500/50 text-emerald-400' : 'border-border text-muted hover:text-white'}`}>{notifyOn ? '🔔 提醒已开启' : '🔕 开启提醒'}</button>
-          <button onClick={runNow} disabled={scan.running} className="px-2 py-1 rounded border border-border text-muted hover:text-white disabled:opacity-50">{scan.running ? `扫描中 ${scan.done}/${scan.total}` : '立即扫描'}</button>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead><tr className="text-muted border-b border-border bg-bg/40">
+              {['方向','交易对','最新价','近2日','4h(24h)','当日','1h现','4h现','RSI15m','资金费率','评分','X 情绪','提醒'].map((h, i) => <th key={h} className={`${i < 2 ? 'text-left' : 'text-right'} font-medium px-3 py-2`}>{h}</th>)}
+            </tr></thead>
+            <tbody>
+              {trendRows.map(r => <RecRow key={'trend'+r.side+r.id} {...{ r, P, onSelect, up, down, newSet, mode:'trend' }} />)}
+              {empty(trendRows, 'trend')}
+            </tbody>
+          </table>
+        </div>
+        <div className="px-4 py-2 text-[10px] text-muted border-t border-border flex flex-wrap justify-between gap-2">
+          <span>评分 = 近2日涨幅 + 近6根4h（24h）涨幅 + 0.3×1h现价顺势涨幅 − 0.4×当前4h逆向波动(≤20%) + 量能加分。单根 4h 回调只扣分，不会直接剔除。上次扫描 {scan.last ? KST(scan.last) : '—'} KST {scan.errors ? `· ${scan.errors} 个请求失败` : ''}</span>
+          <span className="text-amber-400/90 font-medium">⚠ 仅供参考，不构成投资建议</span>
         </div>
       </div>
-      <div className="overflow-x-auto">
-        <table className="w-full text-xs">
-          <thead><tr className="text-muted border-b border-border bg-bg/40">
-            {['方向','交易对','最新价','1d','4h','1h','15m 连阴/回调','RSI15m','资金费率','评分','X 情绪','提醒'].map((h, i) => <th key={h} className={`${i < 2 ? 'text-left' : 'text-right'} font-medium px-3 py-2`}>{h}</th>)}
-          </tr></thead>
-          <tbody>
-            {rows.map(r => { const s = SNAP.sentiment[P.base(r.id)]; const isNew = newSet.has(r.side + r.id);
-              return (
-              <tr key={r.side + r.id} onClick={() => onSelect(r.id)} className={`border-b border-border/60 cursor-pointer hover:bg-white/[0.03] ${isNew ? 'flash-new' : ''}`}>
-                <td className="px-3 py-2"><span className="px-1.5 rounded text-[10px] font-semibold" style={{ color: r.side === 'long' ? up : down, border:`1px solid ${r.side === 'long' ? up : down}55` }}>{r.side === 'long' ? '多' : '空'}</span></td>
-                <td className="px-3 py-2 font-medium">{P.disp(r.id)}</td>
-                <td className="px-3 py-2 text-right font-mono">{fmtPrice(r.price)}</td>
-                <td className="px-3 py-2 text-right"><Pct v={r.d1} up={up} down={down} /></td>
-                <td className="px-3 py-2 text-right"><Pct v={r.h4} up={up} down={down} /></td>
-                <td className="px-3 py-2 text-right"><Pct v={r.h1} up={up} down={down} /></td>
-                <td className="px-3 py-2 text-right font-mono">{r.streak} 根 / <Pct v={r.pull} up={up} down={down} /></td>
-                <td className="px-3 py-2 text-right font-mono" style={{ color: r.rsi15 <= 30 ? up : r.rsi15 >= 70 ? down : undefined }}>{r.rsi15?.toFixed(1) ?? '—'}</td>
-                <td className="px-3 py-2 text-right font-mono">{fmtFund(r.funding)}</td>
-                <td className="px-3 py-2 text-right font-mono text-accent">{r.score}</td>
-                <td className="px-3 py-2 text-right">{s ? <span className="tip text-[10px]"><span style={{ color: s.score >= 0 ? up : down }}>{s.score >= 0 ? '偏多' : '偏空'} {Math.round(s.bull * 100)}%</span><span className="tipbox">{s.headline}<br /><span className="text-muted">快照 {SNAP.snapshotTime}</span></span></span> : <span className="text-muted text-[10px]">无快照</span>}</td>
-                <td className="px-3 py-2 text-right">{isNew ? <span className="px-1.5 rounded bg-accent text-bg text-[10px] font-semibold">新进入</span> : <span className="px-1.5 rounded border border-accent/40 text-accent text-[10px]">提醒</span>}</td>
-              </tr>); })}
-            {!rows.length && <tr><td colSpan={12} className="py-6 text-center text-muted">{scan.running ? `扫描中… ${scan.done}/${scan.total}` : scan.last ? '当前无符合条件的币种（条件较严格，属正常）' : '等待首次扫描…'}</td></tr>}
-          </tbody>
-        </table>
-      </div>
-      <div className="px-4 py-2 text-[10px] text-muted border-t border-border flex flex-wrap justify-between gap-2">
-        <span>评分 = 大周期区间涨幅之和 + 1.5×15m 回调深度(≤5%) + RSI15m 超卖加分 + min(1h 量能倍数,3)。上次扫描 {scan.last ? KST(scan.last) : '—'} KST {scan.errors ? `· ${scan.errors} 个请求失败` : ''}</span>
-        <span className="text-amber-400/90 font-medium">⚠ 仅供参考，不构成投资建议</span>
+      <div className="bg-panel border border-border rounded-xl overflow-hidden">
+        <div className="px-4 py-3 border-b border-border flex flex-wrap gap-3 items-center justify-between">
+          <div>
+            <h2 className="text-sm font-semibold">顺大逆小 · 回调买入 <Live t="实时 K 线" /></h2>
+            <p className="text-[10px] text-muted mt-0.5">进场时机更严：1h / 4h / 1d 最近 {opts.N} 根已收盘 K 线全部收阳且区间涨幅 &gt; 0，同时最近 {opts.K} 根已收盘 15m K 线全部收阴。做空为镜像（大跌小涨）。</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-2 text-[11px]">
+            <label className="text-muted">大周期 N <select value={opts.N} onChange={e => setOpts({ ...opts, N:+e.target.value })} className="bg-bg border border-border rounded px-1">{[1,2,3,4].map(n => <option key={n}>{n}</option>)}</select></label>
+            <label className="text-muted">15m 连阴 K <select value={opts.K} onChange={e => setOpts({ ...opts, K:+e.target.value })} className="bg-bg border border-border rounded px-1">{[2,3,4,5].map(n => <option key={n}>{n}</option>)}</select></label>
+          </div>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead><tr className="text-muted border-b border-border bg-bg/40">
+              {['方向','交易对','最新价','1d','4h','1h','15m 连阴/回调','RSI15m','资金费率','评分','X 情绪','提醒'].map((h, i) => <th key={h} className={`${i < 2 ? 'text-left' : 'text-right'} font-medium px-3 py-2`}>{h}</th>)}
+            </tr></thead>
+            <tbody>
+              {pbRows.map(r => <RecRow key={'pb'+r.side+r.id} {...{ r, P, onSelect, up, down, newSet, mode:'pullback' }} />)}
+              {empty(pbRows, 'pullback')}
+            </tbody>
+          </table>
+        </div>
+        <div className="px-4 py-2 text-[10px] text-muted border-t border-border flex flex-wrap justify-between gap-2">
+          <span>评分 = 大周期区间涨幅之和 + 1.5×15m 回调深度(≤5%) + RSI15m 超卖加分 + min(1h 量能倍数,3)。这是回调进场名单，不是趋势强度榜。</span>
+          <span className="text-amber-400/90 font-medium">⚠ 仅供参考，不构成投资建议</span>
+        </div>
       </div>
     </div>
   );
@@ -874,7 +915,7 @@ function App() {
   const [epoch, setEpoch] = useState(0); // 刷新计数
   const store = useRef({ tickers:new Map(), spot:{}, marks:{}, liq:{}, spark:{} });
   const [opts, setOpts] = useState({ N:2, K:3, universe:80, every:3, short:false });
-  const [scan, setScan] = useState({ results:[], running:false, done:0, total:0, last:null, errors:0 });
+  const [scan, setScan] = useState({ trend:[], pullback:[], running:false, done:0, total:0, last:null, errors:0 });
   const [topts, setTopts] = useState({ lev:10, minChg:10, n:20 });
   const [tscan, setTscan] = useState({ results:[], running:false, done:0, total:0, last:null, errors:0, scanned:0 });
   const [newSet, setNewSet] = useState(new Set());
@@ -892,7 +933,7 @@ function App() {
   // ---------- 行情：REST 初始化 + 轮询兜底 + WS ----------
   useEffect(() => {
     const st = store.current = { tickers:new Map(), spot:{}, marks:{}, liq:{}, spark:{} };
-    setWs({}); setErr(null); setScan(s => ({ ...s, results:[], last:null })); prevSigs.current = null;
+    setWs({}); setErr(null); setScan(s => ({ ...s, trend:[], pullback:[], last:null })); prevSigs.current = null;
     let alive = true; const conns = [];
     const status = (n, v) => alive && setWs(w => ({ ...w, [n]: v }));
     const restAll = async (full) => {
@@ -977,33 +1018,44 @@ function App() {
     const uni = [...st.tickers.values()].sort((a, b) => b.qv - a.qv).slice(0, opts.universe);
     if (!uni.length) return;
     setScan(s => ({ ...s, running:true, done:0, total:uni.length, errors:0 }));
-    const out = []; let done = 0, errors = 0;
+    const outTrend = [], outPb = []; let done = 0, errors = 0;
     await Promise.all(uni.map(async x => {
       try {
         const [m15, h1, h4, d1] = await Promise.all(['15m','1h','4h','1d'].map(tf => P.klines(x.id, tf, 60)));
         const k = { m15, h1, h4, d1 };
+        const last = st.tickers.get(x.id)?.last;
+        const fund = st.marks[x.id]?.funding;
         for (const side of opts.short ? ['long','short'] : ['long']) {
+          const tr = S.evaluateTrend(k, { side });
+          if (tr.match) outTrend.push({ id:x.id, side, price:last ?? tr.price, d1:tr.d1.ret, h4:tr.h4.ret, h1:tr.h1.ret, liveD1:tr.live.d1, liveH4:tr.live.h4, liveH1:tr.live.h1, streak:tr.streak15.n, pull:tr.pullback, rsi15:tr.rsi15, score:tr.score, funding:fund });
           const e = S.evaluate(k, { N:opts.N, K:opts.K, side });
-          if (e.match) out.push({ id:x.id, side, price:st.tickers.get(x.id)?.last ?? e.price, d1:e.d1.ret, h4:e.h4.ret, h1:e.h1.ret, streak:e.streak15.n, pull:e.pullback, rsi15:e.rsi15, score:e.score, funding:st.marks[x.id]?.funding });
+          if (e.match) outPb.push({ id:x.id, side, price:last ?? e.price, d1:e.d1.ret, h4:e.h4.ret, h1:e.h1.ret, streak:e.streak15.n, pull:e.pullback, rsi15:e.rsi15, score:e.score, funding:fund });
         }
       } catch { errors++; }
       done++; if (done % 5 === 0) setScan(s => ({ ...s, done }));
     }));
     // OKX 无批量资金费率：仅对命中币种补拉
-    if (P.id === 'okx') await Promise.all(out.map(async r => { try { r.funding = (await P.funding(r.id)).predicted; } catch {} }));
-    out.sort((a, b) => b.score - a.score);
-    const keys = new Set(out.map(r => r.side + r.id));
+    if (P.id === 'okx') await Promise.all([...outTrend, ...outPb].map(async r => { try { r.funding = (await P.funding(r.id)).predicted; } catch {} }));
+    outTrend.sort((a, b) => b.score - a.score);
+    outPb.sort((a, b) => b.score - a.score);
+    const keys = new Set([...outTrend.map(r => 'trend' + r.side + r.id), ...outPb.map(r => 'pullback' + r.side + r.id)]);
     if (prevSigs.current) {
       const fresh = [...keys].filter(k => !prevSigs.current.has(k));
       if (fresh.length) {
         setNewSet(new Set(fresh)); setTimeout(() => setNewSet(new Set()), 60000);
         beep();
-        if ('Notification' in window && Notification.permission === 'granted')
-          new Notification('顺大逆小 新信号', { body: fresh.map(k => (k.startsWith('long') ? '多 ' : '空 ') + P.disp(k.replace(/^(long|short)/, ''))).join('、') + '（仅供参考）' });
+        if ('Notification' in window && Notification.permission === 'granted') {
+          const body = fresh.map(k => {
+            const mode = k.startsWith('trend') ? '顺势' : '回调';
+            const rest = k.replace(/^(trend|pullback)/, '');
+            return mode + (rest.startsWith('long') ? '多 ' : '空 ') + P.disp(rest.replace(/^(long|short)/, ''));
+          }).join('、') + '（仅供参考）';
+          new Notification('推荐榜新信号', { body });
+        }
       }
     }
     prevSigs.current = keys;
-    setScan({ results:out, running:false, done, total:uni.length, last:Date.now(), errors });
+    setScan({ trend:outTrend, pullback:outPb, running:false, done, total:uni.length, last:Date.now(), errors });
   }, [P, opts]);
   const scanRef = useRef(runScan); scanRef.current = runScan;
   const ready = st.tickers.size > 0;
