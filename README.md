@@ -15,6 +15,7 @@ python3 -m http.server 8000
 小技巧：
 - `?plat=okx` 直接以 OKX 数据打开（默认 Binance）。
 - `#/BTCUSDT`（OKX 为 `#/BTC-USDT-SWAP`）直接打开该币种详情，链接可分享。
+- `?tab=trend|pullback|burst|fade` 直接打开「开单推荐」里对应的榜（顺势做多 / 顺大逆小回调 / 暴涨趋势做多 / 拉升后回落做空）；四个榜各自在后台扫描，切换不会中断。
 
 ## 数据来源
 | 模块 | 类型 | 来源 |

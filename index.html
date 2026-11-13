@@ -467,12 +467,15 @@ function RecRow({ r, P, onSelect, up, down, newSet, mode }) {
   );
 }
 
-function SignalBoard({ P, scan, opts, setOpts, onSelect, up, down, newSet, notifyOn, enableNotify, runNow }) {
+function SignalBoard({ view = 'both', P, scan, opts, setOpts, onSelect, up, down, newSet, notifyOn, enableNotify, runNow }) {
+  const showTrend = view === 'both' || view === 'trend';
+  const showPb = view === 'both' || view === 'pullback';
   const trendRows = (scan.trend || []).filter(r => opts.short || r.side === 'long');
   const pbRows = (scan.pullback || []).filter(r => opts.short || r.side === 'long');
   const empty = (rows, which) => !rows.length && <tr><td colSpan={13} className="py-6 text-center text-muted">{scan.running ? `扫描中… ${scan.done}/${scan.total}` : scan.last ? (which === 'trend' ? '当前无符合顺势条件的币种' : '当前无符合顺大逆小回调条件的币种（条件较严格，属正常）') : '等待首次扫描…'}</td></tr>;
   return (
     <div className="space-y-4">
+      {showTrend && (
       <div className="bg-panel border border-border rounded-xl overflow-hidden">
         <div className="px-4 py-3 border-b border-border flex flex-wrap gap-3 items-center justify-between">
           <div>
@@ -502,6 +505,8 @@ function SignalBoard({ P, scan, opts, setOpts, onSelect, up, down, newSet, notif
           <span className="text-amber-400/90 font-medium">⚠ 仅供参考，不构成投资建议</span>
         </div>
       </div>
+      )}
+      {showPb && (
       <div className="bg-panel border border-border rounded-xl overflow-hidden">
         <div className="px-4 py-3 border-b border-border flex flex-wrap gap-3 items-center justify-between">
           <div>
@@ -529,6 +534,7 @@ function SignalBoard({ P, scan, opts, setOpts, onSelect, up, down, newSet, notif
           <span className="text-amber-400/90 font-medium">⚠ 仅供参考，不构成投资建议</span>
         </div>
       </div>
+      )}
     </div>
   );
 }
@@ -1055,6 +1061,12 @@ function App() {
   const [tscan, setTscan] = useState({ results:[], running:false, done:0, total:0, last:null, errors:0, scanned:0 });
   const [sopts, setSopts] = useState({ pump:30, minQv:20, n:90 });
   const [sscan, setSscan] = useState({ results:[], running:false, done:0, total:0, last:null, errors:0, scanned:0, cands:0, btcStrong:false, btcGain:0 });
+  const [tab, setTab] = useState(() => {
+    const q = new URLSearchParams(location.search).get('tab');
+    if (['trend', 'pullback', 'burst', 'fade'].includes(q)) return q;
+    return localStorage.getItem('cp_tab') || 'trend';
+  });
+  useEffect(() => localStorage.setItem('cp_tab', tab), [tab]);
   const [newSet, setNewSet] = useState(new Set());
   const [notifyOn, setNotifyOn] = useState(() => 'Notification' in window && Notification.permission === 'granted');
   const prevSigs = useRef(null);
@@ -1303,6 +1315,11 @@ function App() {
   };
   const onRefresh = () => { CACHE.clear(); setEpoch(e => e + 1); };
 
+  const trendCnt = (scan.trend || []).filter(r => opts.short || r.side === 'long').length;
+  const pbCnt = (scan.pullback || []).filter(r => opts.short || r.side === 'long').length;
+  const burstCnt = tscan.results.filter(r => r.ok).length;
+  const fadeCnt = sscan.results.filter(r => r.canEnter).length;
+
   const mk = b => st.marks[P.majorId(b)];
   return (
     <div className="min-h-full flex flex-col">
@@ -1317,9 +1334,26 @@ function App() {
               <div className="text-white/75 text-[11px] leading-snug">{s.headline}</div></div>; })}
           </div>
         </div>
-        <SignalBoard {...{ P, scan, opts, setOpts, onSelect:setSel, up, down, newSet, notifyOn, enableNotify, runNow:() => runScan() }} />
-        <TrendBoard {...{ P, tscan, topts, setOpts:setTopts, onSelect:setSel, up, down, runNow:() => runTrendScan() }} />
-        <ShortBoard {...{ sscan, sopts, setOpts:setSopts, onSelect:setSel, up, down, runNow:() => runShortScan() }} />
+        <div className="flex flex-wrap items-center gap-1.5">
+          <span className="text-xs font-semibold text-white/90 mr-1">开单推荐</span>
+          {[
+            { id:'trend', label:'顺势做多', n: trendCnt, col: up, tip:`${trendCnt} 个顺势做多信号` },
+            { id:'pullback', label:'顺大逆小 · 回调', n: pbCnt, col: up, tip:`${pbCnt} 个回调买入信号` },
+            { id:'burst', label:'暴涨趋势 · 做多', n: burstCnt, col: up, tip:`${burstCnt} 个可入场 / ${tscan.results.length} 个在榜（含等回调、不参与）` },
+            { id:'fade', label:'拉升后回落 · 做空', n: fadeCnt, col: down, tip:`${fadeCnt} 个可空 / ${sscan.results.length} 个在榜（含观察、不参与）` },
+          ].map(t => (
+            <button key={t.id} onClick={() => setTab(t.id)} title={t.tip}
+              className={`px-3 py-1.5 rounded-lg text-[11px] border transition-colors ${tab === t.id ? 'bg-white/10 border-white/25 text-white font-semibold' : 'bg-panel border-border text-muted hover:text-white'}`}>
+              {t.label}
+              <span className="ml-1.5 px-1.5 py-0.5 rounded-full text-[9px] font-bold align-middle" style={{ background: t.n > 0 ? t.col : '#2B3139', color: t.n > 0 ? '#0B0E11' : '#848E9C' }}>{t.n}</span>
+            </button>
+          ))}
+          <span className="ml-auto text-[10px] text-muted hidden md:block">4 个榜独立后台扫描，切换不中断</span>
+        </div>
+        {tab === 'trend' && <SignalBoard view="trend" {...{ P, scan, opts, setOpts, onSelect:setSel, up, down, newSet, notifyOn, enableNotify, runNow:() => runScan() }} />}
+        {tab === 'pullback' && <SignalBoard view="pullback" {...{ P, scan, opts, setOpts, onSelect:setSel, up, down, newSet, notifyOn, enableNotify, runNow:() => runScan() }} />}
+        {tab === 'burst' && <TrendBoard {...{ P, tscan, topts, setOpts:setTopts, onSelect:setSel, up, down, runNow:() => runTrendScan() }} />}
+        {tab === 'fade' && <ShortBoard {...{ sscan, sopts, setOpts:setSopts, onSelect:setSel, up, down, runNow:() => runShortScan() }} />}
         <GainersTable rows={rows} P={P} sel={sel} onSelect={setSel} up={up} down={down} sortKey={sortKey} setSortKey={setSortKey} />
         <div className="text-[10px] text-muted">数据源：<Live /> {P.label} 公开行情接口（REST / WebSocket，无需密钥）· <Snap t="" /> 𝕏 情绪 / 快讯 {SNAP.snapshotTime} · 宏观数据人工核实截至 {MACRO_AS_OF} · <Demo /> 未接入的数据。仅供参考，不构成投资建议。</div>
       </main>
