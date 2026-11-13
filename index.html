@@ -29,12 +29,14 @@ html,body,#root{height:100%;margin:0;background:#0B0E11;color:#EAECEF;font-famil
 <script src="./signals.js"></script>
 <script src="./levels.js"></script>
 <script src="./trend.js"></script>
+<script src="./short.js"></script>
 <script src="./snapshot.js"></script>
 <script type="text/babel" data-presets="react">
 const { useState, useEffect, useMemo, useRef, useCallback } = React;
 const S = window.Signals;
 const LV = window.Levels;
 const TR = window.Trend;
+const SH = window.Shorter;
 const SNAP = window.SNAPSHOT || { sentiment:{}, news:{items:[]}, snapshotTime:'—' };
 // 每 5 分钟带时间戳重新拉取 snapshot.js，原地更新 SNAP（页面每秒重渲染，无需刷新）
 setInterval(() => {
@@ -126,6 +128,19 @@ async function cached(key, fn, ttl = TTL) {
   const c = CACHE.get(key); if (c && Date.now() - c.t < ttl) return c.v;
   const v = await fn(); CACHE.set(key, { t: Date.now(), v }); return v;
 }
+// 限并发执行，避免一次打出上百个请求
+async function mapLimit(items, limit, fn) {
+  const out = new Array(items.length);
+  let next = 0;
+  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, async () => {
+    for (;;) {
+      const i = next++;
+      if (i >= items.length) return;
+      try { out[i] = await fn(items[i], i); } catch { out[i] = null; }
+    }
+  }));
+  return out;
+}
 
 const BINANCE = {
   id:'binance', label:'Binance',
@@ -166,6 +181,26 @@ const BINANCE = {
   async depth(id, limit = 500) {
     const d = await getJSON(`https://fapi.binance.com/fapi/v1/depth?symbol=${id}&limit=${limit}`);
     return { bids: d.bids, asks: d.asks };
+  },
+  // 合约元数据（上线时间），做空榜用来过滤新币
+  async exchangeInfo() {
+    return cached('bn|exinfo', async () => {
+      const d = await getJSON('https://fapi.binance.com/fapi/v1/exchangeInfo');
+      const o = {};
+      d.symbols.forEach(s => {
+        if (s.contractType === 'PERPETUAL' && s.quoteAsset === 'USDT' && s.status === 'TRADING') o[s.symbol] = { onboard: +s.onboardDate };
+      });
+      return o;
+    }, 6 * 3600e3);
+  },
+  async oiHist(id, period = '4h', limit = 30) {
+    return getJSON(`https://fapi.binance.com/futures/data/openInterestHist?symbol=${id}&period=${period}&limit=${limit}`);
+  },
+  async taker(id, period = '1h', limit = 24) {
+    return getJSON(`https://fapi.binance.com/futures/data/takerlongshortRatio?symbol=${id}&period=${period}&limit=${limit}`);
+  },
+  async fundingHist(id, limit = 30) {
+    return getJSON(`https://fapi.binance.com/fapi/v1/fundingRate?symbol=${id}&limit=${limit}`);
   },
   recentLiq: null,
 };
@@ -560,15 +595,16 @@ function TrendBoard({ P, tscan, topts, setOpts, onSelect, up, down, runNow }) {
                     <div className="text-[9px] text-muted">量 {r.pullback.pullVolRatio.toFixed(2)}x · {r.pullback.phase}</div>
                   </td>
                   <td className="px-2 py-2 text-right font-mono whitespace-nowrap">
-                    <div>{LV.fmtNum(r.entry[0])}–{LV.fmtNum(r.entry[1])}</div>
-                    <div className="text-[9px] text-muted">{r.price > r.entry[1] ? '等回踩' : '现价可进'}</div>
+                    {r.status === 'skip' ? <span className="text-muted">—</span> : <><div>{LV.fmtNum(r.entry[0])}–{LV.fmtNum(r.entry[1])}</div><div className="text-[9px] text-muted">{r.price > r.entry[1] ? '等回踩' : '现价可进'}</div></>}
                   </td>
                   <td className="px-2 py-2 text-right font-mono whitespace-nowrap">
-                    {r.stop != null ? <><div>{LV.fmtNum(r.stop)}</div><div className="text-[9px]" style={{ color: down }}>-{r.riskPct?.toFixed(1)}%</div><div className="text-[9px] text-muted">4h {LV.fmtNum(r.low4h)}</div></> : <span className="text-muted">已破位</span>}
+                    {r.status === 'skip' ? <span className="text-muted">—</span> : r.stop != null ? <><div>{LV.fmtNum(r.stop)}</div><div className="text-[9px]" style={{ color: down }}>-{r.riskPct?.toFixed(1)}%</div><div className="text-[9px] text-muted">4h {LV.fmtNum(r.low4h)}</div></> : <span className="text-muted">已破位</span>}
                   </td>
                   <td className="px-2 py-2 text-right font-mono whitespace-nowrap">
-                    <div className="flex justify-end gap-1"><span className="text-[9px] text-muted">保守</span><span style={{ color: r.tp.mode === '保守' ? up : undefined }}>{LV.fmtNum(r.tp.t1)}</span></div>
-                    <div className="flex justify-end gap-1"><span className="text-[9px] text-muted">激进</span><span style={{ color: r.tp.mode === '激进' ? up : undefined }}>{LV.fmtNum(r.tp.t2)}</span></div>
+                    {r.status === 'skip' ? <span className="text-muted">—</span> : <>
+                      <div className="flex justify-end gap-1"><span className="text-[9px] text-muted">保守</span><span style={{ color: r.tp.mode === '保守' ? up : undefined }}>{LV.fmtNum(r.tp.t1)}</span></div>
+                      <div className="flex justify-end gap-1"><span className="text-[9px] text-muted">激进</span><span style={{ color: r.tp.mode === '激进' ? up : undefined }}>{LV.fmtNum(r.tp.t2)}</span></div>
+                    </>}
                   </td>
                   <td className="px-2 py-2 text-right font-mono whitespace-nowrap">
                     <div>{r.lev}x</div>
@@ -585,6 +621,105 @@ function TrendBoard({ P, tscan, topts, setOpts, onSelect, up, down, runNow }) {
       <div className="px-4 py-2 text-[10px] text-muted border-t border-border flex flex-wrap justify-between gap-2">
         <span>可入场 {entryCnt} 个 · 等回调 {waitCnt} 个 · 不参与 {skipCnt} 个 · 上次扫描 {tscan.last ? KST(tscan.last) : '—'} KST {tscan.errors ? `· ${tscan.errors} 个请求失败` : ''}</span>
         <span>入场区间偏下方＝等回踩，偏上方＝现价可进；止损跌破 1h 结构即离场，4h 低点是最后防线。⚠ 仅供参考，不构成投资建议</span>
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+ * 拉升后回落 · 做空开单榜（币安 USDⓈ-M）
+ * ============================================================ */
+const SHORT_STAGE = {
+  PUMPING: { label: '拉升中', col: '#848E9C' },
+  TOPPING: { label: '顶部衰竭', col: '#F59E0B' },
+  BREAKDOWN: { label: '破位', col: '#F97316' },
+  RETEST: { label: '反抽失败', col: '#F6465D' },
+  DUMPED: { label: '跌过头', col: '#848E9C' },
+  COLD: { label: '未入池', col: '#848E9C' },
+};
+
+function ShortBoard({ sscan, sopts, setOpts, onSelect, up, down, runNow }) {
+  const [onlyEntry, setOnlyEntry] = useState(false);
+  const rows = onlyEntry ? sscan.results.filter(r => r.canEnter) : sscan.results;
+  const entryCnt = sscan.results.filter(r => r.canEnter).length;
+  const watchCnt = sscan.results.filter(r => !r.canEnter && (r.stage === 'TOPPING' || r.stage === 'BREAKDOWN' || r.stage === 'RETEST')).length;
+  const skipCnt = sscan.results.length - entryCnt - watchCnt;
+  return (
+    <div className="bg-panel border border-border rounded-xl overflow-hidden">
+      <div className="px-4 py-3 border-b border-border flex flex-wrap gap-3 items-center justify-between">
+        <div className="max-w-[900px]">
+          <h2 className="text-sm font-semibold">拉升后回落 · 做空开单榜 <span className="ml-1 align-middle"><Badge tone="snap" title="数据来自币安 USDⓈ-M 公开接口">币安 USDⓈ-M</Badge></span></h2>
+          <p className="text-[10px] text-muted mt-0.5 leading-relaxed">
+            股票池＝24h 成交额前 {sopts.n}，且过去 48h 内滚动 24h 涨幅曾 ≥{sopts.pump}%。流水线：涨完确认（1h/4h 结构 + 顶部量能 + RSI 背离 + OI/费率/主动买卖）→ 破位或反抽失败才给入场 → 止损放反抽高点上方，TP1/TP2 取未回吐到的下一档斐波那契回撤，最终目标起涨平台。
+          </p>
+        </div>
+        <div className="flex flex-wrap items-center gap-2 text-[11px]">
+          <label className="text-muted">涨幅阈值 <select value={sopts.pump} onChange={e => setOpts({ ...sopts, pump: +e.target.value })} className="bg-bg border border-border rounded px-1">{[20, 30, 50].map(n => <option key={n} value={n}>{n}%</option>)}</select></label>
+          <label className="text-muted">最少成交额 <select value={sopts.minQv} onChange={e => setOpts({ ...sopts, minQv: +e.target.value })} className="bg-bg border border-border rounded px-1">{[20, 50, 100].map(n => <option key={n} value={n}>{n}M</option>)}</select></label>
+          <label className="text-muted">扫描 <select value={sopts.n} onChange={e => setOpts({ ...sopts, n: +e.target.value })} className="bg-bg border border-border rounded px-1">{[60, 90, 120].map(n => <option key={n} value={n}>Top {n}</option>)}</select></label>
+          <label className="text-muted flex items-center gap-1"><input type="checkbox" checked={onlyEntry} onChange={e => setOnlyEntry(e.target.checked)} />只看可空</label>
+          <button onClick={runNow} disabled={sscan.running} className="px-2 py-1 rounded border border-border text-muted hover:text-white disabled:opacity-50">{sscan.running ? `扫描中 ${sscan.done}/${sscan.total}` : '立即扫描'}</button>
+        </div>
+      </div>
+      {sscan.btcStrong && <div className="px-4 py-1.5 text-[10px] text-amber-400 bg-amber-500/10 border-b border-amber-500/20">⚠ BTC 1h 正在强势拉升（近 3 根 +{sscan.btcGain?.toFixed(1)}%）：山寨做空逆风，信号已自动降级/否决。</div>}
+      <div className="overflow-x-auto">
+        <table className="w-full text-[11px]">
+          <thead><tr className="text-muted border-b border-border bg-bg/40">
+            {['建议', '交易对', '状态', '评分', '拉升', '回吐', '入场区', '止损', 'TP1 / TP2', '费率 / OI', '触发', '操作'].map((h, i) => (
+              <th key={h} className={`${i < 2 ? 'text-left' : i === 11 ? 'text-right' : 'text-right'} font-medium px-2 py-2 whitespace-nowrap`}>{h}</th>
+            ))}
+          </tr></thead>
+          <tbody>
+            {rows.map(r => {
+              const st = SHORT_STAGE[r.stage] || SHORT_STAGE.COLD;
+              const p = r.plan;
+              const actionable = (r.stage === 'RETEST' || r.stage === 'BREAKDOWN') && p;
+              return (
+                <tr key={r.id} onClick={() => onSelect(r.id)} title={[...(r.reasons || []), ...(r.triggers?.length ? ['触发：' + r.triggers.join('；')] : []), ...(r.vetoes?.length ? ['否决：' + r.vetoes.join('；')] : [])].join('\n')}
+                  className={`border-b border-border/60 cursor-pointer ${r.canEnter ? 'hover:bg-white/[0.04]' : 'opacity-75 hover:bg-white/[0.02]'}`}>
+                  <td className="px-2 py-2 whitespace-nowrap">
+                    {r.canEnter
+                      ? <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold text-bg" style={{ background: down }}>可空</span>
+                      : <span className="px-1.5 py-0.5 rounded border border-border text-[10px] text-muted">{['TOPPING', 'BREAKDOWN', 'RETEST'].includes(r.stage) ? '观察' : '不参与'}</span>}
+                  </td>
+                  <td className="px-2 py-2 font-medium whitespace-nowrap">{r.id.replace(/USDT$/, '')}<span className="text-[9px] text-muted ml-1">USDT</span></td>
+                  <td className="px-2 py-2 text-right whitespace-nowrap"><span className="px-1 rounded text-[10px]" style={{ color: st.col, border: `1px solid ${st.col}55` }}>{st.label}</span></td>
+                  <td className="px-2 py-2 text-right font-mono font-semibold" style={{ color: r.score >= 65 ? '#F0B90B' : r.score >= 45 ? '#EAECEF' : '#848E9C' }}>{r.score}</td>
+                  <td className="px-2 py-2 text-right font-mono whitespace-nowrap">
+                    <div>{Math.round(r.legHours)}h <span style={{ color: up }}>+{r.pumpPct.toFixed(0)}%</span></div>
+                    <div className="text-[9px] text-muted">{LV.fmtNum(r.base)} → {LV.fmtNum(r.peak)}</div>
+                  </td>
+                  <td className="px-2 py-2 text-right font-mono whitespace-nowrap">
+                    <div style={{ color: (r.retrace * 100) > 60 ? '#F59E0B' : undefined }}>{(r.retrace * 100).toFixed(0)}%</div>
+                    <div className="text-[9px] text-muted">距峰 {Math.round(r.sincePeak)}h</div>
+                  </td>
+                  <td className="px-2 py-2 text-right font-mono whitespace-nowrap">
+                    {actionable ? <><div>{LV.fmtNum(p.entry[0])}–{LV.fmtNum(p.entry[1])}</div><div className="text-[9px] text-muted">现价 {LV.fmtNum(r.price)} · {p.awaitRetest ? '等反抽' : '现价/破位'}</div></> : <span className="text-muted">—</span>}
+                  </td>
+                  <td className="px-2 py-2 text-right font-mono whitespace-nowrap">
+                    {actionable && p.stop ? <><div>{LV.fmtNum(p.stop)}</div><div className="text-[9px]" style={{ color: down }}>+{p.riskPct?.toFixed(1)}%</div></> : <span className="text-muted">—</span>}
+                  </td>
+                  <td className="px-2 py-2 text-right font-mono whitespace-nowrap">
+                    {actionable ? <><div>{LV.fmtNum(p.tp1)}</div><div className="text-[9px] text-muted">{LV.fmtNum(p.tp2)} · RR {p.rr?.toFixed(2)}</div></> : <span className="text-muted">—</span>}
+                  </td>
+                  <td className="px-2 py-2 text-right font-mono whitespace-nowrap">
+                    <div>{r.metrics.funding == null ? '—' : (r.metrics.funding * 100).toFixed(4) + '%'}</div>
+                    <div className="text-[9px] text-muted">OI {r.metrics.oiDrop == null ? '—' : '-' + r.metrics.oiDrop.toFixed(0) + '%'}</div>
+                  </td>
+                  <td className="px-2 py-2 text-left whitespace-nowrap">
+                    <div className="text-[10px]">{actionable ? p.type : r.stage === 'PUMPING' ? '仍在创新高' : r.stage === 'DUMPED' ? '已跌过头，不追' : '等待结构'}</div>
+                    <div className="text-[9px] text-muted truncate max-w-[220px]">{(r.triggers && r.triggers[0]) || (r.vetoes && r.vetoes[0]) || '—'}</div>
+                  </td>
+                  <td className="px-2 py-2 text-right whitespace-nowrap"><button className="text-accent hover:underline">详情</button></td>
+                </tr>);
+            })}
+            {!rows.length && <tr><td colSpan={12} className="py-6 text-center text-muted">{sscan.running ? `扫描中… ${sscan.done}/${sscan.total}` : sscan.last ? (onlyEntry ? '当前没有可入场的做空标的（多数拉升币还在创新高或已跌过头）。' : '涨幅榜里暂无明显「涨完转跌」结构的标的。') : '等待首次扫描…'}</td></tr>}
+          </tbody>
+        </table>
+      </div>
+      <div className="px-4 py-2 text-[10px] text-muted border-t border-border flex flex-wrap justify-between gap-2">
+        <span>可空 {entryCnt} 个 · 观察 {watchCnt} 个 · 不参与 {skipCnt} 个 · 入池 {sscan.cands || 0} 个 / 扫描 {sscan.scanned || 0} 个 · 上次扫描 {sscan.last ? KST(sscan.last) : '—'} KST {sscan.errors ? `· ${sscan.errors} 个请求失败` : ''}</span>
+        <span>一票否决：成交额 &lt; 2000 万、上线 &lt; 14 天、4h 创新高、回吐 &gt; 60%、费率极负、BTC 强势。⚠ 仅供参考，不构成投资建议</span>
       </div>
     </div>
   );
@@ -918,6 +1053,8 @@ function App() {
   const [scan, setScan] = useState({ trend:[], pullback:[], running:false, done:0, total:0, last:null, errors:0 });
   const [topts, setTopts] = useState({ lev:10, minChg:10, n:20 });
   const [tscan, setTscan] = useState({ results:[], running:false, done:0, total:0, last:null, errors:0, scanned:0 });
+  const [sopts, setSopts] = useState({ pump:30, minQv:20, n:90 });
+  const [sscan, setSscan] = useState({ results:[], running:false, done:0, total:0, last:null, errors:0, scanned:0, cands:0, btcStrong:false, btcGain:0 });
   const [newSet, setNewSet] = useState(new Set());
   const [notifyOn, setNotifyOn] = useState(() => 'Notification' in window && Notification.permission === 'granted');
   const prevSigs = useRef(null);
@@ -1097,6 +1234,68 @@ function App() {
     return () => clearInterval(iv);
   }, [ready, platform, epoch, topts.lev, topts.minChg, topts.n]);
 
+  // ---------- 拉升后回落 · 做空扫描（固定用币安数据） ----------
+  const runShortScan = useCallback(async () => {
+    const B = PLATFORMS.binance;
+    if (!SH) return;
+    setSscan(s => ({ ...s, running:true, done:0, total:0, errors:0 }));
+    try {
+      const [tickers, info] = await Promise.all([B.tickers(), B.exchangeInfo()]);
+      const pool = tickers.filter(x => info[x.id] && x.qv >= sopts.minQv * 1e6);
+      const uni = pool.slice().sort((a, b) => b.qv - a.qv).slice(0, sopts.n);
+      const seen = new Set(uni.map(x => x.id));
+      pool.slice().sort((a, b) => b.chg - a.chg).slice(0, 40).forEach(x => { if (!seen.has(x.id)) { seen.add(x.id); uni.push(x); } });
+      setSscan(s => ({ ...s, total:uni.length, scanned:uni.length }));
+
+      const btc = (await B.klines('BTCUSDT', '1h', 48)).filter(k => k.closed);
+      const btcEma = SH.ema(btc.map(k => k.c), 20);
+      const b3 = btc.slice(-3);
+      const btcGain = b3.length === 3 ? (b3[2].c / b3[0].o - 1) * 100 : 0;
+      const btcStrong = btcGain > 1.5 && btcEma && b3[2].c > btcEma;
+
+      let done = 0, errors = 0;
+      const cands = [];
+      await mapLimit(uni, 6, async x => {
+        try {
+          const h1 = await B.klines(x.id, '1h', 96);
+          const c = SH.candidate(h1, { price: x.last, pumpMin: sopts.pump });
+          if (c && c.hot) cands.push({ ...x, h1 });
+        } catch { errors++; }
+        done++;
+        if (done % 6 === 0) setSscan(s => ({ ...s, done }));
+      });
+
+      const now = Date.now();
+      const rows = [];
+      await mapLimit(cands, 4, async x => {
+        try {
+          const [m15, h4, oiHist, taker, fundHist, prem] = await Promise.all([
+            B.klines(x.id, '15m', 96), B.klines(x.id, '4h', 60),
+            B.oiHist(x.id), B.taker(x.id), B.fundingHist(x.id),
+            getJSON(`https://fapi.binance.com/fapi/v1/premiumIndex?symbol=${x.id}`),
+          ]);
+          const onboardDays = (now - (info[x.id]?.onboard || now)) / 864e5;
+          const a = SH.analyze({
+            symbol: x.id, h1: x.h1, m15, h4, qv: x.qv, price: x.last,
+            oiHist, taker, fundingHist: fundHist, funding: +prem.lastFundingRate, onboardDays, btcStrong,
+          }, { pumpMin: sopts.pump });
+          if (a && a.plan) rows.push({ ...a, id: x.id, chg: x.chg });
+        } catch { errors++; }
+      });
+      rows.sort((a, b) => (b.canEnter - a.canEnter) || (b.score - a.score));
+      setSscan({ results: rows, running:false, done:uni.length, total:uni.length, last:Date.now(), errors, scanned:uni.length, cands:cands.length, btcStrong, btcGain });
+    } catch (e) {
+      setSscan(s => ({ ...s, running:false, errors:s.errors + 1, last:Date.now() }));
+    }
+  }, [sopts]);
+  const shortRef = useRef(runShortScan); shortRef.current = runShortScan;
+  useEffect(() => {
+    if (!ready) return;
+    const t = setTimeout(() => shortRef.current(), 8000);
+    const iv = setInterval(() => shortRef.current(), 300000);
+    return () => { clearTimeout(t); clearInterval(iv); };
+  }, [ready, platform, epoch, sopts.pump, sopts.minQv, sopts.n]);
+
   const enableNotify = async () => {
     beep();
     if (!('Notification' in window)) return alert('此浏览器不支持系统通知，将仅使用声音 + 高亮提醒');
@@ -1120,6 +1319,7 @@ function App() {
         </div>
         <SignalBoard {...{ P, scan, opts, setOpts, onSelect:setSel, up, down, newSet, notifyOn, enableNotify, runNow:() => runScan() }} />
         <TrendBoard {...{ P, tscan, topts, setOpts:setTopts, onSelect:setSel, up, down, runNow:() => runTrendScan() }} />
+        <ShortBoard {...{ sscan, sopts, setOpts:setSopts, onSelect:setSel, up, down, runNow:() => runShortScan() }} />
         <GainersTable rows={rows} P={P} sel={sel} onSelect={setSel} up={up} down={down} sortKey={sortKey} setSortKey={setSortKey} />
         <div className="text-[10px] text-muted">数据源：<Live /> {P.label} 公开行情接口（REST / WebSocket，无需密钥）· <Snap t="" /> 𝕏 情绪 / 快讯 {SNAP.snapshotTime} · 宏观数据人工核实截至 {MACRO_AS_OF} · <Demo /> 未接入的数据。仅供参考，不构成投资建议。</div>
       </main>

@@ -178,7 +178,7 @@
     if (broken) score = Math.min(score, 10);
 
     const ok = trendOk && pullOk && notBroken && !broken && stage !== '回撤' && riskPct != null && riskPct <= 8;
-    const status = ok ? 'entry' : (!broken && stage !== '回撤' && trendOk) ? 'wait' : 'skip';
+    const status = ok ? 'entry' : (!broken && stage !== '回撤' && trendOk && (riskPct == null || riskPct <= 8)) ? 'wait' : 'skip';
 
     /* ---------- 依据 ---------- */
     const reasons = [
